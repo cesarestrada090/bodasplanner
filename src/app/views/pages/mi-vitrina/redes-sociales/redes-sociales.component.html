@@ -1,0 +1,321 @@
+<!-- Header -->
+<div class="page-header">
+  <h3>
+    <i class="feather icon-share-2"></i>
+    Redes Sociales
+  </h3>
+</div>
+
+<!-- Info Tip -->
+<div class="info-tip mb-4">
+  <i class="feather icon-info"></i>
+  <span>
+    Conecta tus redes sociales para que tus clientes puedan seguirte y mantenerse al día con tus trabajos y novedades.
+  </span>
+</div>
+
+<!-- Estadísticas -->
+<div class="row mb-4">
+  <div class="col-md-4 mb-3">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="feather icon-share-2"></i>
+      </div>
+      <div class="stat-info">
+        <div class="stat-value">{{ redes.length }}</div>
+        <div class="stat-label">Total Redes</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="feather icon-check-circle"></i>
+      </div>
+      <div class="stat-info">
+        <div class="stat-value">{{ redesActivas.length }}</div>
+        <div class="stat-label">Activas</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="feather icon-users"></i>
+      </div>
+      <div class="stat-info">
+        <div class="stat-value">{{ totalSeguidores | number }}</div>
+        <div class="stat-label">Seguidores Totales</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Botón Agregar -->
+<div class="mb-4">
+  <button class="btn-crear" (click)="abrirFormulario()">
+    <i class="feather icon-plus"></i>
+    <span>Agregar Red Social</span>
+  </button>
+</div>
+
+<!-- Formulario -->
+@if (mostrarFormulario) {
+  <div class="formulario-red mb-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>{{ modoEdicion ? 'Editar Red Social' : 'Nueva Red Social' }}</h5>
+        <button class="btn-close-form" (click)="cerrarFormulario()">
+          <i class="feather icon-x"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <!-- Redes disponibles -->
+        @if (!modoEdicion) {
+          <div class="mb-4">
+            <label class="form-label">Selecciona una red social</label>
+            <div class="redes-disponibles">
+              @for (red of redesDisponibles; track red.nombre) {
+                <button 
+                  type="button"
+                  class="btn-red-disponible"
+                  [style.border-color]="red.color"
+                  (click)="seleccionarRedDisponible(red)"
+                  [class.selected]="nuevaRed.nombre === red.nombre"
+                >
+                  <i class="feather icon-{{ red.icono }}" [style.color]="red.color"></i>
+                  <span>{{ red.nombre }}</span>
+                </button>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Nombre de la red *</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="nuevaRed.nombre"
+              placeholder="Ej: Instagram, Facebook..."
+            >
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Icono (Feather Icon name)</label>
+            <div class="icon-preview-wrapper">
+              <input 
+                type="text" 
+                class="form-control" 
+                [(ngModel)]="nuevaRed.icono"
+                placeholder="instagram, facebook, twitter..."
+              >
+              <div class="icon-preview">
+                <i class="feather icon-{{ nuevaRed.icono }}"></i>
+              </div>
+            </div>
+            <small class="text-muted">Ver iconos en: <a href="https://feathericons.com" target="_blank">feathericons.com</a></small>
+          </div>
+
+          <div class="col-md-8">
+            <label class="form-label">URL / Enlace *</label>
+            <input 
+              type="url" 
+              class="form-control" 
+              [(ngModel)]="nuevaRed.url"
+              placeholder="https://instagram.com/tuusuario"
+            >
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Color (Hex)</label>
+            <div class="color-input-wrapper">
+              <input 
+                type="text" 
+                class="form-control" 
+                [(ngModel)]="nuevaRed.color"
+                placeholder="#E97C9E"
+              >
+              <input 
+                type="color" 
+                [(ngModel)]="nuevaRed.color"
+                class="color-picker"
+              >
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label">Seguidores (opcional)</label>
+            <input 
+              type="number" 
+              class="form-control" 
+              [(ngModel)]="nuevaRed.seguidores"
+              placeholder="0"
+              min="0"
+            >
+            <small class="text-muted">Número aproximado de seguidores en esta red</small>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary" (click)="cerrarFormulario()">
+            <i class="feather icon-x"></i>
+            Cancelar
+          </button>
+          <button class="btn btn-primary" (click)="guardarRed()">
+            <i class="feather icon-save"></i>
+            {{ modoEdicion ? 'Actualizar' : 'Guardar' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Redes Activas -->
+@if (redesActivas.length > 0) {
+  <div class="seccion-redes mb-4">
+    <h4 class="seccion-titulo">
+      <i class="feather icon-check-circle"></i>
+      Redes Activas
+    </h4>
+    <div class="redes-grid">
+      @for (red of redesActivas; track red.id) {
+        <div class="red-card" [style.border-top-color]="red.color">
+          <div class="red-header">
+            <div class="red-icon" [style.background]="red.color + '20'">
+              <i class="feather icon-{{ red.icono }}" [style.color]="red.color"></i>
+            </div>
+            <div class="red-info">
+              <h5 class="red-nombre">{{ red.nombre }}</h5>
+              @if (red.seguidores) {
+                <div class="red-seguidores">
+                  <i class="feather icon-users"></i>
+                  <span>{{ red.seguidores | number }} seguidores</span>
+                </div>
+              }
+            </div>
+            <div class="red-actions">
+              <button 
+                class="btn-icon" 
+                [class.active]="red.activa"
+                (click)="toggleActivacion(red)"
+                [title]="red.activa ? 'Desactivar' : 'Activar'"
+              >
+                <i class="feather" [class.icon-eye]="red.activa" [class.icon-eye-off]="!red.activa"></i>
+              </button>
+              <button 
+                class="btn-icon" 
+                (click)="editarRed(red)"
+                title="Editar"
+              >
+                <i class="feather icon-edit-2"></i>
+              </button>
+              <button 
+                class="btn-icon danger" 
+                (click)="eliminarRed(red.id)"
+                title="Eliminar"
+              >
+                <i class="feather icon-trash-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="red-url">
+            <div class="url-text">
+              <i class="feather icon-link"></i>
+              <a [href]="red.url" target="_blank">{{ red.url }}</a>
+            </div>
+            <div class="url-actions">
+              <button class="btn-icon-sm" (click)="copiarUrl(red.url)" title="Copiar URL">
+                <i class="feather icon-copy"></i>
+              </button>
+              <button class="btn-icon-sm" (click)="abrirEnlace(red.url)" title="Abrir enlace">
+                <i class="feather icon-external-link"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<!-- Redes Inactivas -->
+@if (redesInactivas.length > 0) {
+  <div class="seccion-redes">
+    <h4 class="seccion-titulo">
+      <i class="feather icon-eye-off"></i>
+      Redes Inactivas
+    </h4>
+    <div class="redes-grid">
+      @for (red of redesInactivas; track red.id) {
+        <div class="red-card inactiva" [style.border-top-color]="red.color">
+          <div class="red-header">
+            <div class="red-icon" [style.background]="red.color + '20'">
+              <i class="feather icon-{{ red.icono }}" [style.color]="red.color"></i>
+            </div>
+            <div class="red-info">
+              <h5 class="red-nombre">{{ red.nombre }}</h5>
+              @if (red.seguidores) {
+                <div class="red-seguidores">
+                  <i class="feather icon-users"></i>
+                  <span>{{ red.seguidores | number }} seguidores</span>
+                </div>
+              }
+            </div>
+            <div class="red-actions">
+              <button 
+                class="btn-icon" 
+                [class.active]="red.activa"
+                (click)="toggleActivacion(red)"
+                [title]="red.activa ? 'Desactivar' : 'Activar'"
+              >
+                <i class="feather" [class.icon-eye]="red.activa" [class.icon-eye-off]="!red.activa"></i>
+              </button>
+              <button 
+                class="btn-icon" 
+                (click)="editarRed(red)"
+                title="Editar"
+              >
+                <i class="feather icon-edit-2"></i>
+              </button>
+              <button 
+                class="btn-icon danger" 
+                (click)="eliminarRed(red.id)"
+                title="Eliminar"
+              >
+                <i class="feather icon-trash-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="red-url">
+            <div class="url-text">
+              <i class="feather icon-link"></i>
+              <span class="text-muted">{{ red.url }}</span>
+            </div>
+            <div class="url-actions">
+              <button class="btn-icon-sm" (click)="copiarUrl(red.url)" title="Copiar URL">
+                <i class="feather icon-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<!-- Empty state -->
+@if (redes.length === 0) {
+  <div class="empty-state">
+    <i class="feather icon-share-2"></i>
+    <p>No has agregado redes sociales aún</p>
+    <button class="btn btn-outline-primary" (click)="abrirFormulario()">
+      <i class="feather icon-plus"></i>
+      Agregar primera red social
+    </button>
+  </div>
+}

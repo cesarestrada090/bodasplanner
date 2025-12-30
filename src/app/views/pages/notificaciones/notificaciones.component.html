@@ -1,0 +1,54 @@
+<div class="page-header">
+  <h3>
+    <i class="feather icon-bell"></i>
+    Notificaciones
+  </h3>
+</div>
+
+<!-- Info Banner -->
+<div class="info-banner">
+  <div class="info-icon">
+    <i class="feather icon-info"></i>
+  </div>
+  <div class="info-content">
+    <h5>Configuración de notificaciones</h5>
+    <p>Las comunicaciones que te enviamos son información importante para que tu vitrina tenga más éxito. No queremos que recibas comunicaciones que no te interesan, así que aquí puedes seleccionar cuáles quieres recibir y cuáles no.</p>
+  </div>
+</div>
+
+<!-- Configuración de notificaciones -->
+<div class="notificaciones-section">
+  <div class="notificaciones-lista">
+    @for (notif of notificaciones; track notif.id) {
+      <div class="notificacion-item">
+        <label class="checkbox-container">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="notif.activa"
+          >
+          <span class="checkmark"></span>
+          <div class="notificacion-content">
+            <h6 class="notificacion-titulo">{{ notif.titulo }}</h6>
+            <p class="notificacion-descripcion">{{ notif.descripcion }}</p>
+          </div>
+        </label>
+      </div>
+    }
+  </div>
+
+  <!-- Botón guardar -->
+  <div class="action-buttons">
+    <button class="btn btn-primary" (click)="guardarConfiguracion()">
+      <i class="feather icon-save"></i>
+      Guardar configuración
+    </button>
+  </div>
+
+  <!-- Mensaje de éxito -->
+  @if (guardadoExitoso) {
+    <div class="alert alert-success">
+      <i class="feather icon-check-circle"></i>
+      Configuración guardada correctamente
+    </div>
+  }
+</div>

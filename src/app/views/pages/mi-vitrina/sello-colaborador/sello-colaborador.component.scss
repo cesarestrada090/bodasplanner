@@ -1,0 +1,501 @@
+// Sello Colaborador Component Styles
+
+.page-header {
+  margin-bottom: 2rem;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    font-weight: 600;
+
+    i {
+      color: #E97C9E;
+      font-size: 1.75rem;
+    }
+  }
+}
+
+// Info Banner
+.info-banner {
+  background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+  border-radius: 1rem;
+  padding: 2rem;
+  color: #fff;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  box-shadow: 0 8px 24px rgba(233, 124, 158, 0.3);
+
+  .info-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    i {
+      font-size: 2rem;
+    }
+  }
+
+  .info-content {
+    flex: 1;
+
+    h4 {
+      margin: 0 0 0.75rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+  }
+}
+
+// Instrucciones
+.instrucciones-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  border: 2px solid #f0f0f0;
+  overflow: hidden;
+
+  .instrucciones-header {
+    background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    i {
+      color: #E97C9E;
+      font-size: 1.5rem;
+    }
+
+    h5 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .instrucciones-body {
+    padding: 1.5rem;
+
+    ol {
+      margin: 0;
+      padding-left: 1.5rem;
+      
+      li {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin-bottom: 0.75rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        strong {
+          color: #333;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+// Section Title
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+
+  i {
+    color: #E97C9E;
+    font-size: 1.5rem;
+  }
+}
+
+// Beneficios
+.beneficios-section {
+  .beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .beneficio-card {
+    background: #fff;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .beneficio-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+
+      i {
+        color: #fff;
+        font-size: 1.75rem;
+      }
+    }
+
+    h5 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      margin: 0 0 0.5rem 0;
+    }
+
+    p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+}
+
+// Sellos Grid
+.sellos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+// Sello Card
+.sello-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .sello-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+
+    h5 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .sello-dimensions {
+      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      color: #fff;
+      padding: 0.375rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+  }
+
+  .sello-preview {
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    min-height: 180px;
+
+    .preview-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: 2px dashed #e0e0e0;
+      border-radius: 0.5rem;
+      padding: 1rem;
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    .preview-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+
+      .btn-preview {
+        background: #fff;
+        color: #333;
+        border: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        transform: translateY(10px);
+        transition: transform 0.3s;
+
+        i {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    &:hover .preview-overlay {
+      opacity: 1;
+
+      .btn-preview {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .sello-codigo {
+    margin-bottom: 1.25rem;
+
+    .codigo-label {
+      display: block;
+      font-weight: 600;
+      color: #333;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .codigo-box {
+      background: #f8f9fa;
+      border: 2px solid #e0e0e0;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      max-height: 150px;
+      overflow-y: auto;
+
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+
+        code {
+          font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+          font-size: 0.8rem;
+          line-height: 1.5;
+          color: #666;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #E97C9E;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  .sello-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    button {
+      border: none;
+      padding: 0.875rem 1.25rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+
+      i {
+        font-size: 1.1rem;
+      }
+    }
+
+    .btn-copiar {
+      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(233, 124, 158, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(233, 124, 158, 0.4);
+      }
+
+      &.copiado {
+        background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+      }
+    }
+
+    .btn-descargar {
+      background: #f8f9fa;
+      color: #666;
+      border: 2px solid #e0e0e0;
+
+      &:hover {
+        background: #e9ecef;
+        color: #333;
+        border-color: #d0d0d0;
+      }
+    }
+  }
+}
+
+// Nota Final
+.nota-final {
+  .nota-content {
+    background: #fff9e6;
+    border-left: 4px solid #ffc107;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+
+    > i {
+      color: #ffc107;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    h5 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #333;
+      margin: 0 0 0.5rem 0;
+    }
+
+    p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 991px) {
+  .sellos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .beneficios-section {
+    .beneficios-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .info-banner {
+    flex-direction: column;
+    padding: 1.5rem;
+
+    .info-icon {
+      width: 56px;
+      height: 56px;
+
+      i {
+        font-size: 1.75rem;
+      }
+    }
+
+    .info-content {
+      h4 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .beneficios-section {
+    .beneficios-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .sello-card {
+    padding: 1.25rem;
+
+    .sello-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .sello-preview {
+      padding: 1.5rem;
+      min-height: 150px;
+    }
+
+    .sello-actions {
+      button {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

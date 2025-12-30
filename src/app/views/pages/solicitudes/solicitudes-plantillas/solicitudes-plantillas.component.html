@@ -1,0 +1,209 @@
+<div class="page-header">
+  <h3>
+    <i class="feather icon-file-text"></i>
+    Plantillas de Respuesta
+  </h3>
+  <div class="header-actions">
+    <button class="btn btn-primary" (click)="abrirFormularioNueva()">
+      <i class="feather icon-plus"></i>
+      Nueva plantilla
+    </button>
+  </div>
+</div>
+
+<div class="info-banner">
+  <div class="info-icon">
+    <i class="feather icon-info"></i>
+  </div>
+  <div class="info-content">
+    <h5>Plantillas de respuesta</h5>
+    <p>Crea y edita las plantillas que después podrás utilizar para contestar a las parejas. Ahorrarás mucho tiempo y podrás contestar de forma más rápida y sencilla.</p>
+  </div>
+</div>
+
+<!-- Formulario -->
+@if (mostrarFormulario) {
+  <div class="plantilla-form">
+    <div class="form-header">
+      <h5>{{ editando ? 'Editar plantilla' : 'Nueva plantilla' }}</h5>
+    </div>
+    <div class="form-body">
+      <div class="form-group">
+        <label>Nombre de plantilla</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          [(ngModel)]="plantillaActual.nombre"
+          placeholder="Ej: Respuesta inicial"
+        >
+      </div>
+      <div class="form-group">
+        <label>Asunto</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          [(ngModel)]="plantillaActual.asunto"
+          placeholder="Ej: Respuesta a tu solicitud"
+        >
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea 
+          class="form-control" 
+          rows="8"
+          [(ngModel)]="plantillaActual.mensaje"
+          placeholder="Escribe aquí el contenido de tu plantilla..."
+        ></textarea>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-secondary" (click)="cancelarEdicion()">
+          <i class="feather icon-x"></i>
+          Cancelar
+        </button>
+        <button class="btn btn-primary" (click)="guardarPlantilla()">
+          <i class="feather icon-save"></i>
+          {{ editando ? 'Guardar cambios' : 'Crear plantilla' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Plantillas Visibles -->
+@if (plantillasVisibles.length > 0) {
+  <div class="section-title">
+    <h5>Plantillas activas</h5>
+    <span class="count">{{ plantillasVisibles.length }}</span>
+  </div>
+
+  <div class="plantillas-grid">
+    @for (plantilla of plantillasVisibles; track plantilla.id) {
+      <div class="plantilla-card" [class.por-defecto]="plantilla.porDefecto">
+        <div class="plantilla-header">
+          <div class="plantilla-nombre">
+            <h6>{{ plantilla.nombre }}</h6>
+            @if (plantilla.porDefecto) {
+              <span class="badge badge-default">Por defecto</span>
+            }
+          </div>
+          <div class="plantilla-fecha">
+            {{ formatearFecha(plantilla.fechaCreacion) }}
+          </div>
+        </div>
+
+        <div class="plantilla-body">
+          <div class="plantilla-asunto">
+            <label>Asunto:</label>
+            <span>{{ plantilla.asunto }}</span>
+          </div>
+          <div class="plantilla-mensaje">
+            <label>Mensaje:</label>
+            <p>{{ plantilla.mensaje }}</p>
+          </div>
+        </div>
+
+        <div class="plantilla-footer">
+          <button 
+            class="btn btn-sm btn-outline-primary" 
+            (click)="editarPlantilla(plantilla)"
+            title="Editar"
+          >
+            <i class="feather icon-edit-2"></i>
+            Editar
+          </button>
+          <button 
+            class="btn btn-sm btn-outline-secondary" 
+            (click)="duplicarPlantilla(plantilla)"
+            title="Duplicar"
+          >
+            <i class="feather icon-copy"></i>
+          </button>
+          @if (!plantilla.porDefecto) {
+            <button 
+              class="btn btn-sm btn-outline-success" 
+              (click)="establecerPorDefecto(plantilla.id)"
+              title="Establecer como predeterminada"
+            >
+              <i class="feather icon-star"></i>
+            </button>
+          }
+          <button 
+            class="btn btn-sm btn-outline-warning" 
+            (click)="toggleVisibilidad(plantilla.id)"
+            title="Ocultar"
+          >
+            <i class="feather icon-eye-off"></i>
+          </button>
+          <button 
+            class="btn btn-sm btn-outline-danger" 
+            (click)="eliminarPlantilla(plantilla.id)"
+            title="Eliminar"
+          >
+            <i class="feather icon-trash-2"></i>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+}
+
+<!-- Plantillas Ocultas -->
+@if (plantillasOcultas.length > 0) {
+  <div class="section-title mt-4">
+    <h5>Plantillas ocultas</h5>
+    <span class="count">{{ plantillasOcultas.length }}</span>
+  </div>
+
+  <div class="plantillas-grid ocultas">
+    @for (plantilla of plantillasOcultas; track plantilla.id) {
+      <div class="plantilla-card oculta">
+        <div class="plantilla-header">
+          <div class="plantilla-nombre">
+            <h6>{{ plantilla.nombre }}</h6>
+          </div>
+          <div class="plantilla-fecha">
+            {{ formatearFecha(plantilla.fechaCreacion) }}
+          </div>
+        </div>
+
+        <div class="plantilla-body">
+          <div class="plantilla-asunto">
+            <label>Asunto:</label>
+            <span>{{ plantilla.asunto }}</span>
+          </div>
+        </div>
+
+        <div class="plantilla-footer">
+          <button 
+            class="btn btn-sm btn-outline-primary" 
+            (click)="toggleVisibilidad(plantilla.id)"
+            title="Mostrar"
+          >
+            <i class="feather icon-eye"></i>
+            Mostrar
+          </button>
+          <button 
+            class="btn btn-sm btn-outline-danger" 
+            (click)="eliminarPlantilla(plantilla.id)"
+            title="Eliminar"
+          >
+            <i class="feather icon-trash-2"></i>
+            Eliminar
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+}
+
+@if (plantillas.length === 0) {
+  <div class="empty-state">
+    <i class="feather icon-file-text"></i>
+    <h4>No hay plantillas</h4>
+    <p>Crea tu primera plantilla de respuesta para comenzar</p>
+    <button class="btn btn-primary" (click)="abrirFormularioNueva()">
+      <i class="feather icon-plus"></i>
+      Crear plantilla
+    </button>
+  </div>
+}

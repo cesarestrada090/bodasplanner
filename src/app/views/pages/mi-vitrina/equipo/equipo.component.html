@@ -1,0 +1,348 @@
+<!-- Header -->
+<div class="page-header">
+  <h3>
+    <i class="feather icon-users"></i>
+    Nuestro Equipo
+  </h3>
+</div>
+
+<!-- Info Tip -->
+<div class="info-tip mb-4">
+  <i class="feather icon-info"></i>
+  <span>
+    Presenta a tu equipo de trabajo. Los clientes podrán conocer quiénes estarán a cargo de hacer realidad su día especial.
+  </span>
+</div>
+
+<!-- Estadísticas -->
+<div class="row mb-4">
+  <div class="col-md-4 mb-3">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="feather icon-users"></i>
+      </div>
+      <div class="stat-info">
+        <div class="stat-value">{{ totalMiembros }}</div>
+        <div class="stat-label">Total Miembros</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="feather icon-eye"></i>
+      </div>
+      <div class="stat-info">
+        <div class="stat-value">{{ miembrosVisibles }}</div>
+        <div class="stat-label">Visibles en Vitrina</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="feather icon-award"></i>
+      </div>
+      <div class="stat-info">
+        <div class="stat-value">{{ experienciaPromedio }}</div>
+        <div class="stat-label">Años Exp. Promedio</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Búsqueda y Crear -->
+<div class="search-add-section mb-4">
+  <div class="search-box">
+    <i class="feather icon-search"></i>
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Buscar por nombre, cargo o especialidad..."
+      [(ngModel)]="terminoBusqueda"
+    >
+  </div>
+  <button class="btn-crear" (click)="abrirFormulario()">
+    <i class="feather icon-plus"></i>
+    <span>Agregar Miembro</span>
+  </button>
+</div>
+
+<!-- Formulario -->
+@if (mostrarFormulario) {
+  <div class="formulario-miembro mb-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>{{ modoEdicion ? 'Editar Miembro del Equipo' : 'Nuevo Miembro del Equipo' }}</h5>
+        <button class="btn-close-form" (click)="cerrarFormulario()">
+          <i class="feather icon-x"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Nombre Completo *</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="nuevoMiembro.nombre"
+              placeholder="Ej: María Elena Rojas"
+            >
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Cargo / Posición *</label>
+            <select class="form-select" [(ngModel)]="nuevoMiembro.cargo">
+              <option value="">Selecciona un cargo</option>
+              @for (cargo of cargos; track cargo) {
+                <option [value]="cargo">{{ cargo }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">URL de la foto *</label>
+            <input 
+              type="url" 
+              class="form-control" 
+              [(ngModel)]="nuevoMiembro.foto"
+              placeholder="https://..."
+            >
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Especialidad</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="nuevoMiembro.especialidad"
+              placeholder="Ej: Bodas de Lujo, Logística, etc."
+            >
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Teléfono</label>
+            <input 
+              type="tel" 
+              class="form-control" 
+              [(ngModel)]="nuevoMiembro.telefono"
+              placeholder="+51 999 888 777"
+            >
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input 
+              type="email" 
+              class="form-control" 
+              [(ngModel)]="nuevoMiembro.email"
+              placeholder="nombre@empresa.com"
+            >
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label">Años de Experiencia</label>
+            <input 
+              type="number" 
+              class="form-control" 
+              [(ngModel)]="nuevoMiembro.aniosExperiencia"
+              placeholder="0"
+              min="0"
+              max="50"
+            >
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label">Descripción / Bio *</label>
+            <textarea 
+              class="form-control" 
+              rows="4"
+              [(ngModel)]="nuevoMiembro.descripcion"
+              placeholder="Breve descripción profesional del miembro del equipo..."
+            ></textarea>
+            <small class="text-muted">Esta información se mostrará en el popup cuando los clientes hagan clic.</small>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary" (click)="cerrarFormulario()">
+            <i class="feather icon-x"></i>
+            Cancelar
+          </button>
+          <button class="btn btn-primary" (click)="guardarMiembro()">
+            <i class="feather icon-save"></i>
+            {{ modoEdicion ? 'Actualizar' : 'Guardar' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Grid de Miembros -->
+@if (miembrosFiltrados.length === 0) {
+  <div class="empty-state">
+    <i class="feather icon-users"></i>
+    <p>No se encontraron miembros del equipo</p>
+    @if (terminoBusqueda) {
+      <button class="btn btn-outline-primary" (click)="terminoBusqueda = ''">
+        Limpiar búsqueda
+      </button>
+    }
+  </div>
+} @else {
+  <div class="equipo-grid">
+    @for (miembro of miembrosFiltrados; track miembro.id) {
+      <div class="miembro-card" [class.oculto]="!miembro.visible" (click)="verDetalle(miembro, modalDetalle)">
+        <div class="miembro-foto">
+          <img [src]="miembro.foto" [alt]="miembro.nombre">
+          @if (!miembro.visible) {
+            <div class="overlay-oculto">
+              <i class="feather icon-eye-off"></i>
+              <span>Oculto</span>
+            </div>
+          }
+        </div>
+        
+        <div class="miembro-contenido">
+          <div class="miembro-header">
+            <h4 class="miembro-nombre">{{ miembro.nombre }}</h4>
+            <div class="miembro-actions" (click)="$event.stopPropagation()">
+              <button 
+                class="btn-icon" 
+                [class.active]="miembro.visible"
+                (click)="toggleVisibilidad(miembro)"
+                [title]="miembro.visible ? 'Ocultar' : 'Mostrar'"
+              >
+                <i class="feather" [class.icon-eye]="miembro.visible" [class.icon-eye-off]="!miembro.visible"></i>
+              </button>
+              <button 
+                class="btn-icon" 
+                (click)="editarMiembro(miembro)"
+                title="Editar"
+              >
+                <i class="feather icon-edit-2"></i>
+              </button>
+              <button 
+                class="btn-icon" 
+                (click)="duplicarMiembro(miembro)"
+                title="Duplicar"
+              >
+                <i class="feather icon-copy"></i>
+              </button>
+              <button 
+                class="btn-icon danger" 
+                (click)="eliminarMiembro(miembro.id)"
+                title="Eliminar"
+              >
+                <i class="feather icon-trash-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="miembro-cargo">
+            <i class="feather icon-briefcase"></i>
+            <span>{{ miembro.cargo }}</span>
+          </div>
+
+          @if (miembro.especialidad) {
+            <div class="miembro-especialidad">
+              <i class="feather icon-star"></i>
+              <span>{{ miembro.especialidad }}</span>
+            </div>
+          }
+
+          @if (miembro.aniosExperiencia) {
+            <div class="miembro-experiencia">
+              <i class="feather icon-award"></i>
+              <span>{{ miembro.aniosExperiencia }} años de experiencia</span>
+            </div>
+          }
+
+          <div class="miembro-descripcion">
+            {{ miembro.descripcion }}
+          </div>
+
+          <div class="ver-mas">
+            <span>Click para ver más detalles</span>
+            <i class="feather icon-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
+
+<!-- Modal de Detalle -->
+<ng-template #modalDetalle let-modal>
+  @if (miembroSeleccionado) {
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="foto-modal">
+          <img [src]="miembroSeleccionado.foto" [alt]="miembroSeleccionado.nombre">
+        </div>
+        <div class="info-modal">
+          <h4 class="modal-title">{{ miembroSeleccionado.nombre }}</h4>
+          <p class="cargo-modal">{{ miembroSeleccionado.cargo }}</p>
+        </div>
+      </div>
+      <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      @if (miembroSeleccionado.especialidad) {
+        <div class="detalle-section">
+          <div class="detalle-label">
+            <i class="feather icon-star"></i>
+            <span>Especialidad</span>
+          </div>
+          <div class="detalle-valor">{{ miembroSeleccionado.especialidad }}</div>
+        </div>
+      }
+
+      @if (miembroSeleccionado.aniosExperiencia) {
+        <div class="detalle-section">
+          <div class="detalle-label">
+            <i class="feather icon-award"></i>
+            <span>Experiencia</span>
+          </div>
+          <div class="detalle-valor">{{ miembroSeleccionado.aniosExperiencia }} años en la industria</div>
+        </div>
+      }
+
+      <div class="detalle-section">
+        <div class="detalle-label">
+          <i class="feather icon-file-text"></i>
+          <span>Sobre {{ miembroSeleccionado.nombre.split(' ')[0] }}</span>
+        </div>
+        <div class="detalle-valor descripcion-completa">{{ miembroSeleccionado.descripcion }}</div>
+      </div>
+
+      @if (miembroSeleccionado.telefono || miembroSeleccionado.email) {
+        <div class="contacto-section">
+          <div class="detalle-label">
+            <i class="feather icon-phone"></i>
+            <span>Contacto</span>
+          </div>
+          
+          <div class="contacto-items">
+            @if (miembroSeleccionado.telefono) {
+              <div class="contacto-item">
+                <i class="feather icon-phone"></i>
+                <a [href]="'tel:' + miembroSeleccionado.telefono">{{ miembroSeleccionado.telefono }}</a>
+              </div>
+            }
+            @if (miembroSeleccionado.email) {
+              <div class="contacto-item">
+                <i class="feather icon-mail"></i>
+                <a [href]="'mailto:' + miembroSeleccionado.email">{{ miembroSeleccionado.email }}</a>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cerrar</button>
+    </div>
+  }
+</ng-template>

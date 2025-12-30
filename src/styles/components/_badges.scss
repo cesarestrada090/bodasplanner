@@ -1,0 +1,39 @@
+// Badges
+
+a.badge { // for link badges
+  &:hover {
+    color: $white;
+  }
+}
+
+// Badges con estilos románticos
+.badge {
+  border-radius: 0.5rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  
+  &.bg-primary {
+    background-color: #E97C9E !important;
+    color: white;
+  }
+  
+  &.bg-success {
+    background-color: #95C9A8 !important;
+    color: white;
+  }
+  
+  &.bg-info {
+    background-color: #F8B4D9 !important;
+    color: white;
+  }
+  
+  &.bg-warning {
+    background-color: #FFCBA4 !important;
+    color: #704214;
+  }
+  
+  &.bg-danger {
+    background-color: #F08585 !important;
+    color: white;
+  }
+}

@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h3>
+    <i class="feather icon-message-circle"></i>
+    Chat con IA
+  </h3>
+</div>
+
+<div class="chat-container">
+  <div class="chat-info">
+    <i class="feather icon-info"></i>
+    <p>Asistente virtual disponible 24/7 para responder tus preguntas</p>
+  </div>
+
+  <div class="chat-messages">
+    @for (mensaje of conversacion; track mensaje.id) {
+      <div class="mensaje" [class.usuario]="mensaje.autor === 'usuario'" [class.ia]="mensaje.autor === 'ia'">
+        <div class="mensaje-avatar">
+          @if (mensaje.autor === 'ia') {
+            <div class="avatar-ia">
+              <i class="feather icon-cpu"></i>
+            </div>
+          } @else {
+            <div class="avatar-usuario">
+              <i class="feather icon-user"></i>
+            </div>
+          }
+        </div>
+        <div class="mensaje-content">
+          <div class="mensaje-texto">{{ mensaje.texto }}</div>
+          <div class="mensaje-hora">{{ formatearHora(mensaje.timestamp) }}</div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="chat-input">
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Escribe tu mensaje..."
+      [(ngModel)]="mensajeInput"
+      (keyup.enter)="enviarMensaje()"
+    >
+    <button class="btn btn-primary" (click)="enviarMensaje()">
+      <i class="feather icon-send"></i>
+    </button>
+  </div>
+</div>

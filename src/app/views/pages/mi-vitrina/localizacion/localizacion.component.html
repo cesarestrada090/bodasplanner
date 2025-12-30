@@ -1,0 +1,161 @@
+<div class="page-header mb-4">
+  <h3 class="page-title">
+    <i class="feather icon-map-pin me-2 text-primary"></i>
+    Localización y Mapa
+  </h3>
+  <p class="text-muted mb-0">Ayuda a las parejas a encontrarte fácilmente</p>
+</div>
+
+<div class="row">
+  <!-- Mapa Interactivo -->
+  <div class="col-12 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="section-header mb-4">
+          <div class="icon-wrapper">
+            <i class="feather icon-map"></i>
+          </div>
+          <h5 class="section-title">Vista del Mapa</h5>
+        </div>
+
+        <div class="map-container">
+          <iframe 
+            [src]="urlMapa | sanitizeUrl"
+            width="100%" 
+            height="400" 
+            style="border:0; border-radius: 0.75rem;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <div class="coordinates-panel mt-3">
+          <div class="row g-2">
+            <div class="col-6">
+              <label class="form-label small">Latitud</label>
+              <input 
+                type="number" 
+                class="form-control form-control-sm" 
+                [(ngModel)]="localizacion.coordenadas.latitud"
+                step="0.000001"
+              >
+            </div>
+            <div class="col-6">
+              <label class="form-label small">Longitud</label>
+              <input 
+                type="number" 
+                class="form-control form-control-sm" 
+                [(ngModel)]="localizacion.coordenadas.longitud"
+                step="0.000001"
+              >
+            </div>
+          </div>
+          <button class="btn btn-outline-primary btn-sm w-100 mt-2" (click)="actualizarMapa()">
+            <i class="feather icon-refresh-cw me-1"></i>
+            Actualizar mapa
+          </button>
+        </div>
+
+        <div class="info-tip mt-3">
+          <i class="feather icon-info"></i>
+          <span>Puedes obtener las coordenadas exactas desde <a href="https://www.google.com/maps" target="_blank" class="text-primary">Google Maps</a>. Haz clic derecho en tu ubicación y selecciona las coordenadas.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dirección Completa -->
+<div class="row">
+  <div class="col-12 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="section-header mb-4">
+          <div class="icon-wrapper">
+            <i class="feather icon-navigation"></i>
+          </div>
+          <h5 class="section-title">Dirección Completa</h5>
+        </div>
+
+        <div class="row">
+          <div class="col-12 mb-3">
+            <label class="form-label">Dirección <span class="required">*</span></label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="localizacion.direccion.calle"
+              placeholder="Calle, número, oficina, piso, etc."
+            >
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-3">
+            <label class="form-label">Ciudad <span class="required">*</span></label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="localizacion.direccion.ciudad"
+              placeholder="Lima"
+            >
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-3">
+            <label class="form-label">Distrito / Provincia</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="localizacion.direccion.distrito"
+              placeholder="Miraflores"
+            >
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-3">
+            <label class="form-label">Código Postal</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="localizacion.direccion.codigoPostal"
+              placeholder="15074"
+            >
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-3">
+            <label class="form-label">País <span class="required">*</span></label>
+            <select class="form-select" [(ngModel)]="localizacion.direccion.pais">
+              @for (pais of paises; track pais) {
+                <option [value]="pais">{{ pais }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="col-12 mb-3">
+            <label class="form-label">Referencia adicional</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="localizacion.direccion.referencia"
+              placeholder="Ej: Frente al parque, cerca del banco, edificio azul..."
+            >
+            <small class="text-muted">Ayuda a las parejas a encontrar tu ubicación más fácilmente</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Acciones -->
+<div class="row">
+  <div class="col-12">
+    <div class="action-buttons">
+      <button class="btn btn-light">
+        <i class="feather icon-x me-1"></i>
+        Cancelar
+      </button>
+      <button class="btn btn-primary" (click)="guardarLocalizacion()">
+        <i class="feather icon-check me-1"></i>
+        Guardar ubicación
+      </button>
+    </div>
+  </div>
+</div>

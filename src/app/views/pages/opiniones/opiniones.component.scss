@@ -1,0 +1,538 @@
+// Opiniones Component Styles
+
+.page-header {
+  margin-bottom: 2rem;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    font-weight: 600;
+
+    i {
+      color: #E97C9E;
+      font-size: 1.75rem;
+    }
+  }
+}
+
+// Stats Banner
+.stats-banner {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+  border-radius: 0.75rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  align-items: center;
+
+  .stat-principal {
+    text-align: center;
+    padding-right: 2rem;
+    border-right: 2px solid rgba(255, 255, 255, 0.3);
+
+    .stat-numero {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-texto {
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+  }
+
+  .stats-secundarias {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    .stat-item {
+      font-size: 0.95rem;
+      opacity: 0.95;
+
+      strong {
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+// Section Title
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.75rem;
+
+  i {
+    color: #E97C9E;
+    font-size: 1.25rem;
+  }
+}
+
+.section-description {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+// Envío Section
+.envio-section {
+  background: #fff;
+  border-radius: 0.75rem;
+  border: 2px solid #f0f0f0;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  .destinatarios-form {
+    margin-bottom: 1.5rem;
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 1rem;
+      align-items: end;
+
+      .form-group {
+        margin-bottom: 0;
+      }
+
+      .btn-add {
+        height: 46px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .destinatarios-lista {
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+
+    .lista-titulo {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.75rem;
+    }
+
+    .destinatario-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background: #fff;
+      border-radius: 0.35rem;
+      margin-bottom: 0.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .destinatario-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        i {
+          color: #E97C9E;
+          font-size: 1.1rem;
+        }
+
+        .nombre {
+          font-weight: 600;
+          color: #333;
+        }
+
+        .email {
+          color: #666;
+          font-size: 0.9rem;
+        }
+      }
+
+      .btn-eliminar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: #fff;
+        color: #dc3545;
+        border-radius: 0.35rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #dc3545;
+          color: #fff;
+        }
+
+        i {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .cc-info {
+    background: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-radius: 0.35rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #666;
+
+    strong {
+      color: #333;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 0.5rem;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #E97C9E;
+        box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
+      }
+    }
+
+    .mensaje-textarea {
+      resize: vertical;
+      font-family: inherit;
+      line-height: 1.6;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      i {
+        font-size: 1rem;
+      }
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      color: #fff;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(233, 124, 158, 0.3);
+      }
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: #fff;
+
+      &:hover {
+        background: #5a6268;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Enlace Section
+.enlace-section {
+  background: #fff;
+  border-radius: 0.75rem;
+  border: 2px solid #f0f0f0;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  .enlace-box {
+    display: flex;
+    gap: 0.75rem;
+
+    .form-control {
+      flex: 1;
+      padding: 0.75rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 0.5rem;
+      font-size: 0.95rem;
+      font-family: 'Courier New', monospace;
+      background: #f8f9fa;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      color: #fff;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(233, 124, 158, 0.3);
+      }
+    }
+  }
+}
+
+// Peticiones Section
+.peticiones-section {
+  background: #fff;
+  border-radius: 0.75rem;
+  border: 2px solid #f0f0f0;
+  padding: 2rem;
+
+  .peticiones-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    .filtros {
+      display: flex;
+      gap: 0.5rem;
+
+      .filtro-btn {
+        padding: 0.5rem 1rem;
+        border: 2px solid #e0e0e0;
+        background: #fff;
+        border-radius: 0.35rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          border-color: #E97C9E;
+          color: #E97C9E;
+        }
+
+        &.active {
+          background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+          color: #fff;
+          border-color: #E97C9E;
+        }
+      }
+    }
+  }
+
+  .peticiones-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .peticion-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #f0f0f0;
+    }
+
+    .peticion-avatar {
+      .avatar-placeholder {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+    }
+
+    .peticion-info {
+      .peticion-nombre {
+        margin: 0 0 0.35rem 0;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .peticion-meta {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.85rem;
+        color: #666;
+
+        .fecha {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+
+          i {
+            font-size: 0.9rem;
+            color: #E97C9E;
+          }
+        }
+
+        .envios {
+          font-weight: 500;
+        }
+      }
+    }
+
+    .btn-reenviar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1rem;
+      border: 2px solid #E97C9E;
+      background: #fff;
+      color: #E97C9E;
+      border-radius: 0.35rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+
+      &:hover {
+        background: #E97C9E;
+        color: #fff;
+      }
+
+      i {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 991px) {
+  .stats-banner {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .stat-principal {
+      border-right: none;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      padding-right: 0;
+      padding-bottom: 1rem;
+      width: 100%;
+    }
+  }
+
+  .envio-section .destinatarios-form .form-row {
+    grid-template-columns: 1fr;
+
+    .btn-add {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .peticiones-section {
+    .peticiones-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .filtros {
+        width: 100%;
+
+        .filtro-btn {
+          flex: 1;
+          text-align: center;
+        }
+      }
+    }
+
+    .peticion-card {
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+
+      .btn-reenviar {
+        grid-column: 1 / 3;
+        justify-content: center;
+      }
+    }
+  }
+
+  .enlace-section .enlace-box {
+    flex-direction: column;
+
+    .btn {
+      justify-content: center;
+    }
+  }
+
+  .envio-section {
+    .destinatarios-lista .destinatario-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+
+      .btn-eliminar {
+        align-self: flex-end;
+      }
+    }
+
+    .form-actions {
+      flex-direction: column;
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

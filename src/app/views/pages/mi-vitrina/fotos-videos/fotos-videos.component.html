@@ -1,0 +1,420 @@
+<div class="page-header mb-4">
+  <h3 class="page-title">
+    <i class="feather icon-image me-2 text-primary"></i>
+    Fotos y Videos
+  </h3>
+  <p class="text-muted mb-0">Muestra tu trabajo con imágenes y videos impactantes</p>
+</div>
+
+<div class="info-tip mb-4">
+  <i class="feather icon-camera"></i>
+  <span>Las fotos y videos de calidad profesional aumentan hasta un 80% las posibilidades de que una pareja te contacte. ¡Muestra lo mejor de tu trabajo!</span>
+</div>
+
+<!-- Tabs Navigation -->
+<ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-tabs-custom mb-4">
+  <li [ngbNavItem]="1">
+    <button ngbNavLink>
+      <i class="feather icon-image me-2"></i>
+      Fotos
+      <span class="badge-count-nav">{{ totalFotos }}</span>
+    </button>
+    <ng-template ngbNavContent>
+      
+      <!-- Estadísticas Fotos -->
+      <div class="row mb-4">
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="feather icon-image"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ totalFotos }}</div>
+              <div class="stat-label">Fotos totales</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="stat-card">
+            <div class="stat-icon active">
+              <i class="feather icon-star"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ fotosFavoritas }}</div>
+              <div class="stat-label">Favoritas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón Agregar -->
+      @if (!mostrandoFormularioFoto) {
+        <button class="btn btn-primary mb-4" (click)="mostrarFormularioFoto()">
+          <i class="feather icon-plus me-2"></i>
+          Agregar foto
+        </button>
+      }
+
+      <!-- Formulario Agregar Foto -->
+      @if (mostrandoFormularioFoto) {
+        <div class="card mb-4 card-form">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5 class="mb-0">
+                <i class="feather icon-image me-2 text-primary"></i>
+                Agregar nueva foto
+              </h5>
+              <button class="btn btn-link btn-sm text-muted p-0" (click)="cancelarFoto()">
+                <i class="feather icon-x"></i>
+              </button>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mb-3">
+                <label class="form-label">URL de la imagen <span class="required">*</span></label>
+                <input 
+                  type="url" 
+                  class="form-control" 
+                  [(ngModel)]="nuevaFoto.url"
+                  placeholder="https://ejemplo.com/foto.jpg"
+                >
+                <small class="text-muted">Pega la URL de la imagen desde tu servidor o servicio de almacenamiento</small>
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Título <span class="required">*</span></label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  [(ngModel)]="nuevaFoto.titulo"
+                  placeholder="Ej: Ceremonia al aire libre"
+                  maxlength="100"
+                >
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Marcar como favorita</label>
+                <div class="form-check form-switch mt-2">
+                  <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    id="nuevaFavorita"
+                    [(ngModel)]="nuevaFoto.favorita"
+                  >
+                  <label class="form-check-label" for="nuevaFavorita">
+                    {{ nuevaFoto.favorita ? 'Sí, es favorita' : 'No' }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12 mb-3">
+                <label class="form-label">Descripción <span class="optional-badge">opcional</span></label>
+                <textarea 
+                  class="form-control" 
+                  rows="2"
+                  [(ngModel)]="nuevaFoto.descripcion"
+                  placeholder="Describe brevemente esta foto..."
+                  maxlength="200"
+                ></textarea>
+                <small class="text-muted">{{ nuevaFoto.descripcion.length }}/200</small>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-end mt-3">
+              <button class="btn btn-light" (click)="cancelarFoto()">
+                Cancelar
+              </button>
+              <button class="btn btn-primary" (click)="agregarFoto()">
+                <i class="feather icon-check me-1"></i>
+                Agregar foto
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Grid de Fotos -->
+      @if (fotos.length > 0) {
+        <div class="gallery-grid">
+          @for (foto of fotos; track foto.id) {
+            <div class="gallery-item" [class.gallery-item-favorite]="foto.favorita">
+              <div class="gallery-image-wrapper">
+                <img [src]="foto.url" [alt]="foto.titulo" class="gallery-image">
+                <div class="gallery-overlay">
+                  <button 
+                    class="btn-favorite" 
+                    [class.active]="foto.favorita"
+                    (click)="toggleFavorita(foto)"
+                    title="Marcar como favorita"
+                  >
+                    <i class="feather icon-star"></i>
+                  </button>
+                  <button 
+                    class="btn-delete" 
+                    (click)="eliminarFoto(foto.id)"
+                    title="Eliminar foto"
+                  >
+                    <i class="feather icon-trash-2"></i>
+                  </button>
+                </div>
+                @if (foto.favorita) {
+                  <div class="favorite-badge">
+                    <i class="feather icon-star"></i>
+                    Favorita
+                  </div>
+                }
+              </div>
+              <div class="gallery-info">
+                <h6 class="gallery-title">{{ foto.titulo }}</h6>
+                @if (foto.descripcion) {
+                  <p class="gallery-description">{{ foto.descripcion }}</p>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <i class="feather icon-image"></i>
+          <h5>No hay fotos agregadas</h5>
+          <p>Comienza agregando fotos de tu trabajo para que las parejas puedan ver la calidad de tus servicios</p>
+        </div>
+      }
+
+    </ng-template>
+  </li>
+  
+  <li [ngbNavItem]="2">
+    <button ngbNavLink>
+      <i class="feather icon-video me-2"></i>
+      Videos
+      <span class="badge-count-nav">{{ totalVideos }}</span>
+    </button>
+    <ng-template ngbNavContent>
+      
+      <!-- Estadísticas Videos -->
+      <div class="row mb-4">
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
+          <div class="stat-card">
+            <div class="stat-icon video">
+              <i class="feather icon-video"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ totalVideos }}</div>
+              <div class="stat-label">Videos totales</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="stat-card">
+            <div class="stat-icon active">
+              <i class="feather icon-star"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ videosFavoritos }}</div>
+              <div class="stat-label">Favoritos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón Agregar -->
+      @if (!mostrandoFormularioVideo) {
+        <button class="btn btn-primary mb-4" (click)="mostrarFormularioVideo()">
+          <i class="feather icon-plus me-2"></i>
+          Agregar video
+        </button>
+      }
+
+      <!-- Formulario Agregar Video -->
+      @if (mostrandoFormularioVideo) {
+        <div class="card mb-4 card-form">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5 class="mb-0">
+                <i class="feather icon-video me-2 text-primary"></i>
+                Agregar nuevo video
+              </h5>
+              <button class="btn btn-link btn-sm text-muted p-0" (click)="cancelarVideo()">
+                <i class="feather icon-x"></i>
+              </button>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mb-3">
+                <label class="form-label">URL del video <span class="required">*</span></label>
+                <input 
+                  type="url" 
+                  class="form-control" 
+                  [(ngModel)]="nuevoVideo.url"
+                  placeholder="https://www.youtube.com/embed/..."
+                >
+                <small class="text-muted">Pega la URL de YouTube (formato embed) o Vimeo</small>
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Título <span class="required">*</span></label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  [(ngModel)]="nuevoVideo.titulo"
+                  placeholder="Ej: Recorrido por el salón"
+                  maxlength="100"
+                >
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Marcar como favorito</label>
+                <div class="form-check form-switch mt-2">
+                  <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    id="nuevoFavorito"
+                    [(ngModel)]="nuevoVideo.favorito"
+                  >
+                  <label class="form-check-label" for="nuevoFavorito">
+                    {{ nuevoVideo.favorito ? 'Sí, es favorito' : 'No' }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12 mb-3">
+                <label class="form-label">Descripción <span class="optional-badge">opcional</span></label>
+                <textarea 
+                  class="form-control" 
+                  rows="2"
+                  [(ngModel)]="nuevoVideo.descripcion"
+                  placeholder="Describe brevemente este video..."
+                  maxlength="200"
+                ></textarea>
+                <small class="text-muted">{{ nuevoVideo.descripcion.length }}/200</small>
+              </div>
+
+              <div class="col-12 mb-3">
+                <label class="form-label">URL de miniatura <span class="optional-badge">opcional</span></label>
+                <input 
+                  type="url" 
+                  class="form-control" 
+                  [(ngModel)]="nuevoVideo.thumbnail"
+                  placeholder="https://ejemplo.com/miniatura.jpg"
+                >
+                <small class="text-muted">Imagen de previsualización del video</small>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-end mt-3">
+              <button class="btn btn-light" (click)="cancelarVideo()">
+                Cancelar
+              </button>
+              <button class="btn btn-primary" (click)="agregarVideo()">
+                <i class="feather icon-check me-1"></i>
+                Agregar video
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Grid de Videos -->
+      @if (videos.length > 0) {
+        <div class="gallery-grid">
+          @for (video of videos; track video.id) {
+            <div class="gallery-item video-item" [class.gallery-item-favorite]="video.favorito">
+              <div class="gallery-image-wrapper video-wrapper" (click)="verVideo(video, videoModal)" style="cursor: pointer;">
+                @if (video.thumbnail) {
+                  <img [src]="video.thumbnail" [alt]="video.titulo" class="gallery-image">
+                  <div class="play-icon">
+                    <i class="feather icon-play-circle"></i>
+                  </div>
+                } @else {
+                  <div class="video-placeholder">
+                    <i class="feather icon-video"></i>
+                  </div>
+                }
+                <div class="gallery-overlay" (click)="$event.stopPropagation()">
+                  <button 
+                    class="btn-favorite" 
+                    [class.active]="video.favorito"
+                    (click)="toggleFavorito(video)"
+                    title="Marcar como favorito"
+                  >
+                    <i class="feather icon-star"></i>
+                  </button>
+                  <button 
+                    class="btn-delete" 
+                    (click)="eliminarVideo(video.id)"
+                    title="Eliminar video"
+                  >
+                    <i class="feather icon-trash-2"></i>
+                  </button>
+                </div>
+                @if (video.favorito) {
+                  <div class="favorite-badge">
+                    <i class="feather icon-star"></i>
+                    Favorito
+                  </div>
+                }
+              </div>
+              <div class="gallery-info">
+                <h6 class="gallery-title">{{ video.titulo }}</h6>
+                @if (video.descripcion) {
+                  <p class="gallery-description">{{ video.descripcion }}</p>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <i class="feather icon-video"></i>
+          <h5>No hay videos agregados</h5>
+          <p>Los videos son una excelente manera de mostrar tu trabajo en movimiento. ¡Agrega tu primer video!</p>
+        </div>
+      }
+
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav"></div>
+
+<!-- Acciones -->
+<div class="action-buttons mt-4">
+  <button class="btn btn-light">
+    <i class="feather icon-x me-1"></i>
+    Cancelar
+  </button>
+  <button class="btn btn-primary" (click)="guardarCambios()">
+    <i class="feather icon-check me-1"></i>
+    Guardar cambios
+  </button>
+</div>
+
+<!-- Modal para reproducir video -->
+<ng-template #videoModal let-modal>
+  <div class="modal-header border-0">
+    <h5 class="modal-title">
+      <i class="feather icon-video me-2 text-primary"></i>
+      {{ videoActual?.titulo }}
+    </h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModal()"></button>
+  </div>
+  <div class="modal-body p-0">
+    @if (videoActual) {
+      <div class="video-container">
+        <iframe 
+          [src]="getSafeUrl(videoActual.url)" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+          class="video-iframe"
+        ></iframe>
+      </div>
+      @if (videoActual.descripcion) {
+        <div class="p-3">
+          <p class="text-muted mb-0">{{ videoActual.descripcion }}</p>
+        </div>
+      }
+    }
+  </div>
+</ng-template>

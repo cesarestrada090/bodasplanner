@@ -1,0 +1,275 @@
+// Write your custom css/scss here
+
+// Tema Romántico para Bodas Planner
+
+// Estilos adicionales para un look romántico
+h1, h2, h3, h4, h5, h6 {
+  color: #5D3A52;
+  font-weight: 600;
+}
+
+// Texto secundario más suave
+.text-secondary {
+  color: #8B8B8B !important;
+}
+
+// Estilo especial para cards del dashboard
+.card {
+  &:hover {
+    .card-title {
+      color: #E97C9E;
+    }
+  }
+}
+
+// Botones con efecto romántico
+.btn-primary {
+  background: linear-gradient(135deg, #E97C9E 0%, #F8B4D9 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(233, 124, 158, .3);
+  
+  &:hover {
+    background: linear-gradient(135deg, #D56B8D 0%, #E7A3C8 100%);
+    box-shadow: 0 6px 16px rgba(233, 124, 158, .4);
+  }
+  
+  &:active, &:focus {
+    background: linear-gradient(135deg, #D56B8D 0%, #E7A3C8 100%);
+  }
+}
+
+.btn-outline-primary {
+  color: #E97C9E;
+  border-color: #E97C9E;
+  
+  &:hover {
+    background-color: #E97C9E;
+    border-color: #E97C9E;
+    color: white;
+  }
+}
+
+// Iconos con color coordinado
+[data-feather] {
+  color: inherit;
+}
+
+// Sidebar con estilo romántico
+.sidebar {
+  .sidebar-header {
+    background: linear-gradient(180deg, #FFF5F7 0%, #FFEFF5 100%);
+    border-bottom: 1px solid #FFD6E0;
+  }
+  
+  .sidebar-brand {
+    color: #5D3A52 !important;
+    
+    span {
+      color: #E97C9E !important;
+    }
+  }
+  
+  .sidebar-body {
+    background: #FFF5F7 !important;
+  }
+  
+  .nav-link {
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    color: #6B6B6B !important;
+    border: none !important;
+    outline: none !important;
+    
+    // Items padre con submenús NUNCA deben cambiar de estilo
+    &[href*="javascript:void"] {
+      background-color: transparent !important;
+      color: #6B6B6B !important;
+      box-shadow: none !important;
+      
+      &:hover {
+        background-color: transparent !important;
+        color: #6B6B6B !important;
+      }
+      
+      &.mm-active,
+      &.active {
+        background-color: transparent !important;
+        color: #6B6B6B !important;
+        box-shadow: none !important;
+      }
+      
+      .link-icon,
+      .link-title,
+      .link-arrow {
+        color: #6B6B6B !important;
+      }
+    }
+    
+    &:hover {
+      background-color: #FFE8ED !important;
+      color: #E97C9E !important;
+      border: none !important;
+      outline: none !important;
+      
+      .link-icon,
+      .link-title,
+      .link-arrow {
+        color: #E97C9E !important;
+      }
+    }
+    
+    &.active,
+    &.mm-active {
+      background-color: #E97C9E !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 4px 8px rgba(233, 124, 158, .25);
+      border: none !important;
+      outline: none !important;
+      
+      .link-icon,
+      .link-title,
+      .link-arrow {
+        color: #FFFFFF !important;
+      }
+    }
+    
+    &:focus {
+      outline: none !important;
+      border: none !important;
+      box-shadow: 0 0 0 3px rgba(233, 124, 158, .15);
+    }
+  }
+  
+  .nav-category {
+    color: #999999 !important;
+  }
+  
+  // Submenús
+  .sub-menu {
+    .nav-link {
+      border: none !important;
+      outline: none !important;
+      background-color: transparent !important;
+      
+      &::before {
+        display: none !important;
+      }
+      
+      &:hover {
+        border: none !important;
+        outline: none !important;
+        background-color: transparent !important;
+        color: #E97C9E !important;
+        
+        &::before {
+          display: none !important;
+        }
+      }
+      
+      &.mm-active {
+        border: none !important;
+        outline: none !important;
+        background-color: #E97C9E !important;
+        color: #FFFFFF !important;
+        
+        &::before {
+          display: none !important;
+        }
+      }
+    }
+  }
+  
+  // Badge en el sidebar
+  .badge {
+    background-color: #E97C9E !important;
+    color: #FFFFFF !important;
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+  }
+}
+
+// Tabla con estilos románticos
+.table {
+  th {
+    color: #5D3A52;
+    font-weight: 600;
+    border-bottom: 2px solid #FFE5EC;
+  }
+  
+  tbody tr {
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: #FFF5F8;
+    }
+  }
+}
+
+// Badges con efecto romántico
+.badge {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.7rem;
+}
+
+// Dropdown menus
+.dropdown-menu {
+  border: 1px solid #FFE5EC;
+  box-shadow: 0 4px 12px rgba(233, 124, 158, .15);
+  border-radius: 0.75rem;
+}
+
+// Input fields con estilo romántico
+.form-control {
+  border-radius: 0.5rem;
+  border-color: #FFE5EC;
+  
+  &:focus {
+    border-color: #E97C9E;
+    box-shadow: 0 0 0 0.2rem rgba(233, 124, 158, .15);
+  }
+}
+
+// Elementos decorativos
+.grid-margin {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #FFE5EC 50%, transparent 100%);
+  }
+}
+
+// Animaciones suaves
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+// Progress bars con estilo romántico
+.progress {
+  border-radius: 1rem;
+  background-color: #FFE5EC;
+  
+  .progress-bar {
+    background: linear-gradient(90deg, #E97C9E 0%, #F8B4D9 100%);
+    border-radius: 1rem;
+  }
+}

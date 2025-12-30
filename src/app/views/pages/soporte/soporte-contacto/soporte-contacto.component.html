@@ -1,0 +1,127 @@
+<div class="page-header">
+  <h3>
+    <i class="feather icon-mail"></i>
+    Formulario de Contacto
+  </h3>
+</div>
+
+<div class="info-banner">
+  <div class="info-icon">
+    <i class="feather icon-info"></i>
+  </div>
+  <div class="info-content">
+    <h5>¿Necesitas ayuda?</h5>
+    <p>Completa el formulario y nuestro equipo de soporte te responderá lo antes posible. Tiempo promedio de respuesta: 24 horas.</p>
+  </div>
+</div>
+
+<div class="contacto-container">
+  <form class="contacto-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nombre completo <span class="required">*</span></label>
+        <input 
+          type="text" 
+          class="form-control" 
+          [(ngModel)]="formulario.nombre"
+          name="nombre"
+          placeholder="Tu nombre"
+        >
+      </div>
+      <div class="form-group">
+        <label>Email <span class="required">*</span></label>
+        <input 
+          type="email" 
+          class="form-control" 
+          [(ngModel)]="formulario.email"
+          name="email"
+          placeholder="tu@email.com"
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Asunto <span class="required">*</span></label>
+      <input 
+        type="text" 
+        class="form-control" 
+        [(ngModel)]="formulario.asunto"
+        name="asunto"
+        placeholder="Breve descripción del tema"
+      >
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Categoría</label>
+        <select class="form-control" [(ngModel)]="formulario.categoria" name="categoria">
+          @for (categoria of categorias; track categoria.value) {
+            <option [value]="categoria.value">{{ categoria.label }}</option>
+          }
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Prioridad</label>
+        <select class="form-control" [(ngModel)]="formulario.prioridad" name="prioridad">
+          @for (prioridad of prioridades; track prioridad.value) {
+            <option [value]="prioridad.value">{{ prioridad.label }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Mensaje <span class="required">*</span></label>
+      <textarea 
+        class="form-control" 
+        rows="8"
+        [(ngModel)]="formulario.mensaje"
+        name="mensaje"
+        placeholder="Describe tu consulta o problema con el mayor detalle posible..."
+      ></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="resetearFormulario()">
+        <i class="feather icon-x"></i>
+        Cancelar
+      </button>
+      <button type="button" class="btn btn-primary" (click)="enviarFormulario()">
+        <i class="feather icon-send"></i>
+        Enviar mensaje
+      </button>
+    </div>
+
+    @if (enviadoExitoso) {
+      <div class="alert alert-success">
+        <i class="feather icon-check-circle"></i>
+        Mensaje enviado correctamente. Te responderemos pronto.
+      </div>
+    }
+  </form>
+
+  <div class="contacto-info">
+    <h5>Otros medios de contacto</h5>
+    <div class="info-item">
+      <i class="feather icon-mail"></i>
+      <div>
+        <strong>Email</strong>
+        <span>soporte&#64;bodasplanner.com</span>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="feather icon-phone"></i>
+      <div>
+        <strong>Teléfono</strong>
+        <span>+51 999 888 777</span>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="feather icon-clock"></i>
+      <div>
+        <strong>Horario</strong>
+        <span>Lun - Vie: 9:00 - 18:00</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,529 @@
+<div class="page-header mb-4">
+  <h3 class="page-title">
+    <i class="feather icon-help-circle me-2 text-primary"></i>
+    Preguntas Frecuentes
+  </h3>
+  <p class="text-muted mb-0">Responde las dudas más comunes de las parejas</p>
+</div>
+
+<div class="info-tip mb-4">
+  <i class="feather icon-info"></i>
+  <span>Completa esta información para que las parejas tengan claridad sobre tus servicios. Mientras más completo, mejores resultados.</span>
+</div>
+
+<div ngbAccordion [closeOthers]="true" class="custom-accordion">
+  
+  <!-- PRECIOS Y CAPACIDAD -->
+  <div ngbAccordionItem [collapsed]="false" class="mb-3">
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton class="w-100">
+        <div class="accordion-title">
+          <div class="icon-badge">
+            <i class="feather icon-dollar-sign"></i>
+          </div>
+          <span>Precios y Capacidad</span>
+        </div>
+      </button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <ng-template>
+      
+      <div class="faq-question">
+        <label class="question-label">¿A partir de qué precio puedo contratar?</label>
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label small">Precio mínimo</label>
+            <div class="input-group">
+              <span class="input-group-text">S/</span>
+              <input type="number" class="form-control" [(ngModel)]="faq.precioMinimo" placeholder="0">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label small">Precio máximo</label>
+            <div class="input-group">
+              <span class="input-group-text">S/</span>
+              <input type="number" class="form-control" [(ngModel)]="faq.precioMaximo" placeholder="0">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tipoPrecio" id="precioTotalDia" value="total-dia" [(ngModel)]="faq.tipoPrecio">
+              <label class="form-check-label" for="precioTotalDia">Precio total por día</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tipoPrecio" id="precioPorMenu" value="por-menu" [(ngModel)]="faq.tipoPrecio">
+              <label class="form-check-label" for="precioPorMenu">Precio por menú y local</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Cuántos invitados aceptas?</label>
+        <div class="row g-3">
+          <div class="col-6">
+            <label class="form-label small">Mínimo</label>
+            <input type="number" class="form-control" [(ngModel)]="faq.minimoInvitados" placeholder="0">
+          </div>
+          <div class="col-6">
+            <label class="form-label small">Máximo</label>
+            <input type="number" class="form-control" [(ngModel)]="faq.maximoInvitados" placeholder="0">
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESPACIOS Y SERVICIOS -->
+  <div ngbAccordionItem class="mb-3">
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton class="w-100">
+        <div class="accordion-title">
+          <div class="icon-badge">
+            <i class="feather icon-home"></i>
+          </div>
+          <span>Espacios y Servicios</span>
+          <span class="badge-count">{{ contarSeleccionados(faq.espacios) + contarSeleccionados(faq.servicios) }}</span>
+        </div>
+      </button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <ng-template>
+      
+      <div class="faq-question">
+        <label class="question-label">¿De qué espacios dispone?</label>
+        <div class="checkbox-grid">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-salon" [(ngModel)]="faq.espacios.salon">
+            <label class="form-check-label" for="esp-salon">Salón</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-pista" [(ngModel)]="faq.espacios.pistaBaile">
+            <label class="form-check-label" for="esp-pista">Pista de baile</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-parqueo" [(ngModel)]="faq.espacios.parqueo">
+            <label class="form-check-label" for="esp-parqueo">Parqueo</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-capilla" [(ngModel)]="faq.espacios.capilla">
+            <label class="form-check-label" for="esp-capilla">Capilla</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-cocina" [(ngModel)]="faq.espacios.cocinaCatering">
+            <label class="form-check-label" for="esp-cocina">Cocina para catering</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-piscina" [(ngModel)]="faq.espacios.piscina">
+            <label class="form-check-label" for="esp-piscina">Piscina</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-terraza" [(ngModel)]="faq.espacios.terraza">
+            <label class="form-check-label" for="esp-terraza">Terraza</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-jardin" [(ngModel)]="faq.espacios.jardin">
+            <label class="form-check-label" for="esp-jardin">Jardín</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-toldo" [(ngModel)]="faq.espacios.toldo">
+            <label class="form-check-label" for="esp-toldo">Toldo</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="esp-otros" [(ngModel)]="faq.espacios.otros">
+            <label class="form-check-label" for="esp-otros">Otros</label>
+          </div>
+        </div>
+        @if (faq.espacios.otros) {
+          <div class="mt-3">
+            <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="faq.espaciosOtros" placeholder="Describe otros espacios disponibles..."></textarea>
+          </div>
+        }
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Qué servicios ofrece?</label>
+        <div class="checkbox-grid">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="srv-recepcion" [(ngModel)]="faq.servicios.recepcion">
+            <label class="form-check-label" for="srv-recepcion">Recepción</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="srv-ceremonia" [(ngModel)]="faq.servicios.ceremonia">
+            <label class="form-check-label" for="srv-ceremonia">Ceremonia</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="srv-fotografia" [(ngModel)]="faq.servicios.fotografia">
+            <label class="form-check-label" for="srv-fotografia">Fotografía</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="srv-musica" [(ngModel)]="faq.servicios.musica">
+            <label class="form-check-label" for="srv-musica">Música</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="srv-transporte" [(ngModel)]="faq.servicios.transporte">
+            <label class="form-check-label" for="srv-transporte">Transporte</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="srv-decoracion" [(ngModel)]="faq.servicios.decoracion">
+            <label class="form-check-label" for="srv-decoracion">Decoración</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="srv-otros" [(ngModel)]="faq.servicios.otros">
+            <label class="form-check-label" for="srv-otros">Otros</label>
+          </div>
+        </div>
+        @if (faq.servicios.otros) {
+          <div class="mt-3">
+            <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="faq.serviciosOtros" placeholder="Describe otros servicios..."></textarea>
+          </div>
+        }
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">Ubicación</label>
+        <select class="form-select" [(ngModel)]="faq.ubicacion">
+          <option value="playa">En la playa</option>
+          <option value="cerca-mar">Cerca del mar</option>
+          <option value="montana">En la montaña</option>
+          <option value="campo">En el campo</option>
+          <option value="ciudad">En la ciudad</option>
+          <option value="ciudad-afueras">En las afueras de la ciudad</option>
+        </select>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Dispone de alojamiento para invitados?</label>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="alojamiento" [(ngModel)]="faq.tieneAlojamiento">
+          <label class="form-check-label" for="alojamiento">Sí, tenemos alojamiento</label>
+        </div>
+        @if (faq.tieneAlojamiento) {
+          <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="faq.detalleAlojamiento" placeholder="Describe el tipo de alojamiento y capacidad..."></textarea>
+        }
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Celebra más de un evento al día?</label>
+        <div class="btn-group w-100" role="group">
+          <input type="radio" class="btn-check" name="variosEventos" id="variosEventosSi" [value]="true" [(ngModel)]="faq.variosEventosDia">
+          <label class="btn btn-outline-secondary" for="variosEventosSi">Sí</label>
+          
+          <input type="radio" class="btn-check" name="variosEventos" id="variosEventosNo" [value]="false" [(ngModel)]="faq.variosEventosDia">
+          <label class="btn btn-outline-secondary" for="variosEventosNo">No</label>
+        </div>
+      </div>
+
+    </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- GASTRONOMÍA -->
+  <div ngbAccordionItem class="mb-3">
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton class="w-100">
+        <div class="accordion-title">
+          <div class="icon-badge">
+            <i class="feather icon-coffee"></i>
+          </div>
+          <span>Gastronomía</span>
+        </div>
+      </button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <ng-template>
+      
+      <div class="faq-question">
+        <label class="question-label">¿Qué incluye el menú?</label>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="menuCompleto" [(ngModel)]="faq.incluyeMenuCompleto">
+          <label class="form-check-label" for="menuCompleto">Incluye menú completo</label>
+        </div>
+        @if (faq.incluyeMenuCompleto) {
+          <textarea class="form-control form-control-sm" rows="3" [(ngModel)]="faq.detalleMenu" placeholder="Detalla qué incluye (entrada, plato fuerte, postre, bebidas...)"></textarea>
+        }
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Es posible alquilar solo el espacio, sin catering?</label>
+        <div class="btn-group w-100" role="group">
+          <input type="radio" class="btn-check" name="soloEspacio" id="soloEspacioSi" [value]="true" [(ngModel)]="faq.soloEspacio">
+          <label class="btn btn-outline-secondary" for="soloEspacioSi">Sí</label>
+          
+          <input type="radio" class="btn-check" name="soloEspacio" id="soloEspacioNo" [value]="false" [(ngModel)]="faq.soloEspacio">
+          <label class="btn btn-outline-secondary" for="soloEspacioNo">No</label>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Dispone de catering/cocina propia?</label>
+        <div class="btn-group w-100" role="group">
+          <input type="radio" class="btn-check" name="cateringPropio" id="cateringPropioSi" [value]="true" [(ngModel)]="faq.tieneCateringPropio">
+          <label class="btn btn-outline-secondary" for="cateringPropioSi">Sí</label>
+          
+          <input type="radio" class="btn-check" name="cateringPropio" id="cateringPropioNo" [value]="false" [(ngModel)]="faq.tieneCateringPropio">
+          <label class="btn btn-outline-secondary" for="cateringPropioNo">No</label>
+        </div>
+      </div>
+
+      @if (faq.tieneCateringPropio) {
+        <div class="divider-line"></div>
+
+        <div class="faq-question">
+          <label class="question-label">¿Qué tipo de cocina prepara?</label>
+          <div class="checkbox-grid">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="coc-criolla" [(ngModel)]="faq.tiposCocina.criolla">
+              <label class="form-check-label" for="coc-criolla">Criolla</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="coc-internacional" [(ngModel)]="faq.tiposCocina.internacional">
+              <label class="form-check-label" for="coc-internacional">Internacional</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="coc-nikkei" [(ngModel)]="faq.tiposCocina.nikkei">
+              <label class="form-check-label" for="coc-nikkei">Nikkei</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="coc-autor" [(ngModel)]="faq.tiposCocina.autor">
+              <label class="form-check-label" for="coc-autor">De autor</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="coc-fusion" [(ngModel)]="faq.tiposCocina.fusion">
+              <label class="form-check-label" for="coc-fusion">Fusión</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider-line"></div>
+
+        <div class="faq-question">
+          <label class="question-label">¿Es posible adaptar o modificar los menús?</label>
+          <div class="btn-group w-100" role="group">
+            <input type="radio" class="btn-check" name="modificarMenus" id="modificarSi" [value]="true" [(ngModel)]="faq.modificarMenus">
+            <label class="btn btn-outline-secondary" for="modificarSi">Sí</label>
+            
+            <input type="radio" class="btn-check" name="modificarMenus" id="modificarNo" [value]="false" [(ngModel)]="faq.modificarMenus">
+            <label class="btn btn-outline-secondary" for="modificarNo">No</label>
+          </div>
+        </div>
+
+        <div class="divider-line"></div>
+
+        <div class="faq-question">
+          <label class="question-label">¿Dispone de menús especiales?</label>
+          <div class="checkbox-grid">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="men-vegetariano" [(ngModel)]="faq.menusEspeciales.vegetarianos">
+              <label class="form-check-label" for="men-vegetariano">Vegetarianos</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="men-celiacos" [(ngModel)]="faq.menusEspeciales.celiacos">
+              <label class="form-check-label" for="men-celiacos">Celíacos</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="men-veganos" [(ngModel)]="faq.menusEspeciales.veganos">
+              <label class="form-check-label" for="men-veganos">Veganos</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="men-diabeticos" [(ngModel)]="faq.menusEspeciales.diabeticos">
+              <label class="form-check-label" for="men-diabeticos">Diabéticos</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="men-hipertensos" [(ngModel)]="faq.menusEspeciales.hipertensos">
+              <label class="form-check-label" for="men-hipertensos">Hipertensos</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="men-infantil" [(ngModel)]="faq.menusEspeciales.infantil">
+              <label class="form-check-label" for="men-infantil">Infantil</label>
+            </div>
+          </div>
+        </div>
+      }
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Sirve también la torta de matrimonio?</label>
+        <div class="btn-group w-100" role="group">
+          <input type="radio" class="btn-check" name="sirveTorta" id="sirveTortaSi" [value]="true" [(ngModel)]="faq.sirveTorta">
+          <label class="btn btn-outline-secondary" for="sirveTortaSi">Sí</label>
+          
+          <input type="radio" class="btn-check" name="sirveTorta" id="sirveTortaNo" [value]="false" [(ngModel)]="faq.sirveTorta">
+          <label class="btn btn-outline-secondary" for="sirveTortaNo">No</label>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Puedo llevar mi propia torta? ¿Tiene recargo?</label>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="permiteTorta" [(ngModel)]="faq.permiteLlevarTorta">
+          <label class="form-check-label" for="permiteTorta">Sí, pueden llevar su torta</label>
+        </div>
+        @if (faq.permiteLlevarTorta) {
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="recargoTorta" [(ngModel)]="faq.recargoTorta">
+            <label class="form-check-label" for="recargoTorta">Tiene recargo</label>
+          </div>
+          <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="faq.detalleRecargoTorta" placeholder="Detalla condiciones y recargo si aplica..."></textarea>
+        }
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Cómo funciona el servicio de bebidas?</label>
+        <select class="form-select mb-2" [(ngModel)]="faq.servicioBebidas">
+          <option value="incluido-menu">Va incluido en el menú</option>
+          <option value="cantidad-fija">Cantidad fija por mesa</option>
+          <option value="corcho-libre">Corcho libre</option>
+          <option value="otro">Otro</option>
+        </select>
+        @if (faq.servicioBebidas === 'otro' || faq.servicioBebidas === 'corcho-libre') {
+          <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="faq.detalleBebidas" placeholder="Explica cómo funciona..."></textarea>
+        }
+      </div>
+
+    </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGÍSTICA Y PAGOS -->
+  <div ngbAccordionItem class="mb-3">
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton class="w-100">
+        <div class="accordion-title">
+          <div class="icon-badge">
+            <i class="feather icon-settings"></i>
+          </div>
+          <span>Logística y Pagos</span>
+        </div>
+      </button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <ng-template>
+      
+      <div class="faq-question">
+        <label class="question-label">¿Tiene límite de hora en los eventos?</label>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="limiteHora" [(ngModel)]="faq.limiteHora">
+          <label class="form-check-label" for="limiteHora">Sí, hay límite de hora</label>
+        </div>
+        @if (faq.limiteHora) {
+          <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="faq.detalleLimiteHora" placeholder="Especifica el horario límite..."></textarea>
+        } @else {
+          <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="faq.detalleLimiteHora" placeholder="Indica hasta qué hora pueden extenderse..."></textarea>
+        }
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">Exclusividades</label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="exclFoto" [(ngModel)]="faq.exclusividadFotografo">
+          <label class="form-check-label" for="exclFoto">Tiene exclusividad con algún fotógrafo</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="exclMusica" [(ngModel)]="faq.exclusividadMusica">
+          <label class="form-check-label" for="exclMusica">Tiene exclusividad con algún grupo musical</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="exclCatering" [(ngModel)]="faq.exclusividadCatering">
+          <label class="form-check-label" for="exclCatering">Tiene exclusividad con algún catering</label>
+        </div>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Existe algún pago fijo por el alquiler del lugar?</label>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="pagoFijo" [(ngModel)]="faq.pagoFijo">
+          <label class="form-check-label" for="pagoFijo">Sí, hay pago fijo</label>
+        </div>
+        @if (faq.pagoFijo) {
+          <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="faq.detallePagoFijo" placeholder="Describe los montos y qué incluyen..."></textarea>
+        }
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Cuál es el recargo en caso de no llegar al mínimo?</label>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="recargoMin" [(ngModel)]="faq.recargoMinimo">
+          <label class="form-check-label" for="recargoMin">Sí, hay recargo</label>
+        </div>
+        @if (faq.recargoMinimo) {
+          <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="faq.detalleRecargoMinimo" placeholder="Explica cómo se calcula el recargo..."></textarea>
+        }
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Cómo se efectúa el pago?</label>
+        <textarea class="form-control" rows="3" [(ngModel)]="faq.formaPago" placeholder="Describe las modalidades de pago, porcentajes de adelanto, plazos..."></textarea>
+      </div>
+
+      <div class="divider-line"></div>
+
+      <div class="faq-question">
+        <label class="question-label">¿Dispone de acceso para personas con discapacidad?</label>
+        <div class="btn-group w-100" role="group">
+          <input type="radio" class="btn-check" name="accesibilidad" id="accesibilidadSi" [value]="true" [(ngModel)]="faq.accesoDiscapacidad">
+          <label class="btn btn-outline-secondary" for="accesibilidadSi">Sí</label>
+          
+          <input type="radio" class="btn-check" name="accesibilidad" id="accesibilidadNo" [value]="false" [(ngModel)]="faq.accesoDiscapacidad">
+          <label class="btn btn-outline-secondary" for="accesibilidadNo">No</label>
+        </div>
+      </div>
+
+    </ng-template>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Acciones -->
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="action-buttons">
+      <button class="btn btn-light">
+        <i class="feather icon-x me-1"></i>
+        Cancelar
+      </button>
+      <button class="btn btn-primary" (click)="guardarFAQ()">
+        <i class="feather icon-check me-1"></i>
+        Guardar FAQ
+      </button>
+    </div>
+  </div>
+</div>

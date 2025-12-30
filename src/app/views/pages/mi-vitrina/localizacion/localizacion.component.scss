@@ -1,0 +1,399 @@
+// Estilos para Localización y Mapa - Mobile First
+
+// Page Header
+.page-header {
+  margin-bottom: 1.5rem;
+  
+  .page-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #5D3A52;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    
+    i {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// Cards
+.card {
+  border: 1px solid #FFE5EC;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(233, 124, 158, .08);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 16px rgba(233, 124, 158, .12);
+  }
+}
+
+// Section Headers
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  .icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, #FFE8ED 0%, #FFF5F7 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    i {
+      color: #E97C9E;
+      font-size: 1.25rem;
+    }
+  }
+  
+  .section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #5D3A52;
+    margin: 0;
+  }
+}
+
+// Mapa
+.map-container {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .1);
+  position: relative;
+  
+  iframe {
+    display: block;
+    width: 100%;
+    min-height: 300px;
+  }
+}
+
+.coordinates-panel {
+  padding: 1rem;
+  background-color: #FFF8FA;
+  border-radius: 0.75rem;
+  border: 1px solid #FFE8ED;
+  
+  .form-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #8B8B8B;
+    margin-bottom: 0.25rem;
+  }
+  
+  input {
+    font-size: 0.875rem;
+  }
+}
+
+// Info Tips
+.info-tip {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background-color: #FFF8FA;
+  border-left: 3px solid #E97C9E;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #6B6B6B;
+  line-height: 1.5;
+  
+  i {
+    color: #E97C9E;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  
+  a {
+    color: #E97C9E;
+    text-decoration: none;
+    font-weight: 500;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Form Elements
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #5D3A52;
+  margin-bottom: 0.5rem;
+  display: block;
+  
+  &.small {
+    font-size: 0.8125rem;
+  }
+}
+
+.required {
+  color: #E97C9E;
+  font-weight: 600;
+}
+
+.optional-badge {
+  font-size: 0.75rem;
+  color: #8B8B8B;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.form-control,
+.form-select {
+  border: 1.5px solid #FFD6E0;
+  border-radius: 0.625rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    border-color: #E97C9E;
+    box-shadow: 0 0 0 3px rgba(233, 124, 158, .1);
+    outline: none;
+  }
+  
+  &::placeholder {
+    color: #B8B8B8;
+  }
+  
+  &.form-control-sm {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.6;
+}
+
+// Divider
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #FFD6E0 20%, #FFD6E0 80%, transparent 100%);
+  margin: 1rem 0;
+}
+
+// Buttons
+.btn {
+  border-radius: 0.625rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0.625rem 1.5rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  i {
+    font-size: 1rem;
+  }
+  
+  &.btn-primary {
+    background: linear-gradient(135deg, #E97C9E 0%, #F294B3 100%);
+    border: none;
+    color: white;
+    box-shadow: 0 2px 8px rgba(233, 124, 158, .25);
+    
+    &:hover {
+      background: linear-gradient(135deg, #D56B8D 0%, #E17FA0 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(233, 124, 158, .35);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  
+  &.btn-outline-primary {
+    border: 1.5px solid #E97C9E;
+    color: #E97C9E;
+    background: white;
+    
+    &:hover {
+      background: #E97C9E;
+      color: white;
+      border-color: #E97C9E;
+    }
+  }
+  
+  &.btn-light {
+    background-color: #F8F9FA;
+    border: 1px solid #E9ECEF;
+    color: #6B6B6B;
+    
+    &:hover {
+      background-color: #E9ECEF;
+    }
+  }
+  
+  &.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  &.btn-link {
+    color: #E97C9E;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    
+    &:hover {
+      color: #D56B8D;
+    }
+    
+    &.text-danger {
+      color: #DC3545;
+      
+      &:hover {
+        color: #C82333;
+      }
+    }
+  }
+}
+
+// Action Buttons
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  
+  .btn {
+    min-width: 140px;
+  }
+}
+
+// Form Check Switch
+.form-check-switch {
+  .form-check-input {
+    width: 2.5rem;
+    height: 1.25rem;
+    background-color: #E9ECEF;
+    border: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e");
+    
+    &:checked {
+      background-color: #E97C9E;
+      border-color: #E97C9E;
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(233, 124, 158, .1);
+      border: none;
+    }
+  }
+  
+  .form-check-label {
+    margin-left: 0.5rem;
+    
+    small {
+      display: block;
+      font-size: 0.75rem;
+      color: #8B8B8B;
+      margin-top: 0.125rem;
+    }
+  }
+}
+
+// Responsive - Tablets
+@media (max-width: 991px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .section-header {
+    .icon-wrapper {
+      width: 36px;
+      height: 36px;
+    }
+    
+    .section-title {
+      font-size: 1rem;
+    }
+  }
+  
+  .map-container iframe {
+    min-height: 350px;
+  }
+}
+
+// Responsive - Mobile
+@media (max-width: 767px) {
+  .page-header {
+    .page-title {
+      font-size: 1.375rem;
+    }
+  }
+  
+  .action-buttons {
+    flex-direction: column-reverse;
+    
+    .btn {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+  
+  .map-container iframe {
+    min-height: 300px;
+  }
+  
+  .info-tip {
+    font-size: 0.8125rem;
+  }
+  
+  .card .card-body {
+    padding: 1.25rem;
+  }
+}
+
+// Extra Small Mobile
+@media (max-width: 575px) {
+  .page-header {
+    margin-bottom: 1rem;
+    
+    .page-title {
+      font-size: 1.25rem;
+      
+      i {
+        font-size: 1.25rem;
+      }
+    }
+  }
+  
+  .section-header {
+    gap: 0.75rem;
+    
+    .icon-wrapper {
+      width: 32px;
+      height: 32px;
+      
+      i {
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .btn {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .map-container iframe {
+    min-height: 250px;
+  }
+}

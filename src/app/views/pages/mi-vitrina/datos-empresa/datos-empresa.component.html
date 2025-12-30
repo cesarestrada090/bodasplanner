@@ -1,0 +1,236 @@
+<div class="page-header mb-4">
+  <h3 class="page-title">
+    <i class="feather icon-briefcase me-2 text-primary"></i>
+    Perfil de Empresa
+  </h3>
+  <p class="text-muted mb-0">Gestiona la información pública de tu negocio</p>
+</div>
+
+<div class="row">
+  <!-- Información de Acceso -->
+  <div class="col-12 col-lg-4 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="section-header mb-4">
+          <div class="icon-wrapper">
+            <i class="feather icon-user"></i>
+          </div>
+          <h5 class="section-title">Acceso</h5>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Nombre de usuario</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            [(ngModel)]="datosEmpresa.usuario"
+            readonly
+          >
+        </div>
+
+        <div class="divider-line"></div>
+
+        <button 
+          class="btn btn-outline-primary btn-block w-100" 
+          (click)="toggleCambioPassword()"
+        >
+          <i class="feather icon-lock me-2"></i>
+          {{ mostrarCambioPassword ? 'Cancelar cambio' : 'Cambiar contraseña' }}
+        </button>
+
+        @if (mostrarCambioPassword) {
+          <div class="password-panel mt-3">
+            <div class="mb-3">
+              <label class="form-label">Contraseña actual</label>
+              <input 
+                type="password" 
+                class="form-control form-control-sm" 
+                [(ngModel)]="passwordActual"
+                placeholder="••••••••"
+              >
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nueva contraseña</label>
+              <input 
+                type="password" 
+                class="form-control form-control-sm" 
+                [(ngModel)]="passwordNueva"
+                placeholder="Mínimo 8 caracteres"
+              >
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Repetir nueva</label>
+              <input 
+                type="password" 
+                class="form-control form-control-sm" 
+                [(ngModel)]="passwordConfirmar"
+                placeholder="Confirma tu contraseña"
+              >
+            </div>
+            <button class="btn btn-primary btn-sm w-100" (click)="cambiarPassword()">
+              <i class="feather icon-check me-1"></i>
+              Actualizar
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Información Principal -->
+  <div class="col-12 col-lg-8 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="section-header mb-4">
+          <div class="icon-wrapper">
+            <i class="feather icon-file-text"></i>
+          </div>
+          <h5 class="section-title">Descripción</h5>
+        </div>
+
+        <div class="info-tip mb-3">
+          <i class="feather icon-help-circle"></i>
+          <span>Destaca lo que hace única a tu empresa. Usa un tono profesional en tercera persona.</span>
+        </div>
+
+        <textarea 
+          class="form-control" 
+          rows="8"
+          [(ngModel)]="datosEmpresa.descripcion"
+          placeholder="Ej: [Nombre Empresa] es una empresa especializada en..."
+          maxlength="1000"
+        ></textarea>
+        
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <small class="text-muted">{{ datosEmpresa.descripcion.length }}/1000</small>
+          <button class="btn btn-link btn-sm p-0" (click)="verEjemplo()">
+            <i class="feather icon-eye me-1"></i>
+            Ver ejemplo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Datos de Contacto -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="section-header mb-4">
+          <div class="icon-wrapper">
+            <i class="feather icon-phone"></i>
+          </div>
+          <h5 class="section-title">Información de Contacto</h5>
+        </div>
+
+        <div class="info-tip mb-4">
+          <i class="feather icon-mail"></i>
+          <span>Las parejas se comunicarán contigo mediante estos datos. Manténlos actualizados.</span>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Persona responsable <span class="required">*</span></label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="datosEmpresa.contacto.nombre"
+              placeholder="Nombre y apellido"
+            >
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Correo electrónico <span class="required">*</span></label>
+            <input 
+              type="email" 
+              class="form-control" 
+              [(ngModel)]="datosEmpresa.contacto.email"
+              placeholder="contacto@tuempresa.com"
+            >
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Teléfono principal <span class="required">*</span></label>
+            <div class="phone-input-group">
+              <select class="form-select country-code" [(ngModel)]="datosEmpresa.contacto.telefono.codigo">
+                <option value="PE (+51)">🇵🇪 +51</option>
+                <option value="CL (+56)">🇨🇱 +56</option>
+                <option value="CO (+57)">🇨🇴 +57</option>
+                <option value="MX (+52)">🇲🇽 +52</option>
+                <option value="ES (+34)">🇪🇸 +34</option>
+              </select>
+              <input 
+                type="tel" 
+                class="form-control" 
+                [(ngModel)]="datosEmpresa.contacto.telefono.numero"
+                placeholder="999 999 999"
+              >
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Celular alternativo</label>
+            <div class="phone-input-group">
+              <select class="form-select country-code" [(ngModel)]="datosEmpresa.contacto.celular.codigo">
+                <option value="PE (+51)">🇵🇪 +51</option>
+                <option value="CL (+56)">🇨🇱 +56</option>
+                <option value="CO (+57)">🇨🇴 +57</option>
+                <option value="MX (+52)">🇲🇽 +52</option>
+                <option value="ES (+34)">🇪🇸 +34</option>
+              </select>
+              <input 
+                type="tel" 
+                class="form-control" 
+                [(ngModel)]="datosEmpresa.contacto.celular.numero"
+                placeholder="999 999 999"
+              >
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Sitio web</label>
+            <input 
+              type="url" 
+              class="form-control" 
+              [(ngModel)]="datosEmpresa.contacto.web"
+              placeholder="https://www.tuempresa.com"
+            >
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Fax <span class="optional-badge">opcional</span></label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="datosEmpresa.contacto.fax"
+              placeholder="Número de fax"
+            >
+          </div>
+        </div>
+
+        <div class="divider-line my-4"></div>
+
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="checkbox" id="terminos" checked>
+          <label class="form-check-label" for="terminos">
+            Acepto que la información cumple con los <a href="#" class="text-primary">términos legales</a> de BodasPlanner
+          </label>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn btn-light">
+            <i class="feather icon-x me-1"></i>
+            Cancelar
+          </button>
+          <button class="btn btn-primary" (click)="guardarDatos()">
+            <i class="feather icon-check me-1"></i>
+            Guardar cambios
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

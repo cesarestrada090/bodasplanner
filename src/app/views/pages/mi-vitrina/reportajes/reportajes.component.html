@@ -1,0 +1,415 @@
+<!-- Reportajes Component -->
+<div class="page-header">
+  <h3 class="page-title">
+    <i class="feather icon-camera" class="icon"></i>
+    Reportajes
+  </h3>
+</div>
+
+<!-- Hero Section -->
+<div class="hero-section card mb-4">
+  <div class="card-body">
+    <div class="hero-content">
+      <div class="hero-icon">
+        <i class="feather icon-award"></i>
+      </div>
+      <div class="hero-text">
+        <h2 class="hero-title">¡Comparte tu talento!</h2>
+        <p class="hero-description">
+          Publica tus reportajes y promociónate. Podrás etiquetar a otros proveedores del mismo evento y aparecer también en sus perfiles. ¡Que las parejas te vean en acción multiplicará las posibilidades de éxito!
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA Section -->
+<div class="cta-section card mb-4">
+  <div class="card-body text-center">
+    <div class="cta-icon">
+      <i class="feather icon-plus-circle"></i>
+    </div>
+    <h4 class="cta-title">Pedir reportajes</h4>
+    <p class="cta-description">
+      Aprovecha esta oportunidad para promocionarte en Bodas Planner
+    </p>
+    <button class="btn btn-primary btn-lg" (click)="abrirFormulario()">
+      <i class="feather icon-plus"></i>
+      Publicar nuevo reportaje
+    </button>
+  </div>
+</div>
+
+<!-- Cómo funciona Section -->
+<div class="how-it-works-section card mb-4">
+  <div class="card-body">
+    <div class="section-header mb-4">
+      <div class="icon-wrapper">
+        <i class="feather icon-help-circle"></i>
+      </div>
+      <h4 class="section-title">¿Cómo funciona?</h4>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="feather icon-star"></i>
+          </div>
+          <h5 class="feature-title">Da valor a tu trabajo</h5>
+          <p class="feature-description">
+            Publica tantos eventos reales como quieras, solo asegúrate de que las imágenes sean de alta calidad.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="feather icon-eye"></i>
+          </div>
+          <h5 class="feature-title">Aumenta tu visibilidad</h5>
+          <p class="feature-description">
+            ¿Con qué empresas trabajaste en cada evento? Tus reportajes también se mostrarán en sus vitrinas.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="feather icon-trending-up"></i>
+          </div>
+          <h5 class="feature-title">Consigue más solicitudes</h5>
+          <p class="feature-description">
+            Las parejas te encontrarán más fácil y podrán admirar tus trabajos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Estadísticas -->
+@if (reportajes.length > 0) {
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="feather icon-file-text"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-value">{{ totalReportajes }}</div>
+          <div class="stat-label">Reportajes publicados</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="stat-icon active">
+          <i class="feather icon-check-circle"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-value">{{ reportajesVisibles }}</div>
+          <div class="stat-label">Reportajes visibles</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="stat-icon tagged">
+          <i class="feather icon-tag"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-value">{{ totalProveedoresEtiquetados }}</div>
+          <div class="stat-label">Proveedores etiquetados</div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Formulario para nuevo reportaje -->
+@if (mostrarFormulario) {
+  <div class="card card-form mb-4">
+    <div class="card-body">
+      <div class="section-header mb-4">
+        <div class="icon-wrapper">
+          <i class="feather icon-edit"></i>
+        </div>
+        <h4 class="section-title">Publicar nuevo reportaje</h4>
+      </div>
+
+      <form>
+        <div class="row g-3">
+          <!-- Título -->
+          <div class="col-md-6">
+            <label class="form-label">
+              Título del evento <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="nuevoReportaje.titulo"
+              name="titulo"
+              placeholder="Ej: Boda de María & Juan"
+            />
+          </div>
+
+          <!-- Fecha -->
+          <div class="col-md-6">
+            <label class="form-label">Fecha del evento</label>
+            <input 
+              type="date" 
+              class="form-control" 
+              [(ngModel)]="nuevoReportaje.fecha"
+              name="fecha"
+            />
+          </div>
+
+          <!-- Descripción -->
+          <div class="col-12">
+            <label class="form-label">
+              Descripción <span class="required">*</span>
+            </label>
+            <textarea 
+              class="form-control" 
+              rows="3"
+              [(ngModel)]="nuevoReportaje.descripcion"
+              name="descripcion"
+              placeholder="Describe el evento, el estilo, los detalles especiales..."
+            ></textarea>
+          </div>
+
+          <!-- Imagen de portada -->
+          <div class="col-12">
+            <label class="form-label">URL de imagen de portada</label>
+            <input 
+              type="url" 
+              class="form-control" 
+              [(ngModel)]="nuevoReportaje.imagenPortada"
+              name="imagenPortada"
+              placeholder="https://ejemplo.com/imagen.jpg"
+            />
+          </div>
+
+          <!-- Galería de imágenes -->
+          <div class="col-12">
+            <label class="form-label">Galería de imágenes</label>
+            <div class="input-group mb-2">
+              <input 
+                type="url" 
+                class="form-control" 
+                [(ngModel)]="nuevaImagenUrl"
+                name="nuevaImagenUrl"
+                placeholder="https://ejemplo.com/imagen.jpg"
+                (keyup.enter)="agregarImagen()"
+              />
+              <button 
+                type="button" 
+                class="btn btn-outline-secondary"
+                (click)="agregarImagen()"
+              >
+                <i class="feather icon-plus"></i>
+                Agregar
+              </button>
+            </div>
+
+            @if (nuevoReportaje.imagenes.length > 0) {
+              <div class="images-preview">
+                @for (imagen of nuevoReportaje.imagenes; track $index) {
+                  <div class="image-preview-item">
+                    <img [src]="imagen" [alt]="'Imagen ' + ($index + 1)">
+                    <button 
+                      type="button" 
+                      class="btn-remove"
+                      (click)="eliminarImagen($index)"
+                    >
+                      <i class="feather icon-x"></i>
+                    </button>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Proveedores etiquetados -->
+          <div class="col-12">
+            <label class="form-label">Proveedores etiquetados</label>
+            <div class="row g-2 mb-2">
+              <div class="col-md-6">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  [(ngModel)]="nuevoProveedor.nombre"
+                  name="proveedorNombre"
+                  placeholder="Nombre del proveedor"
+                  (keyup.enter)="agregarProveedor()"
+                />
+              </div>
+              <div class="col-md-4">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  [(ngModel)]="nuevoProveedor.tipo"
+                  name="proveedorTipo"
+                  placeholder="Tipo (Ej: Floristería)"
+                  (keyup.enter)="agregarProveedor()"
+                />
+              </div>
+              <div class="col-md-2">
+                <button 
+                  type="button" 
+                  class="btn btn-outline-secondary w-100"
+                  (click)="agregarProveedor()"
+                >
+                  <i class="feather icon-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            @if (nuevoReportaje.proveedoresEtiquetados.length > 0) {
+              <div class="providers-list">
+                @for (proveedor of nuevoReportaje.proveedoresEtiquetados; track $index) {
+                  <span class="provider-badge">
+                    {{ proveedor.nombre }}
+                    <span class="provider-type">{{ proveedor.tipo }}</span>
+                    <button 
+                      type="button" 
+                      class="btn-remove-badge"
+                      (click)="eliminarProveedor($index)"
+                    >
+                      <i class="feather icon-x"></i>
+                    </button>
+                  </span>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Visibilidad -->
+          <div class="col-12">
+            <div class="form-check form-check-switch">
+              <input 
+                class="form-check-input" 
+                type="checkbox" 
+                [(ngModel)]="nuevoReportaje.visible"
+                name="visible"
+                id="visibleCheck"
+              />
+              <label class="form-check-label" for="visibleCheck">
+                Publicar como visible
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="action-buttons">
+          <button type="button" class="btn btn-light" (click)="cerrarFormulario()">
+            <i class="feather icon-x"></i>
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-primary" (click)="guardarReportaje()">
+            <i appFeatherIcon="check"></i>
+            Publicar reportaje
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<!-- Lista de reportajes -->
+@if (reportajes.length > 0) {
+  <div class="section-header mb-3">
+    <div class="icon-wrapper">
+      <i class="feather icon-grid"></i>
+    </div>
+    <h4 class="section-title">Mis reportajes publicados</h4>
+  </div>
+
+  <div class="reportajes-grid">
+    @for (reportaje of reportajes; track reportaje.id) {
+      <div class="reportaje-card" [class.reportaje-hidden]="!reportaje.visible">
+        @if (!reportaje.visible) {
+          <div class="hidden-badge">
+            <i class="feather icon-eye-off"></i>
+            Oculto
+          </div>
+        }
+
+        <div class="reportaje-image">
+          <img 
+            [src]="reportaje.imagenPortada || reportaje.imagenes[0]" 
+            [alt]="reportaje.titulo"
+          />
+          <div class="reportaje-overlay">
+            <button 
+              class="btn-icon"
+              [class.active]="reportaje.visible"
+              (click)="toggleVisibilidad(reportaje)"
+              [title]="reportaje.visible ? 'Ocultar' : 'Mostrar'"
+            >
+              <i class="feather" [ngClass]="reportaje.visible ? 'icon-eye' : 'icon-eye-off'"></i>
+            </button>
+            <button 
+              class="btn-icon"
+              (click)="eliminarReportaje(reportaje.id)"
+              title="Eliminar"
+            >
+              <i class="feather icon-trash-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="reportaje-content">
+          <h5 class="reportaje-title">{{ reportaje.titulo }}</h5>
+          <div class="reportaje-date">
+            <i class="feather icon-calendar"></i>
+            {{ reportaje.fecha }}
+          </div>
+          <p class="reportaje-description">{{ reportaje.descripcion }}</p>
+
+          @if (reportaje.proveedoresEtiquetados.length > 0) {
+            <div class="reportaje-providers">
+              <div class="providers-header">
+                <i class="feather icon-tag"></i>
+                Proveedores etiquetados:
+              </div>
+              <div class="providers-tags">
+                @for (proveedor of reportaje.proveedoresEtiquetados; track $index) {
+                  <span class="provider-tag">
+                    {{ proveedor.nombre }}
+                    <small>{{ proveedor.tipo }}</small>
+                  </span>
+                }
+              </div>
+            </div>
+          }
+
+          @if (reportaje.imagenes.length > 1) {
+            <div class="reportaje-gallery-count">
+              <i class="feather icon-image"></i>
+              {{ reportaje.imagenes.length }} imágenes
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+} @else {
+  @if (!mostrarFormulario) {
+    <div class="empty-state">
+      <i class="feather icon-camera"></i>
+      <h5>No hay reportajes publicados</h5>
+      <p>Comienza a compartir tus trabajos para atraer más clientes</p>
+      <button class="btn btn-primary" (click)="abrirFormulario()">
+        <i class="feather icon-plus"></i>
+        Publicar mi primer reportaje
+      </button>
+    </div>
+  }
+}

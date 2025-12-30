@@ -1,0 +1,197 @@
+<div class="page-header">
+  <h3>
+    <i class="feather icon-star"></i>
+    Pedir Opiniones
+  </h3>
+</div>
+
+<!-- Estadísticas -->
+<div class="stats-banner">
+  <div class="stat-principal">
+    <div class="stat-numero">{{ opinionesConseguidas }}</div>
+    <div class="stat-texto">opiniones conseguidas</div>
+  </div>
+  <div class="stats-secundarias">
+    <div class="stat-item">
+      <strong>{{ peticionesEnviadas }}</strong> peticiones enviadas
+    </div>
+    <div class="stat-item">
+      <strong>{{ sinContestar }}</strong> sin contestar
+    </div>
+    <div class="stat-item">
+      <strong>{{ sinFoto }}</strong> sin foto
+    </div>
+  </div>
+</div>
+
+<!-- Formulario de envío -->
+<div class="envio-section">
+  <h5 class="section-title">
+    <i class="feather icon-mail"></i>
+    Destinatarios
+  </h5>
+  <p class="section-description">
+    Edita y envía este email para pedir opiniones a tus clientes. Tú también recibirás una copia en tu correo electrónico.
+  </p>
+
+  <!-- Agregar destinatarios -->
+  <div class="destinatarios-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          [(ngModel)]="nuevoDestinatario.nombre"
+          placeholder="Nombre del cliente"
+        >
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input 
+          type="email" 
+          class="form-control" 
+          [(ngModel)]="nuevoDestinatario.email"
+          placeholder="email@ejemplo.com"
+        >
+      </div>
+      <button class="btn btn-primary btn-add" (click)="agregarDestinatario()">
+        <i class="feather icon-plus"></i>
+        Añadir
+      </button>
+    </div>
+  </div>
+
+  <!-- Lista de destinatarios -->
+  @if (destinatarios.length > 0) {
+    <div class="destinatarios-lista">
+      <p class="lista-titulo">Añade tus clientes</p>
+      @for (destinatario of destinatarios; track $index) {
+        <div class="destinatario-item">
+          <div class="destinatario-info">
+            <i class="feather icon-user"></i>
+            <span class="nombre">{{ destinatario.nombre }}</span>
+            <span class="email">{{ destinatario.email }}</span>
+          </div>
+          <button class="btn-eliminar" (click)="eliminarDestinatario($index)">
+            <i class="feather icon-x"></i>
+          </button>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- CC -->
+  <div class="cc-info">
+    <strong>CC:</strong> {{ emailCC }}
+  </div>
+
+  <!-- Plantilla -->
+  <div class="form-group">
+    <label>Plantilla</label>
+    <select class="form-control" [(ngModel)]="plantillaSeleccionada">
+      @for (plantilla of plantillas; track plantilla.id) {
+        <option [value]="plantilla.id">{{ plantilla.nombre }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Mensaje -->
+  <div class="form-group">
+    <label>Mensaje</label>
+    <textarea 
+      class="form-control mensaje-textarea" 
+      rows="12"
+      [(ngModel)]="mensaje"
+    ></textarea>
+  </div>
+
+  <!-- Acciones -->
+  <div class="form-actions">
+    <button class="btn btn-secondary" (click)="guardarComoPlantilla()">
+      <i class="feather icon-save"></i>
+      Guardar como plantilla
+    </button>
+    <button class="btn btn-primary" (click)="enviarPeticiones()">
+      <i class="feather icon-send"></i>
+      Enviar peticiones
+    </button>
+  </div>
+</div>
+
+<!-- Enlace compartible -->
+<div class="enlace-section">
+  <h5 class="section-title">
+    <i class="feather icon-link"></i>
+    Comparte tu enlace y consigue opiniones
+  </h5>
+  <p class="section-description">
+    Envía este enlace personalizado a tus clientes para pedir opiniones de forma rápida
+  </p>
+  <div class="enlace-box">
+    <input 
+      type="text" 
+      class="form-control" 
+      [value]="enlaceCompartible" 
+      readonly
+    >
+    <button class="btn btn-primary" (click)="copiarEnlace()">
+      <i class="feather icon-copy"></i>
+      Copiar
+    </button>
+  </div>
+</div>
+
+<!-- Peticiones enviadas -->
+<div class="peticiones-section">
+  <div class="peticiones-header">
+    <h5 class="section-title">
+      <i class="feather icon-list"></i>
+      Peticiones de opinión enviadas
+    </h5>
+    <div class="filtros">
+      <button 
+        class="filtro-btn" 
+        [class.active]="filtroActual === 'todas'"
+        (click)="filtroActual = 'todas'"
+      >
+        Todas
+      </button>
+      <button 
+        class="filtro-btn" 
+        [class.active]="filtroActual === 'no-atendidas'"
+        (click)="filtroActual = 'no-atendidas'"
+      >
+        No atendidas
+      </button>
+    </div>
+  </div>
+
+  <div class="peticiones-lista">
+    @for (peticion of peticionesFiltradas; track peticion.id) {
+      <div class="peticion-card">
+        <div class="peticion-avatar">
+          <div class="avatar-placeholder">
+            {{ getIniciales(peticion.nombre) }}
+          </div>
+        </div>
+        <div class="peticion-info">
+          <h6 class="peticion-nombre">{{ peticion.nombre }}</h6>
+          <div class="peticion-meta">
+            <span class="fecha">
+              <i class="feather icon-calendar"></i>
+              Enviada el {{ formatearFecha(peticion.fechaEnvio) }}
+            </span>
+            <span class="envios">
+              {{ peticion.numeroEnvios }} {{ peticion.numeroEnvios === 1 ? 'envío' : 'envíos' }}
+            </span>
+          </div>
+        </div>
+        <button class="btn btn-reenviar" (click)="reenviarPeticion(peticion)">
+          <i class="feather icon-refresh-cw"></i>
+          Reenvía petición
+        </button>
+      </div>
+    }
+  </div>
+</div>

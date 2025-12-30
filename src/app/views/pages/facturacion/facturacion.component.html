@@ -1,0 +1,144 @@
+<div class="page-header">
+  <h3>
+    <i class="feather icon-credit-card"></i>
+    Facturación
+  </h3>
+</div>
+
+<!-- Estadísticas -->
+<div class="stats-row">
+  <div class="stat-card total">
+    <div class="stat-icon">
+      <i class="feather icon-dollar-sign"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ formatearImporte(totalFacturado, 'S/') }}</div>
+      <div class="stat-label">Total facturado</div>
+    </div>
+  </div>
+  <div class="stat-card pagadas">
+    <div class="stat-icon">
+      <i class="feather icon-check-circle"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ facturasPagadas }}</div>
+      <div class="stat-label">Facturas pagadas</div>
+    </div>
+  </div>
+  <div class="stat-card pendientes">
+    <div class="stat-icon">
+      <i class="feather icon-clock"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ formatearImporte(totalPendiente, 'S/') }}</div>
+      <div class="stat-label">{{ facturasPendientes }} pendientes</div>
+    </div>
+  </div>
+  <div class="stat-card vencidas">
+    <div class="stat-icon">
+      <i class="feather icon-alert-circle"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ formatearImporte(totalVencido, 'S/') }}</div>
+      <div class="stat-label">{{ facturasVencidas }} vencidas</div>
+    </div>
+  </div>
+</div>
+
+<!-- Info Banner -->
+<div class="info-banner">
+  <div class="info-icon">
+    <i class="feather icon-info"></i>
+  </div>
+  <div class="info-content">
+    <h5>Consulta las facturas de tus servicios en BodásPlanner</h5>
+    <p>Descarga las facturas haciendo click en cada una de ellas, así obtendrás los datos de los servicios contratados.</p>
+  </div>
+</div>
+
+<!-- Filtros -->
+<div class="filtros-section">
+  <div class="filtro-group">
+    <label>Año</label>
+    <select class="form-control" [(ngModel)]="anioSeleccionado">
+      @for (anio of anios; track anio) {
+        <option [value]="anio">{{ anio }}</option>
+      }
+    </select>
+  </div>
+  <div class="filtro-group">
+    <label>Estado</label>
+    <select class="form-control" [(ngModel)]="estadoSeleccionado">
+      <option value="todas">Todas</option>
+      <option value="pagada">Pagadas</option>
+      <option value="pendiente">Pendientes</option>
+      <option value="vencida">Vencidas</option>
+    </select>
+  </div>
+</div>
+
+<!-- Tabla de facturas -->
+<div class="facturas-section">
+  @if (facturasFiltradas.length > 0) {
+    <div class="facturas-table">
+      <div class="table-header">
+        <div class="col-fecha">Fecha</div>
+        <div class="col-numero">Nº Factura</div>
+        <div class="col-concepto">Concepto</div>
+        <div class="col-estado">Estado</div>
+        <div class="col-importe">Importe</div>
+        <div class="col-accion"></div>
+      </div>
+
+      <div class="table-body">
+        @for (factura of facturasFiltradas; track factura.id) {
+          <div class="factura-row" [class.vencida]="factura.estado === 'vencida'">
+            <div class="col-fecha">
+              <i class="feather icon-calendar"></i>
+              {{ formatearFecha(factura.fecha) }}
+            </div>
+            <div class="col-numero">
+              <span class="numero-factura">{{ factura.numeroFactura }}</span>
+            </div>
+            <div class="col-concepto">
+              <span class="concepto">{{ factura.concepto }}</span>
+            </div>
+            <div class="col-estado">
+              @if (factura.estado === 'pagada') {
+                <span class="badge badge-success">
+                  <i class="feather icon-check"></i>
+                  Pagada
+                </span>
+              } @else if (factura.estado === 'pendiente') {
+                <span class="badge badge-warning">
+                  <i class="feather icon-clock"></i>
+                  Pendiente
+                </span>
+              } @else {
+                <span class="badge badge-danger">
+                  <i class="feather icon-alert-circle"></i>
+                  Vencida
+                </span>
+              }
+            </div>
+            <div class="col-importe">
+              <span class="importe">{{ formatearImporte(factura.importe, factura.moneda) }}</span>
+            </div>
+            <div class="col-accion">
+              <button class="btn btn-download" (click)="descargarFactura(factura)">
+                <i class="feather icon-download"></i>
+                Descargar
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="empty-state">
+      <i class="feather icon-file-text"></i>
+      <h4>No hay facturas</h4>
+      <p>No se encontraron facturas para el año {{ anioSeleccionado }}</p>
+    </div>
+  }
+</div>

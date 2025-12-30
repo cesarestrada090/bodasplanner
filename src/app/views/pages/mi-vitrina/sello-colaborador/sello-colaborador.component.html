@@ -1,0 +1,151 @@
+<!-- Header -->
+<div class="page-header">
+  <h3>
+    <i class="feather icon-award"></i>
+    Sello Colaborador de Bodas Planner
+  </h3>
+</div>
+
+<!-- Info -->
+<div class="info-banner mb-4">
+  <div class="info-icon">
+    <i class="feather icon-heart"></i>
+  </div>
+  <div class="info-content">
+    <h4>¡Nos encanta ayudarte a desarrollar tu negocio!</h4>
+    <p>
+      Escoge el tamaño que mejor se adapte a tu página web y pega el código HTML de tu sello de Bodas Planner. 
+      ¡Estamos encantados de estar a tu lado!
+    </p>
+  </div>
+</div>
+
+<!-- Instrucciones -->
+<div class="instrucciones-card mb-4">
+  <div class="instrucciones-header">
+    <i class="feather icon-info"></i>
+    <h5>¿Cómo usar el sello?</h5>
+  </div>
+  <div class="instrucciones-body">
+    <ol>
+      <li>
+        <strong>Selecciona el tamaño</strong> que mejor se adapte al diseño de tu sitio web
+      </li>
+      <li>
+        <strong>Haz clic en "Copiar código HTML"</strong> del sello que prefieras
+      </li>
+      <li>
+        <strong>Pega el código</strong> en el HTML de tu página web donde desees mostrar el sello
+      </li>
+      <li>
+        El sello será visible y enlazará directamente a tu perfil en Bodas Planner
+      </li>
+    </ol>
+  </div>
+</div>
+
+<!-- Beneficios -->
+<div class="beneficios-section mb-5">
+  <h4 class="section-title">
+    <i class="feather icon-check-circle"></i>
+    Beneficios de mostrar tu sello
+  </h4>
+  <div class="beneficios-grid">
+    <div class="beneficio-card">
+      <div class="beneficio-icon">
+        <i class="feather icon-shield"></i>
+      </div>
+      <h5>Credibilidad</h5>
+      <p>Demuestra que eres un proveedor verificado de Bodas Planner</p>
+    </div>
+    <div class="beneficio-card">
+      <div class="beneficio-icon">
+        <i class="feather icon-trending-up"></i>
+      </div>
+      <h5>Más Visibilidad</h5>
+      <p>Aumenta tu presencia online y genera confianza en tus clientes</p>
+    </div>
+    <div class="beneficio-card">
+      <div class="beneficio-icon">
+        <i class="feather icon-link"></i>
+      </div>
+      <h5>Tráfico Directo</h5>
+      <p>Enlace directo a tu perfil con tus servicios y reseñas</p>
+    </div>
+    <div class="beneficio-card">
+      <div class="beneficio-icon">
+        <i class="feather icon-star"></i>
+      </div>
+      <h5>Profesionalismo</h5>
+      <p>Muestra tu pertenencia a la red líder de proveedores de bodas</p>
+    </div>
+  </div>
+</div>
+
+<!-- Sellos disponibles -->
+<div class="sellos-section">
+  <h4 class="section-title">
+    <i class="feather icon-image"></i>
+    Sellos Disponibles
+  </h4>
+
+  <div class="sellos-grid">
+    @for (sello of sellos; track sello.id) {
+      <div class="sello-card">
+        <div class="sello-header">
+          <h5>{{ sello.nombre }}</h5>
+          <span class="sello-dimensions">{{ sello.ancho }} × {{ sello.alto }}px</span>
+        </div>
+
+        <div class="sello-preview">
+          <div class="preview-container" [style.width.px]="sello.ancho" [style.height.px]="sello.alto">
+            <img [src]="sello.imagenUrl" [alt]="sello.nombre">
+          </div>
+          <div class="preview-overlay">
+            <button class="btn-preview" (click)="verVistaPrevia(sello.imagenUrl)">
+              <i class="feather icon-eye"></i>
+              Vista previa
+            </button>
+          </div>
+        </div>
+
+        <div class="sello-codigo">
+          <label class="codigo-label">Código HTML:</label>
+          <div class="codigo-box">
+            <pre><code>{{ sello.codigoHtml }}</code></pre>
+          </div>
+        </div>
+
+        <div class="sello-actions">
+          <button 
+            class="btn-copiar"
+            [class.copiado]="selloCopiado === sello.id"
+            (click)="copiarCodigo(sello)"
+          >
+            <i class="feather" [class.icon-copy]="selloCopiado !== sello.id" [class.icon-check]="selloCopiado === sello.id"></i>
+            <span>{{ selloCopiado === sello.id ? '¡Copiado!' : 'Copiar código HTML' }}</span>
+          </button>
+          <button class="btn-descargar" (click)="descargarImagen(sello)">
+            <i class="feather icon-download"></i>
+            <span>Descargar imagen</span>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Nota adicional -->
+<div class="nota-final mt-5">
+  <div class="nota-content">
+    <i class="feather icon-alert-circle"></i>
+    <div>
+      <h5>Nota importante</h5>
+      <p>
+        El sello debe ser visible y estar enlazado a tu perfil de Bodas Planner. 
+        No está permitido modificar el código o la imagen del sello. 
+        Si necesitas un tamaño personalizado, contáctanos a través de soporte.
+      </p>
+    </div>
+  </div>
+</div>

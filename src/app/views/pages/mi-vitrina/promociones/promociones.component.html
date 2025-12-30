@@ -1,0 +1,374 @@
+<div class="page-header mb-4">
+  <h3 class="page-title">
+    <i class="feather icon-gift me-2 text-primary"></i>
+    Promociones
+  </h3>
+  <p class="text-muted mb-0">Gestiona descuentos y códigos promocionales</p>
+</div>
+
+<div class="info-tip mb-4">
+  <i class="feather icon-trending-up"></i>
+  <span>¡Atrae más parejas con ofertas irresistibles! Los descuentos y códigos promocionales aumentan significativamente las solicitudes de presupuesto.</span>
+</div>
+
+<!-- Tabs Navigation -->
+<ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-tabs-custom mb-4">
+  <li [ngbNavItem]="1">
+    <button ngbNavLink>
+      <i class="feather icon-percent me-2"></i>
+      Descuento General
+    </button>
+    <ng-template ngbNavContent>
+      
+      <!-- Descuento Exclusivo del Portal -->
+      <div class="card card-featured">
+        <div class="card-body">
+          <div class="featured-badge">
+            <i class="feather icon-star"></i>
+            <span>Recomendado</span>
+          </div>
+          
+          <div class="section-header mb-4">
+            <div class="icon-wrapper">
+              <i class="feather icon-award"></i>
+            </div>
+            <h5 class="section-title">Descuento para parejas de BodasPlanner</h5>
+          </div>
+
+          <p class="text-muted mb-3">
+            Con tan solo un clic, ofrece un descuento especial a todas las parejas que te contraten a través del portal.
+          </p>
+
+          <div class="percentage-selector mb-4">
+            @for (porcentaje of porcentajesDisponibles; track porcentaje) {
+              <button 
+                type="button"
+                class="percentage-btn"
+                [class.active]="descuentoPortal.activo && descuentoPortal.porcentaje === porcentaje"
+                (click)="seleccionarPorcentaje(porcentaje)"
+              >
+                {{ porcentaje }}%
+              </button>
+            }
+          </div>
+
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="checkbox" 
+              id="noDescuento"
+              [checked]="!descuentoPortal.activo"
+              (change)="toggleDescuentoPortal()"
+            >
+            <label class="form-check-label" for="noDescuento">
+              No deseo hacer ningún descuento general
+            </label>
+          </div>
+
+          @if (descuentoPortal.activo && descuentoPortal.porcentaje > 0) {
+            <div class="preview-card mt-3">
+              <div class="preview-icon">
+                <i class="feather icon-check-circle"></i>
+              </div>
+              <div class="preview-content">
+                <strong>Descuento activo: {{ descuentoPortal.porcentaje }}%</strong>
+                <p class="mb-0">Las parejas verán esta promoción destacada en tu perfil</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+    </ng-template>
+  </li>
+  
+  <li [ngbNavItem]="2">
+    <button ngbNavLink>
+      <i class="feather icon-tag me-2"></i>
+      Códigos Promocionales
+      <span class="badge-count-nav">{{ promoCodesActivos }}</span>
+    </button>
+    <ng-template ngbNavContent>
+      
+      <!-- Estadísticas -->
+      <div class="row mb-4">
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="feather icon-tag"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ promoCodes.length }}</div>
+              <div class="stat-label">Códigos totales</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
+          <div class="stat-card">
+            <div class="stat-icon active">
+              <i class="feather icon-check-circle"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ promoCodesActivos }}</div>
+              <div class="stat-label">Activos</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="stat-card">
+            <div class="stat-icon used">
+              <i class="feather icon-users"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ totalUsos }}</div>
+              <div class="stat-label">Usos totales</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón Agregar -->
+      @if (!mostrandoFormulario) {
+        <button class="btn btn-primary mb-4" (click)="mostrarFormularioNuevo()">
+          <i class="feather icon-plus me-2"></i>
+          Crear código promocional
+        </button>
+      }
+
+      <!-- Formulario Crear/Editar -->
+      @if (mostrandoFormulario) {
+        <div class="card mb-4 card-form">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5 class="mb-0">
+                <i class="feather icon-edit-3 me-2 text-primary"></i>
+                {{ promoCodeEditando ? 'Editar código promocional' : 'Nuevo código promocional' }}
+              </h5>
+              <button class="btn btn-link btn-sm text-muted p-0" (click)="cancelarEdicion()">
+                <i class="feather icon-x"></i>
+              </button>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-8 mb-3">
+                <label class="form-label">Código <span class="required">*</span></label>
+                <div class="input-group">
+                  <input 
+                    type="text" 
+                    class="form-control text-uppercase" 
+                    [(ngModel)]="nuevoPromoCode.codigo"
+                    placeholder="Ej: BODA2025"
+                    maxlength="20"
+                  >
+                  <button class="btn btn-outline-secondary" type="button" (click)="generarCodigoAleatorio()">
+                    <i class="feather icon-refresh-cw"></i>
+                  </button>
+                </div>
+                <small class="text-muted">Letras mayúsculas y números sin espacios</small>
+              </div>
+
+              <div class="col-12 col-md-4 mb-3">
+                <label class="form-label">Tipo de descuento</label>
+                <select class="form-select" [(ngModel)]="nuevoPromoCode.tipoDescuento">
+                  <option value="porcentaje">Porcentaje (%)</option>
+                  <option value="monto-fijo">Monto fijo (S/)</option>
+                </select>
+              </div>
+
+              <div class="col-12 mb-3">
+                <label class="form-label">Descripción <span class="required">*</span></label>
+                <textarea 
+                  class="form-control" 
+                  rows="2"
+                  [(ngModel)]="nuevoPromoCode.descripcion"
+                  placeholder="Describe para qué es este código..."
+                  maxlength="200"
+                ></textarea>
+                <small class="text-muted">{{ nuevoPromoCode.descripcion.length }}/200</small>
+              </div>
+
+              <div class="col-12 col-md-4 mb-3">
+                <label class="form-label">Descuento <span class="required">*</span></label>
+                <div class="input-group">
+                  <input 
+                    type="number" 
+                    class="form-control" 
+                    [(ngModel)]="nuevoPromoCode.descuento"
+                    min="0"
+                    [max]="nuevoPromoCode.tipoDescuento === 'porcentaje' ? 100 : 999999"
+                    placeholder="0"
+                  >
+                  <span class="input-group-text">{{ nuevoPromoCode.tipoDescuento === 'porcentaje' ? '%' : 'S/' }}</span>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4 mb-3">
+                <label class="form-label">Usos máximos</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  [(ngModel)]="nuevoPromoCode.usosMaximos"
+                  min="0"
+                  placeholder="Ilimitado"
+                >
+                <small class="text-muted">0 = sin límite</small>
+              </div>
+
+              <div class="col-12 col-md-4 mb-3">
+                <label class="form-label">Estado</label>
+                <div class="form-check form-switch mt-2">
+                  <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    id="nuevoActivo"
+                    [(ngModel)]="nuevoPromoCode.activo"
+                  >
+                  <label class="form-check-label" for="nuevoActivo">
+                    {{ nuevoPromoCode.activo ? 'Activo' : 'Inactivo' }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Válido desde</label>
+                <input 
+                  type="date" 
+                  class="form-control" 
+                  [(ngModel)]="nuevoPromoCode.fechaInicio"
+                >
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Válido hasta</label>
+                <input 
+                  type="date" 
+                  class="form-control" 
+                  [(ngModel)]="nuevoPromoCode.fechaFin"
+                >
+              </div>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-end mt-3">
+              <button class="btn btn-light" (click)="cancelarEdicion()">
+                Cancelar
+              </button>
+              <button class="btn btn-primary" (click)="guardarPromoCode()">
+                <i class="feather icon-check me-1"></i>
+                {{ promoCodeEditando ? 'Actualizar' : 'Crear' }} código
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Tabla de Códigos -->
+      @if (promoCodes.length > 0) {
+        <div class="table-responsive">
+          <table class="table promo-table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th class="text-center">Descuento</th>
+                <th class="text-center">Usos</th>
+                <th class="text-center">Vigencia</th>
+                <th class="text-center">Estado</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (promo of promoCodes; track promo.id) {
+                <tr [class.inactive-row]="!promo.activo">
+                  <td>
+                    <div class="code-badge">{{ promo.codigo }}</div>
+                  </td>
+                  <td>
+                    <div class="description-cell">{{ promo.descripcion }}</div>
+                  </td>
+                  <td class="text-center">
+                    <span class="discount-badge" [class.discount-fixed]="promo.tipoDescuento === 'monto-fijo'">
+                      @if (promo.tipoDescuento === 'porcentaje') {
+                        {{ promo.descuento }}%
+                      } @else {
+                        S/ {{ promo.descuento }}
+                      }
+                    </span>
+                  </td>
+                  <td class="text-center">
+                    <div class="usage-cell">
+                      <strong>{{ promo.usos }}</strong>
+                      @if (promo.usosMaximos > 0) {
+                        <span class="text-muted">/ {{ promo.usosMaximos }}</span>
+                      }
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="date-cell">
+                      @if (promo.fechaInicio && promo.fechaFin) {
+                        <small>{{ promo.fechaInicio | date: 'dd/MM/yy' }}</small>
+                        <br>
+                        <small>{{ promo.fechaFin | date: 'dd/MM/yy' }}</small>
+                      } @else {
+                        <small class="text-muted">Sin límite</small>
+                      }
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="form-check form-switch justify-content-center">
+                      <input 
+                        class="form-check-input" 
+                        type="checkbox" 
+                        [id]="'activo-' + promo.id"
+                        [(ngModel)]="promo.activo"
+                        (change)="toggleEstadoPromoCode(promo)"
+                      >
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="action-buttons-table">
+                      <button 
+                        class="btn btn-link btn-sm p-1" 
+                        (click)="editarPromoCode(promo)"
+                        title="Editar"
+                      >
+                        <i class="feather icon-edit-2"></i>
+                      </button>
+                      <button 
+                        class="btn btn-link btn-sm p-1 text-danger" 
+                        (click)="eliminarPromoCode(promo.id)"
+                        title="Eliminar"
+                      >
+                        <i class="feather icon-trash-2"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <div class="empty-state">
+          <i class="feather icon-tag"></i>
+          <h5>No hay códigos promocionales</h5>
+          <p>Crea tu primer código promocional para ofrecer descuentos especiales</p>
+        </div>
+      }
+
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav"></div>
+
+<!-- Acciones -->
+<div class="action-buttons mt-4">
+  <button class="btn btn-light">
+    <i class="feather icon-x me-1"></i>
+    Cancelar
+  </button>
+  <button class="btn btn-primary" (click)="guardarCambios()">
+    <i class="feather icon-check me-1"></i>
+    Guardar cambios
+  </button>
+</div>

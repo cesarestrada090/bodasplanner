@@ -1,0 +1,325 @@
+<!-- Menús para Recepciones Component -->
+<div class="page-header">
+  <h3 class="page-title">
+    <i class="feather icon-book-open"></i>
+    Menús para Recepciones
+  </h3>
+</div>
+
+<!-- Info Tip -->
+<div class="info-tip mb-4">
+  <i class="feather icon-info"></i>
+  <span>Crea menús completos para tus recepciones. Las parejas podrán ver todas las opciones disponibles y elegir según sus preferencias.</span>
+</div>
+
+<!-- Estadísticas -->
+@if (menus.length > 0) {
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="feather icon-list"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-value">{{ totalMenus }}</div>
+          <div class="stat-label">Menús creados</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="stat-card">
+        <div class="stat-icon active">
+          <i class="feather icon-check-circle"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-value">{{ menusActivos }}</div>
+          <div class="stat-label">Menús activos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Botón para agregar menú -->
+@if (!mostrarFormulario) {
+  <div class="text-center mb-4">
+    <button class="btn btn-primary btn-lg" (click)="abrirFormulario()">
+      <i class="feather icon-plus"></i>
+      Crear nuevo menú
+    </button>
+  </div>
+}
+
+<!-- Formulario de menú -->
+@if (mostrarFormulario) {
+  <div class="card card-form mb-4">
+    <div class="card-body">
+      <div class="section-header mb-4">
+        <div class="icon-wrapper">
+          <i class="feather icon-edit"></i>
+        </div>
+        <h4 class="section-title">{{ modoEdicion ? 'Editar menú' : 'Crear nuevo menú' }}</h4>
+      </div>
+
+      <form>
+        <!-- Nombre del menú -->
+        <div class="mb-4">
+          <label class="form-label">
+            Nombre del menú <span class="required">*</span>
+          </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            [(ngModel)]="nuevoMenu.nombre"
+            name="nombre"
+            placeholder="Ej: Menú Premium, Menú Clásico..."
+          />
+        </div>
+
+        <!-- Botones para agregar secciones -->
+        <div class="mb-4">
+          <label class="form-label">Agregar secciones al menú</label>
+          <div class="section-buttons">
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="agregarSeccion('aperitivos')">
+              <i class="feather icon-plus"></i> Aperitivos
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="agregarSeccion('bocaditos-frios')">
+              <i class="feather icon-plus"></i> Bocaditos fríos
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="agregarSeccion('bocaditos-calientes')">
+              <i class="feather icon-plus"></i> Bocaditos calientes
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="agregarSeccion('entrada')">
+              <i class="feather icon-plus"></i> Entrada
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="agregarSeccion('plato-fondo')">
+              <i class="feather icon-plus"></i> Plato de fondo
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="agregarSeccion('acompañamiento')">
+              <i class="feather icon-plus"></i> Acompañamiento
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="agregarSeccion('postre')">
+              <i class="feather icon-plus"></i> Postre
+            </button>
+          </div>
+        </div>
+
+        <!-- Secciones agregadas -->
+        @if (nuevoMenu.secciones.length > 0) {
+          <div class="secciones-list">
+            @for (seccion of nuevoMenu.secciones; track $index) {
+              <div class="seccion-card">
+                <div class="seccion-header">
+                  <div>
+                    <h5 class="seccion-nombre">{{ seccion.nombre }}</h5>
+                    @if (seccion.cantidadAElegir) {
+                      <span class="seccion-badge">{{ seccion.cantidadAElegir }} {{ seccion.cantidadAElegir === 1 ? 'opción' : 'opciones' }} a elegir</span>
+                    }
+                    @if (seccion.descripcion) {
+                      <p class="seccion-descripcion">{{ seccion.descripcion }}</p>
+                    }
+                  </div>
+                  <button 
+                    type="button" 
+                    class="btn btn-link text-danger"
+                    (click)="eliminarSeccion($index)"
+                    title="Eliminar sección"
+                  >
+                    <i class="feather icon-trash-2"></i>
+                  </button>
+                </div>
+
+                <!-- Agregar opciones -->
+                <div class="mb-3">
+                  <label class="form-label-sm">Agregar opción</label>
+                  <div class="input-group">
+                    <input 
+                      type="text" 
+                      class="form-control form-control-sm" 
+                      #nuevaOpcion
+                      placeholder="Nombre de la opción"
+                      (keyup.enter)="agregarOpcion($index, nuevaOpcion.value); nuevaOpcion.value = ''"
+                    />
+                    <button 
+                      type="button" 
+                      class="btn btn-outline-secondary btn-sm"
+                      (click)="agregarOpcion($index, nuevaOpcion.value); nuevaOpcion.value = ''"
+                    >
+                      <i class="feather icon-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Lista de opciones -->
+                @if (seccion.opciones.length > 0) {
+                  <div class="opciones-list">
+                    @for (opcion of seccion.opciones; track $index) {
+                      <div class="opcion-item">
+                        <span class="opcion-numero">{{ $index + 1 }}.</span>
+                        <span class="opcion-texto">{{ opcion }}</span>
+                        <button 
+                          type="button" 
+                          class="btn-remove-opcion"
+                          (click)="eliminarOpcion($index, $index)"
+                          title="Eliminar"
+                        >
+                          <i class="feather icon-x"></i>
+                        </button>
+                      </div>
+                    }
+                  </div>
+                } @else {
+                  <p class="text-muted text-center py-2 mb-0">No hay opciones agregadas</p>
+                }
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="empty-state-small">
+            <i class="feather icon-layers"></i>
+            <p>No hay secciones agregadas. Utiliza los botones de arriba para agregar secciones al menú.</p>
+          </div>
+        }
+
+        <!-- Estado -->
+        <div class="mb-4">
+          <div class="form-check form-check-switch">
+            <input 
+              class="form-check-input" 
+              type="checkbox" 
+              [(ngModel)]="nuevoMenu.activo"
+              name="activo"
+              id="activoCheck"
+            />
+            <label class="form-check-label" for="activoCheck">
+              Menú activo
+            </label>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="action-buttons">
+          <button type="button" class="btn btn-light" (click)="cerrarFormulario()">
+            <i class="feather icon-x"></i>
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-primary" (click)="guardarMenu()">
+            <i class="feather icon-check"></i>
+            {{ modoEdicion ? 'Actualizar menú' : 'Guardar menú' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<!-- Lista de menús -->
+@if (menus.length > 0) {
+  <div class="section-header mb-3">
+    <div class="icon-wrapper">
+      <i class="feather icon-grid"></i>
+    </div>
+    <h4 class="section-title">Mis menús</h4>
+  </div>
+
+  <div class="menus-grid">
+    @for (menu of menus; track menu.id) {
+      <div class="menu-card" [class.menu-inactive]="!menu.activo">
+        @if (!menu.activo) {
+          <div class="inactive-badge">
+            <i class="feather icon-eye-off"></i>
+            Inactivo
+          </div>
+        }
+
+        <div class="menu-header">
+          <h4 class="menu-title">{{ menu.nombre }}</h4>
+          <div class="menu-actions">
+            <button 
+              class="btn-icon"
+              [class.active]="menu.activo"
+              (click)="toggleEstado(menu)"
+              [title]="menu.activo ? 'Desactivar' : 'Activar'"
+            >
+              <i [class]="menu.activo ? 'feather icon-eye' : 'feather icon-eye-off'"></i>
+            </button>
+            <button 
+              class="btn-icon"
+              (click)="duplicarMenu(menu)"
+              title="Duplicar"
+            >
+              <i class="feather icon-copy"></i>
+            </button>
+            <button 
+              class="btn-icon"
+              (click)="editarMenu(menu)"
+              title="Editar"
+            >
+              <i class="feather icon-edit-2"></i>
+            </button>
+            <button 
+              class="btn-icon"
+              (click)="eliminarMenu(menu.id)"
+              title="Eliminar"
+            >
+              <i class="feather icon-trash-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="menu-content">
+          <div class="accordion" id="accordion-{{ menu.id }}">
+            @for (seccion of menu.secciones; track $index) {
+              <div class="accordion-item">
+                <div 
+                  class="accordion-header"
+                  (click)="seccionesColapsadas[menu.id + '-' + $index] = !seccionesColapsadas[menu.id + '-' + $index]"
+                >
+                  <div class="accordion-title">
+                    <h6 class="menu-section-title">{{ seccion.nombre }}</h6>
+                    <span class="opciones-count">{{ seccion.opciones.length }} opciones</span>
+                  </div>
+                  <div class="accordion-badges">
+                    @if (seccion.cantidadAElegir) {
+                      <span class="menu-section-badge">{{ seccion.cantidadAElegir }} a elegir</span>
+                    }
+                    <i [class]="seccionesColapsadas[menu.id + '-' + $index] ? 'feather icon-chevron-down' : 'feather icon-chevron-up'"></i>
+                  </div>
+                </div>
+                
+                @if (!seccionesColapsadas[menu.id + '-' + $index]) {
+                  <div class="accordion-body">
+                    @if (seccion.descripcion) {
+                      <p class="menu-section-description">{{ seccion.descripcion }}</p>
+                    }
+                    <ul class="menu-options">
+                      @for (opcion of seccion.opciones; track $index) {
+                        <li>{{ opcion }}</li>
+                      }
+                    </ul>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="menu-footer">
+          <span class="menu-info">
+            <i class="feather icon-layers"></i>
+            {{ menu.secciones.length }} {{ menu.secciones.length === 1 ? 'sección' : 'secciones' }}
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+} @else {
+  @if (!mostrarFormulario) {
+    <div class="empty-state">
+      <i class="feather icon-book-open"></i>
+      <h5>No hay menús creados</h5>
+      <p>Crea tu primer menú para mostrar a las parejas todas las opciones disponibles</p>
+    </div>
+  }
+}

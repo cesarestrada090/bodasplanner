@@ -1,0 +1,183 @@
+<!-- Disponibilidad Component -->
+<div class="page-header">
+  <h3 class="page-title">
+    <i class="feather icon-calendar"></i>
+    Disponibilidad
+  </h3>
+</div>
+
+<!-- Info Tip -->
+<div class="info-tip mb-4">
+  <i class="feather icon-info"></i>
+  <span>Mantén actualizado tu calendario para que las parejas vean tu disponibilidad en tiempo real. Los días ocupados se mostrarán automáticamente.</span>
+</div>
+
+<!-- Estadísticas -->
+<div class="row g-3 mb-4">
+  <div class="col-md-6">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="feather icon-calendar"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ totalDiasOcupados }}</div>
+        <div class="stat-label">Días ocupados</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="stat-card">
+      <div class="stat-icon active">
+        <i class="feather icon-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ diasDisponibles }}</div>
+        <div class="stat-label">Días disponibles</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Leyenda -->
+<div class="calendar-legend mb-4">
+  <div class="legend-item">
+    <span class="legend-color disponible"></span>
+    <span class="legend-text">Disponible</span>
+  </div>
+  <div class="legend-item">
+    <span class="legend-color ocupado"></span>
+    <span class="legend-text">Ocupado</span>
+  </div>
+  <div class="legend-item">
+    <span class="legend-color otro-mes"></span>
+    <span class="legend-text">Otro mes</span>
+  </div>
+</div>
+
+<!-- Calendarios -->
+<div class="calendarios-grid">
+  @for (mes of meses; track mes.mes + '-' + mes.anio) {
+    <div class="calendario-card">
+      <div class="calendario-header">
+        <h5 class="mes-nombre">{{ mes.nombre }}</h5>
+      </div>
+      
+      <div class="calendario-body">
+        <!-- Días de la semana -->
+        <div class="dias-semana">
+          @for (dia of diasSemana; track dia) {
+            <div class="dia-semana-label">{{ dia }}</div>
+          }
+        </div>
+
+        <!-- Días del mes -->
+        <div class="dias-grid">
+          @for (dia of mes.dias; track dia.fecha.getTime()) {
+            <div 
+              class="dia-celda"
+              [class.otro-mes]="!dia.mesActual"
+              [class.ocupado]="dia.ocupado && dia.mesActual"
+              [class.disponible]="!dia.ocupado && dia.mesActual"
+              [class.seleccionado]="diaSeleccionado?.fecha?.getTime() === dia.fecha.getTime()"
+              (click)="seleccionarDia(dia, modalEvento)"
+              [style.cursor]="dia.ocupado && dia.mesActual ? 'pointer' : 'default'"
+            >
+              <span class="dia-numero">{{ dia.numero }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- Modal para mostrar detalle del evento -->
+<ng-template #modalEvento let-modal>
+  @if (diaSeleccionado && diaSeleccionado.evento) {
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <h4 class="modal-title">
+          <i class="feather icon-calendar"></i>
+          Evento Reservado
+        </h4>
+        <p class="modal-date">
+          {{ diaSeleccionado.fecha.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }}
+        </p>
+      </div>
+      <button type="button" class="btn-close-modal" (click)="modal.dismiss()">
+        <i class="feather icon-x"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="evento-modal-content">
+        <!-- Contrato -->
+        @if (diaSeleccionado.evento.contratoRef) {
+          <div class="detalle-modal-row contrato-principal">
+            <div class="detalle-modal-icon">
+              <i class="feather icon-file-text"></i>
+            </div>
+            <div class="detalle-modal-info">
+              <span class="detalle-modal-label">Contrato</span>
+              <span class="detalle-modal-valor contrato-ref">{{ diaSeleccionado.evento.contratoRef }}</span>
+            </div>
+          </div>
+        }
+
+        <!-- Horario -->
+        <div class="detalle-modal-row">
+          <div class="detalle-modal-icon">
+            <i class="feather icon-clock"></i>
+          </div>
+          <div class="detalle-modal-info">
+            <span class="detalle-modal-label">Horario</span>
+            <span class="detalle-modal-valor">{{ diaSeleccionado.evento.horaInicio }} - {{ diaSeleccionado.evento.horaFin }}</span>
+          </div>
+        </div>
+
+        <!-- Cliente -->
+        <div class="detalle-modal-row">
+          <div class="detalle-modal-icon">
+            <i class="feather icon-user"></i>
+          </div>
+          <div class="detalle-modal-info">
+            <span class="detalle-modal-label">Cliente</span>
+            <span class="detalle-modal-valor">{{ diaSeleccionado.evento.cliente }}</span>
+          </div>
+        </div>
+
+        <!-- Tipo de evento -->
+        <div class="detalle-modal-row">
+          <div class="detalle-modal-icon">
+            <i class="feather icon-tag"></i>
+          </div>
+          <div class="detalle-modal-info">
+            <span class="detalle-modal-label">Tipo de evento</span>
+            <span class="detalle-modal-valor">{{ diaSeleccionado.evento.tipoEvento }}</span>
+          </div>
+        </div>
+
+        <!-- Notas -->
+        @if (diaSeleccionado.evento.notas) {
+          <div class="detalle-modal-row">
+            <div class="detalle-modal-icon">
+              <i class="feather icon-message-circle"></i>
+            </div>
+            <div class="detalle-modal-info">
+              <span class="detalle-modal-label">Notas</span>
+              <span class="detalle-modal-valor">{{ diaSeleccionado.evento.notas }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <span class="estado-badge-modal ocupado">
+        <i class="feather icon-lock"></i>
+        Día ocupado
+      </span>
+    </div>
+  }
+</ng-template>

@@ -1,0 +1,419 @@
+<!-- Eventos Component -->
+<div class="page-header">
+  <h3 class="page-title">
+    <i class="feather icon-calendar"></i>
+    Eventos
+  </h3>
+  <button class="btn btn-crear" (click)="abrirFormulario()">
+    <i class="feather icon-plus"></i>
+    Crear Evento
+  </button>
+</div>
+
+<!-- Info Tip -->
+<div class="info-tip mb-4">
+  <i class="feather icon-info"></i>
+  <span>Crea eventos de exposición, talleres o puertas abiertas para conectar con parejas y promocionar tus servicios. Los invitados podrán registrarse directamente.</span>
+</div>
+
+<!-- Estadísticas -->
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="feather icon-calendar"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ totalEventos }}</div>
+        <div class="stat-label">Total eventos</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="stat-card">
+      <div class="stat-icon active">
+        <i class="feather icon-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ eventosActivos }}</div>
+        <div class="stat-label">Eventos activos</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="feather icon-users"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ totalAsistentes }}</div>
+        <div class="stat-label">Total asistentes</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Formulario de evento -->
+@if (mostrarFormulario) {
+  <div class="formulario-evento mb-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>{{ eventoEditando ? 'Editar Evento' : 'Nuevo Evento' }}</h5>
+        <button class="btn-close-form" (click)="cerrarFormulario()">
+          <i class="feather icon-x"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <!-- Nombre -->
+          <div class="col-md-12">
+            <label class="form-label">Nombre del evento *</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="nuevoEvento.nombre"
+              placeholder="Ej: Expo Bodas Primavera 2026"
+            >
+          </div>
+
+          <!-- Descripción -->
+          <div class="col-md-12">
+            <label class="form-label">Descripción *</label>
+            <textarea 
+              class="form-control" 
+              rows="3"
+              [(ngModel)]="nuevoEvento.descripcion"
+              placeholder="Describe tu evento, qué incluye y qué pueden esperar los asistentes..."
+            ></textarea>
+          </div>
+
+          <!-- Fecha y horas -->
+          <div class="col-md-4">
+            <label class="form-label">Fecha *</label>
+            <input 
+              type="date" 
+              class="form-control" 
+              [value]="nuevoEvento.fecha | date:'yyyy-MM-dd'"
+              (change)="onFechaChange($event)"
+            >
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Hora inicio *</label>
+            <input 
+              type="time" 
+              class="form-control" 
+              [(ngModel)]="nuevoEvento.horaInicio"
+            >
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Hora fin *</label>
+            <input 
+              type="time" 
+              class="form-control" 
+              [(ngModel)]="nuevoEvento.horaFin"
+            >
+          </div>
+
+          <!-- Lugar y tipo -->
+          <div class="col-md-8">
+            <label class="form-label">Lugar *</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="nuevoEvento.lugar"
+              placeholder="Dirección o nombre del lugar"
+            >
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Tipo de evento</label>
+            <select class="form-select" [(ngModel)]="nuevoEvento.tipoEvento">
+              @for (tipo of tiposEvento; track tipo) {
+                <option [value]="tipo">{{ tipo }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Imagen y capacidad -->
+          <div class="col-md-8">
+            <label class="form-label">URL de imagen de portada</label>
+            <input 
+              type="url" 
+              class="form-control" 
+              [(ngModel)]="nuevoEvento.imagenPortada"
+              placeholder="https://..."
+            >
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Capacidad máxima</label>
+            <input 
+              type="number" 
+              class="form-control" 
+              [(ngModel)]="nuevoEvento.capacidadMaxima"
+              placeholder="Opcional"
+              min="1"
+            >
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary" (click)="cerrarFormulario()">
+            Cancelar
+          </button>
+          <button class="btn btn-primary" (click)="guardarEvento()">
+            <i class="feather icon-save"></i>
+            {{ eventoEditando ? 'Actualizar' : 'Crear' }} Evento
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Eventos Próximos -->
+@if (eventosProximos.length > 0) {
+  <div class="seccion-eventos mb-4">
+    <h4 class="seccion-titulo">
+      <i class="feather icon-clock"></i>
+      Próximos Eventos
+    </h4>
+
+    <div class="eventos-grid">
+      @for (evento of eventosProximos; track evento.id) {
+        <div class="evento-card" [class.inactivo]="!evento.activo">
+          @if (evento.imagenPortada) {
+            <div class="evento-imagen">
+              <img [src]="evento.imagenPortada" [alt]="evento.nombre">
+              @if (!evento.activo) {
+                <div class="overlay-inactivo">
+                  <span class="badge-inactivo">Inactivo</span>
+                </div>
+              }
+            </div>
+          }
+
+          <div class="evento-contenido">
+            <div class="evento-header">
+              <span class="evento-tipo">{{ evento.tipoEvento }}</span>
+              <div class="evento-actions">
+                <button 
+                  class="btn-icon"
+                  [class.active]="evento.activo"
+                  (click)="toggleEstado(evento)"
+                  [title]="evento.activo ? 'Desactivar' : 'Activar'"
+                >
+                  <i [class]="evento.activo ? 'feather icon-eye' : 'feather icon-eye-off'"></i>
+                </button>
+                <button class="btn-icon" (click)="duplicarEvento(evento)" title="Duplicar">
+                  <i class="feather icon-copy"></i>
+                </button>
+                <button class="btn-icon" (click)="editarEvento(evento)" title="Editar">
+                  <i class="feather icon-edit"></i>
+                </button>
+                <button class="btn-icon danger" (click)="eliminarEvento(evento)" title="Eliminar">
+                  <i class="feather icon-trash-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <h5 class="evento-nombre">{{ evento.nombre }}</h5>
+            <p class="evento-descripcion">{{ evento.descripcion }}</p>
+
+            <div class="evento-detalles">
+              <div class="detalle-item">
+                <i class="feather icon-calendar"></i>
+                <span>{{ evento.fecha | date:'d MMM yyyy' }}</span>
+              </div>
+              <div class="detalle-item">
+                <i class="feather icon-clock"></i>
+                <span>{{ evento.horaInicio }} - {{ evento.horaFin }}</span>
+              </div>
+              <div class="detalle-item">
+                <i class="feather icon-map-pin"></i>
+                <span>{{ evento.lugar }}</span>
+              </div>
+            </div>
+
+            <div class="evento-footer">
+              <div class="asistentes-info">
+                <i class="feather icon-users"></i>
+                <span>{{ evento.asistentes.length }} asistente{{ evento.asistentes.length !== 1 ? 's' : '' }}</span>
+                @if (evento.capacidadMaxima) {
+                  <span class="capacidad">/ {{ evento.capacidadMaxima }}</span>
+                }
+              </div>
+              
+              <button class="btn btn-sm btn-outline" (click)="verAsistentes(evento, modalAsistentes)">
+                Ver Asistentes
+              </button>
+            </div>
+
+            @if (evento.capacidadMaxima) {
+              <div class="ocupacion-bar">
+                <div 
+                  class="ocupacion-progress"
+                  [class]="'bg-' + getColorPorcentaje(getPorcentajeOcupacion(evento))"
+                  [style.width.%]="getPorcentajeOcupacion(evento)"
+                ></div>
+              </div>
+              <div class="ocupacion-text">
+                {{ getPorcentajeOcupacion(evento) }}% ocupado
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<!-- Eventos Pasados -->
+@if (eventosPasados.length > 0) {
+  <div class="seccion-eventos">
+    <h4 class="seccion-titulo">
+      <i class="feather icon-archive"></i>
+      Eventos Pasados
+    </h4>
+
+    <div class="eventos-grid">
+      @for (evento of eventosPasados; track evento.id) {
+        <div class="evento-card pasado">
+          @if (evento.imagenPortada) {
+            <div class="evento-imagen">
+              <img [src]="evento.imagenPortada" [alt]="evento.nombre">
+              <div class="overlay-pasado">
+                <span class="badge-pasado">Finalizado</span>
+              </div>
+            </div>
+          }
+
+          <div class="evento-contenido">
+            <div class="evento-header">
+              <span class="evento-tipo">{{ evento.tipoEvento }}</span>
+              <div class="evento-actions">
+                <button class="btn-icon" (click)="duplicarEvento(evento)" title="Duplicar">
+                  <i class="feather icon-copy"></i>
+                </button>
+                <button class="btn-icon danger" (click)="eliminarEvento(evento)" title="Eliminar">
+                  <i class="feather icon-trash-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <h5 class="evento-nombre">{{ evento.nombre }}</h5>
+
+            <div class="evento-detalles">
+              <div class="detalle-item">
+                <i class="feather icon-calendar"></i>
+                <span>{{ evento.fecha | date:'d MMM yyyy' }}</span>
+              </div>
+              <div class="detalle-item">
+                <i class="feather icon-users"></i>
+                <span>{{ evento.asistentes.length }} asistieron</span>
+              </div>
+            </div>
+
+            <button class="btn btn-sm btn-outline mt-3" (click)="verAsistentes(evento, modalAsistentes)">
+              Ver Asistentes
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<!-- Mensaje si no hay eventos -->
+@if (eventos.length === 0) {
+  <div class="empty-state">
+    <i class="feather icon-calendar"></i>
+    <h5>No hay eventos creados</h5>
+    <p>Crea tu primer evento para comenzar a invitar asistentes</p>
+    <button class="btn btn-primary" (click)="abrirFormulario()">
+      <i class="feather icon-plus"></i>
+      Crear Primer Evento
+    </button>
+  </div>
+}
+
+<!-- Modal de Asistentes -->
+<ng-template #modalAsistentes let-modal>
+  @if (eventoSeleccionado) {
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <h4 class="modal-title">
+          <i class="feather icon-users"></i>
+          Asistentes
+        </h4>
+        <p class="modal-subtitle">{{ eventoSeleccionado.nombre }}</p>
+      </div>
+      <button type="button" class="btn-close-modal" (click)="modal.dismiss()">
+        <i class="feather icon-x"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      @if (eventoSeleccionado.asistentes.length > 0) {
+        <div class="asistentes-stats mb-3">
+          <div class="stat-item">
+            <span class="stat-numero">{{ eventoSeleccionado.asistentes.length }}</span>
+            <span class="stat-etiqueta">Total</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-numero confirmado">{{ getAsistentesConfirmados(eventoSeleccionado) }}</span>
+            <span class="stat-etiqueta">Confirmados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-numero pendiente">{{ eventoSeleccionado.asistentes.length - getAsistentesConfirmados(eventoSeleccionado) }}</span>
+            <span class="stat-etiqueta">Pendientes</span>
+          </div>
+        </div>
+
+        <div class="asistentes-lista">
+          @for (asistente of eventoSeleccionado.asistentes; track asistente.id) {
+            <div class="asistente-item">
+              <div class="asistente-avatar">
+                <i class="feather icon-user"></i>
+              </div>
+              <div class="asistente-info">
+                <div class="asistente-nombre">
+                  {{ asistente.nombre }}
+                  @if (asistente.confirmado) {
+                    <span class="badge-confirmado">
+                      <i class="feather icon-check"></i>
+                      Confirmado
+                    </span>
+                  } @else {
+                    <span class="badge-pendiente">
+                      <i class="feather icon-clock"></i>
+                      Pendiente
+                    </span>
+                  }
+                </div>
+                <div class="asistente-contacto">
+                  <span><i class="feather icon-mail"></i>{{ asistente.email }}</span>
+                  @if (asistente.telefono) {
+                    <span><i class="feather icon-phone"></i>{{ asistente.telefono }}</span>
+                  }
+                </div>
+                <div class="asistente-fecha">
+                  Registrado: {{ asistente.fechaRegistro | date:'d/MM/yyyy' }}
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-asistentes">
+          <i class="feather icon-users"></i>
+          <p>Aún no hay asistentes registrados para este evento</p>
+        </div>
+      }
+    </div>
+  }
+</ng-template>

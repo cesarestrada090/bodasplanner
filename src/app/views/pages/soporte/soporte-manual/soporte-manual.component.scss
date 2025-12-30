@@ -1,0 +1,188 @@
+// Soporte Manual Component Styles
+
+.page-header {
+  margin-bottom: 2rem;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    font-weight: 600;
+
+    i {
+      color: #E97C9E;
+      font-size: 1.75rem;
+    }
+  }
+}
+
+// Info Banner
+.info-banner {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
+  border-radius: 0.75rem;
+  border: 2px solid #fdd;
+  margin-bottom: 2rem;
+
+  .info-icon {
+    flex-shrink: 0;
+
+    i {
+      font-size: 2.5rem;
+      color: #E97C9E;
+    }
+  }
+
+  .info-content {
+    h5 {
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #666;
+      margin: 0;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Manual Container
+.manual-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .manual-seccion {
+    background: #fff;
+    border-radius: 0.75rem;
+    border: 2px solid #f0f0f0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &.expandida {
+      border-color: #E97C9E;
+      box-shadow: 0 4px 12px rgba(233, 124, 158, 0.1);
+
+      .seccion-header .chevron {
+        transform: rotate(180deg);
+      }
+    }
+
+    .seccion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #f8f9fa;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        i {
+          color: #E97C9E;
+          font-size: 1.5rem;
+        }
+
+        h5 {
+          margin: 0;
+          font-weight: 600;
+          color: #333;
+        }
+      }
+
+      .chevron {
+        color: #666;
+        font-size: 1.25rem;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    .seccion-body {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      animation: slideDown 0.3s ease;
+
+      .subseccion {
+        padding: 1.25rem;
+        background: #f8f9fa;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        h6 {
+          color: #E97C9E;
+          font-weight: 600;
+          margin-bottom: 0.75rem;
+          font-size: 1rem;
+        }
+
+        p {
+          color: #666;
+          margin: 0;
+          line-height: 1.6;
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 767px) {
+  .info-banner {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+
+    .info-icon i {
+      font-size: 2rem;
+    }
+  }
+
+  .manual-container .manual-seccion {
+    .seccion-header {
+      padding: 1rem;
+
+      .header-left {
+        gap: 0.75rem;
+
+        i {
+          font-size: 1.25rem;
+        }
+
+        h5 {
+          font-size: 0.95rem;
+        }
+      }
+    }
+
+    .seccion-body {
+      padding: 0 1rem 1rem 1rem;
+    }
+  }
+}

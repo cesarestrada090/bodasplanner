@@ -1,0 +1,206 @@
+<!-- Page Header -->
+<div class="page-header">
+  <h3>
+    <i class="feather icon-inbox"></i>
+    Mis Solicitudes
+  </h3>
+  <div class="header-actions">
+    <button class="btn btn-outline-primary btn-sm" (click)="exportarExcel()">
+      <i class="feather icon-download"></i>
+      <span class="d-none d-md-inline">Exportar a Excel</span>
+    </button>
+  </div>
+</div>
+
+<!-- Layout -->
+<div class="solicitudes-layout">
+  <!-- Sidebar Carpetas -->
+  <div class="carpetas-sidebar">
+    <div class="carpetas-header">
+      <h5>Carpetas</h5>
+    </div>
+    <div class="carpetas-list">
+      <button 
+        class="carpeta-item" 
+        [class.active]="carpetaActual === 'todas'"
+        (click)="cambiarCarpeta('todas')"
+      >
+        <i class="feather icon-inbox"></i>
+        <span>Entrada</span>
+        <span class="carpeta-count">{{ totalSolicitudes }}</span>
+      </button>
+      <button 
+        class="carpeta-item" 
+        [class.active]="carpetaActual === 'no-leidas'"
+        (click)="cambiarCarpeta('no-leidas')"
+      >
+        <i class="feather icon-mail"></i>
+        <span>No leídas</span>
+        <span class="carpeta-count">{{ noLeidas }}</span>
+      </button>
+      <button 
+        class="carpeta-item" 
+        [class.active]="carpetaActual === 'leidas'"
+        (click)="cambiarCarpeta('leidas')"
+      >
+        <i class="feather icon-check"></i>
+        <span>Leídas</span>
+        <span class="carpeta-count">{{ leidas }}</span>
+      </button>
+      <button 
+        class="carpeta-item" 
+        [class.active]="carpetaActual === 'archivadas'"
+        (click)="cambiarCarpeta('archivadas')"
+      >
+        <i class="feather icon-archive"></i>
+        <span>Archivadas</span>
+        <span class="carpeta-count">{{ archivadas }}</span>
+      </button>
+
+      <div class="carpetas-divider"></div>
+
+      <button 
+        class="carpeta-item" 
+        [class.active]="carpetaActual === 'pendientes'"
+        (click)="cambiarCarpeta('pendientes')"
+      >
+        <i class="feather icon-clock"></i>
+        <span>Pendientes</span>
+        <span class="carpeta-count badge-warning-count">{{ pendientes }}</span>
+      </button>
+      <button 
+        class="carpeta-item" 
+        [class.active]="carpetaActual === 'respondidas'"
+        (click)="cambiarCarpeta('respondidas')"
+      >
+        <i class="feather icon-message-circle"></i>
+        <span>Respondidas</span>
+        <span class="carpeta-count badge-info-count">{{ respondidas }}</span>
+      </button>
+      <button 
+        class="carpeta-item" 
+        [class.active]="carpetaActual === 'descartadas'"
+        (click)="cambiarCarpeta('descartadas')"
+      >
+        <i class="feather icon-x-circle"></i>
+        <span>Descartadas</span>
+        <span class="carpeta-count">{{ descartadas }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="solicitudes-content">
+    <!-- Estadísticas -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-value">{{ respondidas }}</div>
+        <div class="stat-label">respondidas</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">{{ descartadas }}</div>
+        <div class="stat-label">descartadas</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">{{ tiempoRespuestaPromedio }}</div>
+        <div class="stat-label">tiempo de respuesta</div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="solicitudes-toolbar">
+      <div class="toolbar-left">
+        <label class="checkbox-container">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="seleccionarTodas"
+            (change)="toggleSeleccionarTodas()"
+          >
+          <span class="checkmark"></span>
+          <span class="checkbox-label">Seleccionar todo</span>
+        </label>
+      </div>
+      <div class="toolbar-right">
+        <div class="search-box">
+          <i class="feather icon-search"></i>
+          <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Buscar solicitudes..."
+            [(ngModel)]="terminoBusqueda"
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de Solicitudes -->
+    <div class="solicitudes-list">
+      @if (solicitudesFiltradas.length === 0) {
+        <div class="empty-state">
+          <i class="feather icon-inbox"></i>
+          <h4>No hay solicitudes</h4>
+          <p>{{ terminoBusqueda ? 'No se encontraron resultados para tu búsqueda' : 'Aún no has recibido solicitudes de clientes' }}</p>
+        </div>
+      } @else {
+        @for (solicitud of solicitudesFiltradas; track solicitud.id) {
+          <div class="solicitud-card" [class.no-leida]="!solicitud.leida" [routerLink]="['/solicitudes/detalle', solicitud.id]">
+            <div class="solicitud-checkbox">
+              <label class="checkbox-container" (click)="$event.stopPropagation()">
+                <input 
+                  type="checkbox" 
+                  [checked]="solicitudesSeleccionadas.includes(solicitud.id)"
+                  (change)="toggleSeleccion(solicitud.id)"
+                >
+                <span class="checkmark"></span>
+              </label>
+            </div>
+
+            <div class="solicitud-avatar">
+              @if (solicitud.clienteAvatar) {
+                <img [src]="solicitud.clienteAvatar" [alt]="solicitud.clienteNombre">
+              } @else {
+                <div class="avatar-placeholder">
+                  {{ solicitud.clienteNombre.charAt(0) }}
+                </div>
+              }
+            </div>
+
+            <div class="solicitud-main">
+              <div class="solicitud-header">
+                <div class="cliente-info">
+                  <h5 class="cliente-nombre">{{ solicitud.clienteNombre }}</h5>
+                  @if (solicitud.mensajes.length > 1) {
+                    <span class="mensaje-count">{{ solicitud.mensajes.length }}</span>
+                  }
+                </div>
+                <div class="solicitud-meta">
+                  <span class="fecha-mensaje">El {{ solicitud.fechaUltimoMensaje | date:'dd/MM/yyyy' }} a las {{ solicitud.fechaUltimoMensaje | date:'HH:mm' }}</span>
+                  <span class="badge" [ngClass]="getEstadoBadgeClass(solicitud.estado)">
+                    {{ getEstadoTexto(solicitud.estado) }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="solicitud-mensaje">
+                <p>{{ getExtractoMensaje(getUltimoMensaje(solicitud).texto) }}</p>
+              </div>
+
+              <div class="solicitud-footer">
+                <div class="evento-info">
+                  <div class="evento-fecha">
+                    <span class="mes">{{ getMesEvento(solicitud.fechaEvento) }}</span>
+                    <span class="anio">{{ getAnioEvento(solicitud.fechaEvento) }}</span>
+                  </div>
+                  <div class="invitados-info">
+                    <i class="feather icon-users"></i>
+                    <span>{{ solicitud.numeroInvitados }} invitados</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</div>

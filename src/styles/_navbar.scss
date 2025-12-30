@@ -26,7 +26,7 @@
 
   // Mini logo on small screen devices (mobile/tablet)
   .logo-mini-wrapper {
-    display: flex;
+    display: none;
     align-items: center;
     @include media-breakpoint-up(md) {
       margin-right: 24px;

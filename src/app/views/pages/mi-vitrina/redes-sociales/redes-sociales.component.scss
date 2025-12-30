@@ -11,7 +11,7 @@
     font-weight: 600;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
   }
@@ -19,7 +19,7 @@
 
 .info-tip {
   background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
-  border-left: 4px solid #E97C9E;
+  border-left: 4px solid #E57A84;
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   display: flex;
@@ -27,7 +27,7 @@
   gap: 1rem;
 
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.25rem;
     flex-shrink: 0;
     margin-top: 0.1rem;
@@ -60,7 +60,7 @@
     width: 60px;
     height: 60px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +91,7 @@
 
 // Botón crear
 .btn-crear {
-  background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
   color: #fff;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -123,7 +123,7 @@
   }
 
   .card-header {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -218,7 +218,7 @@
     transition: all 0.2s;
 
     &:focus {
-      border-color: #E97C9E;
+      border-color: #E57A84;
       box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
     }
   }
@@ -311,7 +311,7 @@
       }
 
       &.btn-primary {
-        background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+        background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
         color: #fff;
         border: none;
 
@@ -336,7 +336,7 @@
     margin-bottom: 1.5rem;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.5rem;
     }
   }
@@ -408,7 +408,7 @@
         font-size: 0.9rem;
 
         i {
-          color: #E97C9E;
+          color: #E57A84;
           font-size: 1rem;
         }
       }
@@ -442,7 +442,7 @@
         }
 
         &.active {
-          color: #E97C9E;
+          color: #E57A84;
 
           &:hover {
             background: #fce4ec;
@@ -476,7 +476,7 @@
       gap: 0.5rem;
 
       i {
-        color: #E97C9E;
+        color: #E57A84;
         font-size: 1rem;
         flex-shrink: 0;
       }
@@ -490,7 +490,7 @@
         white-space: nowrap;
 
         &:hover {
-          color: #E97C9E;
+          color: #E57A84;
           text-decoration: underline;
         }
       }
@@ -526,9 +526,9 @@
         }
 
         &:hover {
-          background: #E97C9E;
+          background: #E57A84;
           color: #fff;
-          border-color: #E97C9E;
+          border-color: #E57A84;
         }
       }
     }

@@ -101,7 +101,7 @@
           display: flex;
           align-items: center;
           padding: 0;
-          height: 32px;
+          height: 44px;
           white-space: nowrap;
           color: #6B6B6B;
           transition: all 0.3s ease;
@@ -111,21 +111,21 @@
           border: none;
           outline: none;
           .link-icon {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             fill: rgba($secondary, .05);
             position: absolute;
             color: inherit;
           }
           .link-title {
-            margin-left: 30px;
-            font-size: 14px;
+            margin-left: 32px;
+            font-size: 16px;
             -webkit-transition: all .2s ease-in-out;
             transition: all .2s ease-in-out;
           }
           .link-arrow {
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             margin-left: auto;
             -webkit-transition: all .3s ease;
             -webkit-transition: all .3s ease-in-out;
@@ -156,13 +156,13 @@
         }
         &:hover {
           > .nav-link:not([href*="javascript:void"]) {
-            color: #E97C9E;
+            color: #E57A84;
             background-color: #FFE8ED;
             .link-title {
-              margin-left: 31px;
+              margin-left: 33px;
             }
             .link-icon {
-              color: #E97C9E;
+              color: #E57A84;
               fill: rgba(233, 124, 158, .1);
             }
           }
@@ -183,7 +183,7 @@
           // Solo items sin submenús (enlaces directos) deben tener estilos activos
           > .nav-link:not([href*="javascript:void"]) {
             color: #FFFFFF;
-            background-color: #E97C9E;
+            background-color: #E57A84;
             box-shadow: 0 4px 8px rgba(233, 124, 158, .25);
             border: none;
             outline: none;
@@ -228,7 +228,7 @@
             }
             &.mm-active {
               color: #FFFFFF;
-              background-color: #E97C9E;
+              background-color: #E57A84;
               border: none;
               outline: none;
               &::before {
@@ -239,7 +239,7 @@
               margin-left: 0;
             }
             &:hover {
-              color: #E97C9E;
+              color: #E57A84;
               background-color: transparent;
               margin-left: 3px;
               border: none;

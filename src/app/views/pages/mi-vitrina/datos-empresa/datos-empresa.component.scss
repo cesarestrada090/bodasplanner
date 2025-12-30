@@ -20,7 +20,7 @@
 
 // Cards
 .card {
-  border: 1px solid #FFE5EC;
+  border: 1px solid #F4E6E1;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(233, 124, 158, .08);
   transition: all 0.3s ease;
@@ -47,7 +47,7 @@
     flex-shrink: 0;
     
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.25rem;
     }
   }
@@ -67,14 +67,14 @@
   gap: 0.75rem;
   padding: 0.875rem 1rem;
   background-color: #FFF8FA;
-  border-left: 3px solid #E97C9E;
+  border-left: 3px solid #E57A84;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   color: #6B6B6B;
   line-height: 1.5;
   
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.125rem;
     flex-shrink: 0;
     margin-top: 2px;
@@ -91,7 +91,7 @@
 }
 
 .required {
-  color: #E97C9E;
+  color: #E57A84;
   font-weight: 600;
 }
 
@@ -111,7 +111,7 @@
   transition: all 0.2s ease;
   
   &:focus {
-    border-color: #E97C9E;
+    border-color: #E57A84;
     box-shadow: 0 0 0 3px rgba(233, 124, 158, .1);
     outline: none;
   }
@@ -186,13 +186,13 @@ textarea.form-control {
   }
   
   &.btn-primary {
-    background: linear-gradient(135deg, #E97C9E 0%, #F294B3 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #E8C39E 100%);
     border: none;
     color: white;
     box-shadow: 0 2px 8px rgba(233, 124, 158, .25);
     
     &:hover {
-      background: linear-gradient(135deg, #D56B8D 0%, #E17FA0 100%);
+      background: linear-gradient(135deg, #D5698C 0%, #D5698C 100%);
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(233, 124, 158, .35);
     }
@@ -203,24 +203,24 @@ textarea.form-control {
   }
   
   &.btn-outline-primary {
-    border: 1.5px solid #E97C9E;
-    color: #E97C9E;
+    border: 1.5px solid #E57A84;
+    color: #E57A84;
     background: white;
     
     &:hover {
-      background: #E97C9E;
+      background: #E57A84;
       color: white;
-      border-color: #E97C9E;
+      border-color: #E57A84;
     }
   }
   
   &.btn-light {
     background-color: #F8F9FA;
-    border: 1px solid #E9ECEF;
+    border: 1px solid #EFE6E3;
     color: #6B6B6B;
     
     &:hover {
-      background-color: #E9ECEF;
+      background-color: #EFE6E3;
     }
   }
   
@@ -229,12 +229,12 @@ textarea.form-control {
   }
   
   &.btn-link {
-    color: #E97C9E;
+    color: #E57A84;
     text-decoration: none;
     font-weight: 500;
     
     &:hover {
-      color: #D56B8D;
+      color: #D5698C;
       text-decoration: underline;
     }
   }
@@ -264,12 +264,12 @@ textarea.form-control {
     border-radius: 0.25rem;
     
     &:checked {
-      background-color: #E97C9E;
-      border-color: #E97C9E;
+      background-color: #E57A84;
+      border-color: #E57A84;
     }
     
     &:focus {
-      border-color: #E97C9E;
+      border-color: #E57A84;
       box-shadow: 0 0 0 3px rgba(233, 124, 158, .1);
     }
   }
@@ -280,7 +280,7 @@ textarea.form-control {
     line-height: 1.5;
     
     a {
-      color: #E97C9E;
+      color: #E57A84;
       text-decoration: none;
       font-weight: 500;
       

@@ -11,7 +11,7 @@
     font-weight: 600;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
   }
@@ -22,7 +22,7 @@
   display: flex;
   gap: 2rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
   border-radius: 0.75rem;
   color: #fff;
   margin-bottom: 2rem;
@@ -74,7 +74,7 @@
   margin-bottom: 0.75rem;
 
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.25rem;
   }
 }
@@ -148,7 +148,7 @@
         gap: 0.75rem;
 
         i {
-          color: #E97C9E;
+          color: #E57A84;
           font-size: 1.1rem;
         }
 
@@ -221,7 +221,7 @@
 
       &:focus {
         outline: none;
-        border-color: #E97C9E;
+        border-color: #E57A84;
         box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
       }
     }
@@ -255,7 +255,7 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
       color: #fff;
 
       &:hover {
@@ -312,7 +312,7 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
       color: #fff;
 
       &:hover {
@@ -350,14 +350,14 @@
         transition: all 0.3s ease;
 
         &:hover {
-          border-color: #E97C9E;
-          color: #E97C9E;
+          border-color: #E57A84;
+          color: #E57A84;
         }
 
         &.active {
-          background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+          background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
           color: #fff;
-          border-color: #E97C9E;
+          border-color: #E57A84;
         }
       }
     }
@@ -388,7 +388,7 @@
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+        background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
         color: #fff;
         display: flex;
         align-items: center;
@@ -418,7 +418,7 @@
 
           i {
             font-size: 0.9rem;
-            color: #E97C9E;
+            color: #E57A84;
           }
         }
 
@@ -433,9 +433,9 @@
       align-items: center;
       gap: 0.5rem;
       padding: 0.625rem 1rem;
-      border: 2px solid #E97C9E;
+      border: 2px solid #E57A84;
       background: #fff;
-      color: #E97C9E;
+      color: #E57A84;
       border-radius: 0.35rem;
       font-weight: 500;
       cursor: pointer;
@@ -443,7 +443,7 @@
       white-space: nowrap;
 
       &:hover {
-        background: #E97C9E;
+        background: #E57A84;
         color: #fff;
       }
 

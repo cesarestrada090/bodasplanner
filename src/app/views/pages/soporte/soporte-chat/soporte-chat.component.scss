@@ -11,7 +11,7 @@
     font-weight: 600;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
   }
@@ -20,7 +20,7 @@
 .chat-container {
   background: #fff;
   border-radius: 0.75rem;
-  border: 2px solid #f0f0f0;
+  border: 2px solid #EFE6E3;  // Border de la paleta
   overflow: hidden;
   height: calc(100vh - 250px);
   display: flex;
@@ -31,17 +31,17 @@
     align-items: center;
     gap: 0.75rem;
     padding: 1rem 1.5rem;
-    background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
-    border-bottom: 2px solid #fdd;
+    background: linear-gradient(135deg, #FBF7F6 0%, #F4E6E1 100%);  // Fondo y secundario
+    border-bottom: 2px solid #EFE6E3;  // Border de la paleta
 
     i {
-      color: #E97C9E;
+      color: #E57A84;  // Primario
       font-size: 1.25rem;
     }
 
     p {
       margin: 0;
-      color: #666;
+      color: #8C8C8C;  // Texto secundario
       font-size: 0.9rem;
     }
   }
@@ -53,7 +53,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background: #f8f9fa;
+    background: #FBF7F6;  // Fondo de la paleta
 
     .mensaje {
       display: flex;
@@ -69,7 +69,7 @@
         }
 
         .mensaje-texto {
-          background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+          background: linear-gradient(135deg, #E57A84 0%, #D5698C 100%);  // Gradiente de la paleta
           color: #fff;
         }
       }
@@ -79,7 +79,7 @@
 
         .mensaje-texto {
           background: #fff;
-          color: #333;
+          color: #3A3A3A;  // Texto primario
         }
       }
 
@@ -102,11 +102,11 @@
         }
 
         .avatar-ia {
-          background: linear-gradient(135deg, #6c63ff 0%, #5a52d5 100%);
+          background: linear-gradient(135deg, #E8C39E 0%, #D5A97E 100%);  // Dorado premium de la paleta
         }
 
         .avatar-usuario {
-          background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+          background: linear-gradient(135deg, #E57A84 0%, #D5698C 100%);  // Gradiente primario
         }
       }
 
@@ -137,20 +137,20 @@
     gap: 0.75rem;
     padding: 1.5rem;
     background: #fff;
-    border-top: 2px solid #f0f0f0;
+    border-top: 2px solid #EFE6E3;  // Border de la paleta
 
     .form-control {
       flex: 1;
       padding: 0.75rem 1rem;
-      border: 2px solid #e0e0e0;
+      border: 2px solid #EFE6E3;  // Border de la paleta
       border-radius: 2rem;
       font-size: 0.95rem;
       transition: all 0.3s ease;
 
       &:focus {
         outline: none;
-        border-color: #E97C9E;
-        box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
+        border-color: #E57A84;  // Primario
+        box-shadow: 0 0 0 3px rgba(229, 122, 132, 0.1);  // Primario con opacidad
       }
     }
 
@@ -171,12 +171,12 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #D5698C 100%);  // Gradiente de la paleta
       color: #fff;
 
       &:hover {
         transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(233, 124, 158, 0.3);
+        box-shadow: 0 4px 12px rgba(229, 122, 132, 0.3);  // Primario con opacidad
       }
     }
   }

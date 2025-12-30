@@ -11,7 +11,7 @@
     font-weight: 600;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
   }
@@ -70,7 +70,7 @@
     }
 
     &.total .stat-icon {
-      background: linear-gradient(135deg, #E97C9E 0%, #D5698C 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #D5698C 100%);
     }
 
     &.pagadas .stat-icon {
@@ -102,7 +102,7 @@
 
     i {
       font-size: 2.5rem;
-      color: #E97C9E;
+      color: #E57A84;
     }
   }
 
@@ -148,7 +148,7 @@
 
       &:focus {
         outline: none;
-        border-color: #E97C9E;
+        border-color: #E57A84;
         box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
       }
     }
@@ -205,7 +205,7 @@
           font-size: 0.95rem;
 
           i {
-            color: #E97C9E;
+            color: #E57A84;
             font-size: 1rem;
           }
         }
@@ -273,9 +273,9 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.625rem 1.25rem;
-            border: 2px solid #E97C9E;
+            border: 2px solid #E57A84;
             background: #fff;
-            color: #E97C9E;
+            color: #E57A84;
             border-radius: 0.5rem;
             font-weight: 500;
             cursor: pointer;
@@ -283,7 +283,7 @@
             white-space: nowrap;
 
             &:hover {
-              background: #E97C9E;
+              background: #E57A84;
               color: #fff;
             }
 

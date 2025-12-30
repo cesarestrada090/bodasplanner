@@ -1,31 +1,33 @@
 // Light theme variables
 
+// Bodas Planner custom colors
+@import 'bodasplanner-colors';
 
 
 // Bootstrap base colors
 $white:        #fff !default;
-$gray-100:     #f8f9fa !default;
-$gray-200:     #e9ecef !default;
-$gray-300:     #dee2e6 !default;
+$gray-100:     $bp-background !default;        // #FBF7F6 - Blanco rosado muy claro
+$gray-200:     $bp-secondary !default;         // #F4E6E1 - Beige rosado
+$gray-300:     $bp-border !default;            // #EFE6E3 - Gris rosado muy claro
 $gray-400:     #cbd1db !default;
 $gray-500:     #aeb7c5 !default;
-$gray-600:     #7987a1 !default;
+$gray-600:     $bp-text-secondary !default;    // #8C8C8C - Gris medio
 $gray-700:     #41516c !default;
-$gray-800:     #212a3a !default;
+$gray-800:     $bp-text-primary !default;      // #3A3A3A - Gris oscuro elegante
 $gray-900:     #060c17 !default;
 $black:        #000 !default;
-$text-muted:   $gray-600 !default; // Deprecated in 5.3.0
+$text-muted:   $bp-text-secondary !default;
 
 
 // Bootstrap custom colors
 $blue:    #0d6efd !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
-$pink:    #E97C9E !default;
+$pink:    $bp-primary !default;
 $red:     #dc3545 !default;
 $orange:  #fd7e14 !default;
 $yellow:  #ffc107 !default;
-$green:   #198754 !default;
+$green:   $bp-success !default;
 $teal:    #20c997 !default;
 $cyan:    #0dcaf0 !default;
 
@@ -33,14 +35,14 @@ $cyan:    #0dcaf0 !default;
 
 // --- Bootstrap Theme Colors --- //
 //
-$primary:         #E97C9E !default;
-$secondary:       $gray-600 !default;
-$success:         #95C9A8 !default;
-$info:            #F8B4D9 !default;
-$warning:         #FFCBA4 !default;
+$primary:         $bp-primary !default;         // #E57A84 - Rosa Coral Suave
+$secondary:       $bp-secondary !default;       // #F4E6E1 - Beige rosado
+$success:         $bp-success !default;         // #6FAF8E - Verde suave elegante
+$info:            #E8C39E !default;
+$warning:         $bp-premium !default;         // #E8C39E - Dorado rosado suave
 $danger:          #F08585 !default;
-$light:           $gray-200 !default;
-$dark:            $gray-900 !default;
+$light:           $bp-background !default;      // #FBF7F6 - Blanco rosado muy claro
+$dark:            $bp-text-primary !default;    // #3A3A3A - Gris oscuro elegante
 //
 // --- Bootstrap Theme Colors --- //
 
@@ -172,16 +174,16 @@ $prefix:                      bs- !default;
 // Body
 //
 // Settings for the `<body>` element.
-$body-bg:                      #fff !default;
-$body-color:                   $black !default;
+$body-bg:                      $bp-background !default;        // #FBF7F6 - Blanco rosado muy claro
+$body-color:                   $bp-text-primary !default;      // #3A3A3A - Gris oscuro elegante
 
-$body-secondary-color:      rgba($body-color, .75) !default;
-$body-secondary-bg:         $gray-200 !default;
+$body-secondary-color:         $bp-text-secondary !default;    // #8C8C8C - Gris medio
+$body-secondary-bg:            $bp-secondary !default;         // #F4E6E1 - Beige rosado
 
-$body-tertiary-color:       rgba($body-color, .5) !default;
-$body-tertiary-bg:          $gray-200 !default;
+$body-tertiary-color:          rgba($bp-text-primary, .5) !default;
+$body-tertiary-bg:             $bp-secondary !default;
 
-$body-emphasis-color:       $black !default;
+$body-emphasis-color:          $bp-text-primary !default;
 
 
 // Links
@@ -207,16 +209,16 @@ $grid-gutter-width:           1.5rem !default;
 // Define common padding and border radius sizes and more.
 
 // Border
-$border-color:                #FFD6E0 !default;
+$border-color:                $bp-border !default;            // #EFE6E3 - Gris rosado muy claro
 
 // Border Radiues
 $border-radius:					.5rem !default;
 
 
 // Box-shadow-variables
-$box-shadow:                  0 .5rem 1rem rgba(233, 124, 158, .15) !default;
-$box-shadow-sm:               0 .125rem .25rem rgba(233, 124, 158, .1) !default;
-$box-shadow-lg:               0 1rem 2rem rgba(233, 124, 158, .25) !default;
+$box-shadow:                  0 .5rem 1rem rgba(229, 122, 132, .15) !default;    // Rosa Coral Suave
+$box-shadow-sm:               0 .125rem .25rem rgba(229, 122, 132, .1) !default;  // Rosa Coral Suave
+$box-shadow-lg:               0 1rem 2rem rgba(229, 122, 132, .25) !default;      // Rosa Coral Suave
 $box-shadow-inset:            inset 0 1px 2px rgba($black, .075) !default;
 
 
@@ -350,11 +352,9 @@ $input-padding-y-xs:                    $input-btn-padding-y-xs !default;
 $input-padding-x-xs:                    $input-btn-padding-x-xs !default;
 $input-font-size-xs:                    $input-btn-font-size-xs !default;
 
-// $input-bg:                              $white !default;
-// $input-bg:                              var(--#{$prefix}body-bg) !default;
-$input-bg:                              var(--#{$prefix}body-bg) !default;
+$input-bg:                              $white !default;              // Blanco puro para que se vean editables
 $input-border-color:                    var(--#{$prefix}border-color) !default;
-$input-focus-border-color:              rgba($secondary, .4) !default;
+$input-focus-border-color:              $bp-primary !default;         // Rosa primario al hacer focus
 
 $input-border-radius:                   $btn-border-radius !default;
 $input-border-radius-sm:                $btn-border-radius-sm !default;
@@ -406,12 +406,12 @@ $card-spacer-y:                     1.5rem !default;
 $card-spacer-x:                     1.5rem !default;
 $card-title-spacer-y:               .875rem !default;
 // $card-border-color:                 var(--#{$prefix}border-color) !default;
-$card-border-color:                 #FFE5EC !default;
-$card-box-shadow:                   0 0 10px 0 rgba(233, 124, 158, .15) !default;
+$card-border-color:                 rgba(229, 122, 132, .2) !default;          // Rosa Coral Suave
+$card-box-shadow:                   0 0 10px 0 rgba(229, 122, 132, .15) !default;  // Rosa Coral Suave
 $card-cap-padding-y:                .875rem !default;
 $card-cap-padding-x:                $card-spacer-x !default;
 $card-cap-bg:                       rgba($black, .01) !default;
-$card-bg:                           var(--#{$prefix}body-bg) !default;
+$card-bg:                           $white !default;                              // Blanco puro para contraste
 
 
 // Accordion
@@ -460,7 +460,7 @@ $btn-close-color:            $black !default;
 */
 
 // App
-$app-bg:                #FFF5F5;
+$app-bg:                $bp-background;              // #FBF7F6 - Blanco rosado muy claro
 $app-bg-dark:           #070d19;
 
 // Sidebar
@@ -470,7 +470,7 @@ $sidebar-folded-width:  70px;
 $sidebar-color:         $body-color;
 $sidebar-color-dark:    $secondary;
 
-$sidebar-box-shadow-color:          rgba(233, 124, 158, .15);
+$sidebar-box-shadow-color:          rgba(229, 122, 132, .15);    // Rosa Coral Suave
 $sidebar-box-shadow-color-dark:     #08101e;
 
 $sidebar-nav-link-active-color:     $primary;
@@ -486,7 +486,7 @@ $navbar-height:                 60px;
 $navbar-item-color:             $body-color;
 $navbar-item-color-dark:        $secondary;
 
-$navbar-box-shadow-color:       rgba(233, 124, 158, .15);
+$navbar-box-shadow-color:       rgba(229, 122, 132, .15);        // Rosa Coral Suave
 $navbar-box-shadow-color-dark:  #08101e;
 
 $zindex-sidebar:        999;

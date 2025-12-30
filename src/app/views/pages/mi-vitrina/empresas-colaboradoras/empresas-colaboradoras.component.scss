@@ -11,7 +11,7 @@
     font-weight: 600;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
   }
@@ -19,7 +19,7 @@
 
 .info-tip {
   background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
-  border-left: 4px solid #E97C9E;
+  border-left: 4px solid #E57A84;
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   display: flex;
@@ -27,7 +27,7 @@
   gap: 1rem;
 
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.25rem;
     flex-shrink: 0;
     margin-top: 0.1rem;
@@ -67,7 +67,7 @@
     flex-shrink: 0;
 
     &.active {
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
 
       i {
         color: #fff;
@@ -76,7 +76,7 @@
 
     i {
       font-size: 1.75rem;
-      color: #E97C9E;
+      color: #E57A84;
     }
   }
 
@@ -123,14 +123,14 @@
       font-size: 0.95rem;
 
       &:focus {
-        border-color: #E97C9E;
+        border-color: #E57A84;
         box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
       }
     }
   }
 
   .btn-crear {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     color: #fff;
     border: none;
     padding: 0 1.5rem;
@@ -164,7 +164,7 @@
   }
 
   .card-header {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -219,7 +219,7 @@
     transition: all 0.2s;
 
     &:focus {
-      border-color: #E97C9E;
+      border-color: #E57A84;
       box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
     }
   }
@@ -252,7 +252,7 @@
       }
 
       &.btn-primary {
-        background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+        background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
         color: #fff;
         border: none;
 
@@ -331,7 +331,7 @@
         align-items: center;
         gap: 0.375rem;
         padding: 0.375rem 0.75rem;
-        background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+        background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
         color: #fff;
         border-radius: 20px;
         font-size: 0.85rem;
@@ -370,7 +370,7 @@
         }
 
         &.active {
-          color: #E97C9E;
+          color: #E57A84;
 
           &:hover {
             background: #fce4ec;
@@ -402,7 +402,7 @@
       font-size: 0.95rem;
 
       i {
-        color: #E97C9E;
+        color: #E57A84;
         font-size: 1rem;
         width: 18px;
         flex-shrink: 0;
@@ -421,7 +421,7 @@
 
     .btn-colaboracion {
       background: #fff;
-      border: 2px solid #E97C9E;
+      border: 2px solid #E57A84;
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -430,14 +430,14 @@
       justify-content: center;
       cursor: pointer;
       transition: all 0.2s;
-      color: #E97C9E;
+      color: #E57A84;
 
       i {
         font-size: 1rem;
       }
 
       &:hover {
-        background: #E97C9E;
+        background: #E57A84;
         color: #fff;
         transform: scale(1.1);
       }
@@ -445,7 +445,7 @@
 
     .colaboraciones-numero {
       font-weight: 600;
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 0.95rem;
     }
   }
@@ -457,8 +457,8 @@
 
     .btn-outline {
       background: transparent;
-      border: 2px solid #E97C9E;
-      color: #E97C9E;
+      border: 2px solid #E57A84;
+      color: #E57A84;
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
       font-weight: 500;
@@ -471,7 +471,7 @@
       transition: all 0.2s;
 
       &:hover {
-        background: #E97C9E;
+        background: #E57A84;
         color: #fff;
       }
     }
@@ -530,7 +530,7 @@
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;

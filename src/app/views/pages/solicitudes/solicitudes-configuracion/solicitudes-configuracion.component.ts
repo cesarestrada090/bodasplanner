@@ -63,7 +63,7 @@ import { FormsModule } from '@angular/forms';
         font-weight: 600;
 
         i {
-          color: #E97C9E;
+          color: #E57A84;
           font-size: 1.75rem;
         }
       }
@@ -93,7 +93,7 @@ import { FormsModule } from '@angular/forms';
         margin-bottom: 1.5rem;
 
         i {
-          color: #E97C9E;
+          color: #E57A84;
           font-size: 1.25rem;
         }
 
@@ -110,7 +110,7 @@ import { FormsModule } from '@angular/forms';
         }
 
         .badge-primary {
-          background: #E97C9E;
+          background: #E57A84;
           color: #fff;
         }
       }
@@ -136,7 +136,7 @@ import { FormsModule } from '@angular/forms';
 
           &:focus {
             outline: none;
-            border-color: #E97C9E;
+            border-color: #E57A84;
             box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
           }
         }
@@ -164,7 +164,7 @@ import { FormsModule } from '@angular/forms';
         }
 
         .btn-primary {
-          background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+          background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
           color: #fff;
 
           &:hover {

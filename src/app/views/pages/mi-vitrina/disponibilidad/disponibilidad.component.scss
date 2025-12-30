@@ -11,7 +11,7 @@
     font-weight: 600;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
   }
@@ -19,7 +19,7 @@
 
 .info-tip {
   background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
-  border-left: 4px solid #E97C9E;
+  border-left: 4px solid #E57A84;
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   display: flex;
@@ -27,7 +27,7 @@
   gap: 1rem;
 
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.25rem;
     flex-shrink: 0;
     margin-top: 0.1rem;
@@ -67,7 +67,7 @@
     flex-shrink: 0;
 
     &.active {
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
 
       i {
         color: #fff;
@@ -76,7 +76,7 @@
 
     i {
       font-size: 1.75rem;
-      color: #E97C9E;
+      color: #E57A84;
     }
   }
 
@@ -124,8 +124,8 @@
       }
 
       &.ocupado {
-        background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
-        border-color: #E97C9E;
+        background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
+        border-color: #E57A84;
       }
 
       &.otro-mes {
@@ -163,7 +163,7 @@
 }
 
 .calendario-header {
-  background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
   padding: 1rem 1.5rem;
   text-align: center;
 
@@ -234,7 +234,7 @@
 
     i {
       font-size: 0.65rem;
-      color: #E97C9E;
+      color: #E57A84;
     }
   }
 
@@ -261,7 +261,7 @@
   }
 
   &.ocupado {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     cursor: pointer;
 
     .dia-numero {
@@ -276,14 +276,14 @@
   }
 
   &.seleccionado {
-    border-color: #E97C9E;
+    border-color: #E57A84;
     box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.2);
   }
 }
 
 // Modal del evento
 .modal-header {
-  background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
   padding: 1.5rem 2rem;
   border: none;
   display: flex;
@@ -372,7 +372,7 @@
     border-bottom: none;
 
     .detalle-modal-icon {
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
 
       i {
         color: #fff;
@@ -382,7 +382,7 @@
     .contrato-ref {
       font-size: 1.25rem;
       font-weight: 700;
-      color: #E97C9E;
+      color: #E57A84;
       font-family: 'Courier New', monospace;
       letter-spacing: 1px;
     }
@@ -400,7 +400,7 @@
 
     i {
       font-size: 1.25rem;
-      color: #E97C9E;
+      color: #E57A84;
     }
   }
 
@@ -444,7 +444,7 @@
   font-weight: 500;
 
   &.ocupado {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     color: #fff;
   }
 
@@ -471,7 +471,7 @@
 }
 
 .evento-detalle-header {
-  background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
   padding: 1.5rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -556,7 +556,7 @@
 
     i {
       font-size: 1.25rem;
-      color: #E97C9E;
+      color: #E57A84;
     }
   }
 
@@ -599,7 +599,7 @@
   font-weight: 500;
 
   &.ocupado {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     color: #fff;
   }
 

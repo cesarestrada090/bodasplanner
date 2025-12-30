@@ -320,7 +320,7 @@ export class DashboardComponent implements OnInit {
           enabled: false
         }
       },
-      colors: [themeVariables.primary, '#FFCBA4', '#F8B4D9'],
+      colors: [themeVariables.primary, '#E8C39E', '#F4E6E1'],  // Rosa primario, Dorado premium, Beige secundario
       grid: {
         padding: {
           bottom: -4,
@@ -410,14 +410,14 @@ export class DashboardComponent implements OnInit {
           enabled: false
         }
       },
-      colors: ['#E97C9E', '#F8B4D9', '#FFCBA4'],  
+      colors: ['#E57A84', '#E8C39E', '#F4E6E1'],  // Rosa primario, Dorado premium, Beige secundario
       fill: {
         type: 'gradient',
         gradient: {
           shade: 'light',
           type: "vertical",
           shadeIntensity: 0.5,
-          gradientToColors: ['#F8B4D9', '#FFE5EC'],
+          gradientToColors: ['#E8C39E', '#F4E6E1'],  // Dorado premium, Beige secundario
           inverseColors: false,
           opacityFrom: 0.8,
           opacityTo: 0.4,

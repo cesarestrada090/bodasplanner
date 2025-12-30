@@ -11,7 +11,7 @@
     font-weight: 600;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
   }
@@ -19,7 +19,7 @@
 
 // Info Banner
 .info-banner {
-  background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
   border-radius: 1rem;
   padding: 2rem;
   color: #fff;
@@ -76,7 +76,7 @@
     gap: 0.75rem;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.5rem;
     }
 
@@ -125,7 +125,7 @@
   margin-bottom: 1.5rem;
 
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.5rem;
   }
 }
@@ -154,7 +154,7 @@
     .beneficio-icon {
       width: 64px;
       height: 64px;
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
       border-radius: 1rem;
       display: flex;
       align-items: center;
@@ -219,7 +219,7 @@
     }
 
     .sello-dimensions {
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
       color: #fff;
       padding: 0.375rem 0.75rem;
       border-radius: 20px;
@@ -340,7 +340,7 @@
       }
 
       &::-webkit-scrollbar-thumb {
-        background: #E97C9E;
+        background: #E57A84;
         border-radius: 3px;
       }
     }
@@ -370,7 +370,7 @@
     }
 
     .btn-copiar {
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
       color: #fff;
       box-shadow: 0 4px 12px rgba(233, 124, 158, 0.3);
 

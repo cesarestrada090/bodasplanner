@@ -25,14 +25,14 @@
   gap: 0.75rem;
   padding: 0.875rem 1rem;
   background: linear-gradient(135deg, #FFF8FA 0%, #FFF5F7 100%);
-  border-left: 3px solid #E97C9E;
+  border-left: 3px solid #E57A84;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   color: #6B6B6B;
   line-height: 1.5;
   
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.125rem;
     flex-shrink: 0;
     margin-top: 2px;
@@ -64,15 +64,15 @@
       }
       
       &:hover {
-        color: #E97C9E;
+        color: #E57A84;
         background-color: #FFF5F7;
         border-bottom-color: #FFD6E0;
       }
       
       &.active {
-        color: #E97C9E;
+        color: #E57A84;
         background-color: transparent;
-        border-bottom-color: #E97C9E;
+        border-bottom-color: #E57A84;
         font-weight: 600;
       }
     }
@@ -80,7 +80,7 @@
 }
 
 .badge-count-nav {
-  background: #E97C9E;
+  background: #E57A84;
   color: white;
   padding: 0.125rem 0.5rem;
   border-radius: 12px;
@@ -101,7 +101,7 @@
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: #E97C9E;
+    border-color: #E57A84;
     box-shadow: 0 4px 12px rgba(233, 124, 158, 0.15);
     transform: translateY(-2px);
   }
@@ -117,12 +117,12 @@
     flex-shrink: 0;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
 
     &.active {
-      background: linear-gradient(135deg, #E97C9E 0%, #FF9BB5 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #E8C39E 100%);
       
       i {
         color: white;
@@ -159,7 +159,7 @@
 
 // Cards
 .card {
-  border: 1px solid #FFE5EC;
+  border: 1px solid #F4E6E1;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(233, 124, 158, .08);
   transition: all 0.3s ease;
@@ -195,11 +195,11 @@
   &:hover {
     box-shadow: 0 8px 20px rgba(233, 124, 158, 0.15);
     transform: translateY(-4px);
-    border-color: #E97C9E;
+    border-color: #E57A84;
   }
 
   &.gallery-item-favorite {
-    border: 2px solid #E97C9E;
+    border: 2px solid #E57A84;
   }
 }
 
@@ -373,14 +373,14 @@
   transition: all 0.3s ease;
 
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 2rem;
     margin-left: 4px;
   }
 
   .video-item:hover & {
     transform: translate(-50%, -50%) scale(1.1);
-    background: #E97C9E;
+    background: #E57A84;
 
     i {
       color: white;
@@ -425,7 +425,7 @@
 }
 
 .required {
-  color: #E97C9E;
+  color: #E57A84;
   font-weight: 600;
 }
 
@@ -445,7 +445,7 @@
   transition: all 0.2s ease;
   
   &:focus {
-    border-color: #E97C9E;
+    border-color: #E57A84;
     box-shadow: 0 0 0 3px rgba(233, 124, 158, .1);
     outline: none;
   }
@@ -466,13 +466,13 @@ textarea.form-control {
   .form-check-input {
     width: 2.5rem;
     height: 1.25rem;
-    background-color: #E9ECEF;
+    background-color: #EFE6E3;
     border: none;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e");
     
     &:checked {
-      background-color: #E97C9E;
-      border-color: #E97C9E;
+      background-color: #E57A84;
+      border-color: #E57A84;
     }
     
     &:focus {
@@ -498,13 +498,13 @@ textarea.form-control {
   }
   
   &.btn-primary {
-    background: linear-gradient(135deg, #E97C9E 0%, #F294B3 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #E8C39E 100%);
     border: none;
     color: white;
     box-shadow: 0 2px 8px rgba(233, 124, 158, .25);
     
     &:hover {
-      background: linear-gradient(135deg, #D56B8D 0%, #E17FA0 100%);
+      background: linear-gradient(135deg, #D5698C 0%, #D5698C 100%);
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(233, 124, 158, .35);
     }
@@ -516,22 +516,22 @@ textarea.form-control {
   
   &.btn-light {
     background-color: #F8F9FA;
-    border: 1px solid #E9ECEF;
+    border: 1px solid #EFE6E3;
     color: #6B6B6B;
     
     &:hover {
-      background-color: #E9ECEF;
+      background-color: #EFE6E3;
     }
   }
   
   &.btn-link {
-    color: #E97C9E;
+    color: #E57A84;
     text-decoration: none;
     font-weight: 500;
     padding: 0.25rem 0.5rem;
     
     &:hover {
-      color: #D56B8D;
+      color: #D5698C;
     }
     
     &.text-muted {

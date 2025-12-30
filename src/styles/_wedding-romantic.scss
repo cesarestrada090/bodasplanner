@@ -30,11 +30,11 @@
 
 // Gradientes románticos para fondos
 .gradient-romantic-primary {
-  background: linear-gradient(135deg, #E97C9E 0%, #F8B4D9 50%, #FFE5EC 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #E8C39E 50%, #F4E6E1 100%);
 }
 
 .gradient-romantic-soft {
-  background: linear-gradient(135deg, #FFF5F8 0%, #FFE5EC 100%);
+  background: linear-gradient(135deg, #FFF5F8 0%, #F4E6E1 100%);
 }
 
 // Efectos de hover románticos
@@ -52,14 +52,14 @@
   border: 2px solid transparent;
   background-image: 
     linear-gradient(white, white),
-    linear-gradient(135deg, #E97C9E, #F8B4D9, #FFCBA4);
+    linear-gradient(135deg, #E57A84, #E8C39E, #E8C39E);
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
 
 // Textos con gradiente
 .text-gradient-romantic {
-  background: linear-gradient(135deg, #E97C9E 0%, #C96889 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #C96889 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -68,14 +68,14 @@
 // Dividers decorativos
 .divider-romantic {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #E97C9E 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, #E57A84 50%, transparent 100%);
   margin: 2rem 0;
 }
 
 // Cards especiales para eventos de boda
 .wedding-event-card {
   background: linear-gradient(135deg, #FFF5F8 0%, #FFFFFF 100%);
-  border: 1px solid #FFE5EC;
+  border: 1px solid #F4E6E1;
   border-radius: 1.5rem;
   padding: 2rem;
   position: relative;
@@ -100,11 +100,11 @@
 
 // Iconos románticos con animación
 .icon-romantic {
-  color: #E97C9E;
+  color: #E57A84;
   transition: all 0.3s ease;
   
   &:hover {
-    color: #D56B8D;
+    color: #D5698C;
     transform: scale(1.2) rotate(10deg);
   }
 }
@@ -114,13 +114,13 @@
   position: relative;
   padding: 1.5rem;
   background: linear-gradient(135deg, #FFFFFF 0%, #FFF8FA 100%);
-  border-left: 4px solid #E97C9E;
+  border-left: 4px solid #E57A84;
   border-radius: 0 1rem 1rem 0;
   
   .stat-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #E97C9E 0%, #F8B4D9 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #E8C39E 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -143,7 +143,7 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(180deg, #E97C9E 0%, #F8B4D9 50%, #FFE5EC 100%);
+    background: linear-gradient(180deg, #E57A84 0%, #E8C39E 50%, #F4E6E1 100%);
   }
   
   .timeline-item {
@@ -157,7 +157,7 @@
       width: 30px;
       height: 30px;
       background: white;
-      border: 2px solid #E97C9E;
+      border: 2px solid #E57A84;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -194,7 +194,7 @@
   padding: 2rem;
   border-radius: 1.5rem;
   position: relative;
-  border: 1px solid #FFE5EC;
+  border: 1px solid #F4E6E1;
   
   &::before {
     content: '"';
@@ -202,7 +202,7 @@
     top: -20px;
     left: 20px;
     font-size: 5rem;
-    color: #E97C9E;
+    color: #E57A84;
     opacity: 0.2;
     font-family: Georgia, serif;
     line-height: 1;
@@ -217,7 +217,7 @@
   
   &::before {
     content: '♥ ♥ ♥';
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.2rem;
     letter-spacing: 1rem;
     opacity: 0.4;

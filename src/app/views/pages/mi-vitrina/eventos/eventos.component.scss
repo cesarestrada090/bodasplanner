@@ -16,13 +16,13 @@
     font-weight: 600;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
   }
 
   .btn-crear {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -47,7 +47,7 @@
 
 .info-tip {
   background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
-  border-left: 4px solid #E97C9E;
+  border-left: 4px solid #E57A84;
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   display: flex;
@@ -55,7 +55,7 @@
   gap: 1rem;
 
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.25rem;
     flex-shrink: 0;
     margin-top: 0.1rem;
@@ -95,7 +95,7 @@
     flex-shrink: 0;
 
     &.active {
-      background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+      background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
 
       i {
         color: #fff;
@@ -104,7 +104,7 @@
 
     i {
       font-size: 1.75rem;
-      color: #E97C9E;
+      color: #E57A84;
     }
   }
 
@@ -134,7 +134,7 @@
   }
 
   .card-header {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -189,7 +189,7 @@
     transition: all 0.2s;
 
     &:focus {
-      border-color: #E97C9E;
+      border-color: #E57A84;
       box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
     }
   }
@@ -227,7 +227,7 @@
       }
 
       &.btn-primary {
-        background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+        background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
         color: #fff;
         border: none;
 
@@ -251,7 +251,7 @@
     margin-bottom: 1.5rem;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.5rem;
     }
   }
@@ -341,7 +341,7 @@
       align-items: center;
       padding: 0.375rem 0.75rem;
       background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-      color: #E97C9E;
+      color: #E57A84;
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 600;
@@ -373,7 +373,7 @@
         }
 
         &.active {
-          color: #E97C9E;
+          color: #E57A84;
 
           &:hover {
             background: #fce4ec;
@@ -424,7 +424,7 @@
       font-size: 0.9rem;
 
       i {
-        color: #E97C9E;
+        color: #E57A84;
         font-size: 1rem;
         width: 18px;
         flex-shrink: 0;
@@ -448,7 +448,7 @@
       font-weight: 500;
 
       i {
-        color: #E97C9E;
+        color: #E57A84;
         font-size: 1.1rem;
       }
 
@@ -459,8 +459,8 @@
 
     .btn-outline {
       background: transparent;
-      border: 2px solid #E97C9E;
-      color: #E97C9E;
+      border: 2px solid #E57A84;
+      color: #E57A84;
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
       font-weight: 500;
@@ -468,7 +468,7 @@
       transition: all 0.2s;
 
       &:hover {
-        background: #E97C9E;
+        background: #E57A84;
         color: #fff;
       }
     }
@@ -533,7 +533,7 @@
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
     color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -552,7 +552,7 @@
 
 // Modal de asistentes
 .modal-header {
-  background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #d65d84 100%);
   padding: 1.5rem 2rem;
   border: none;
   display: flex;
@@ -663,7 +663,7 @@
   transition: all 0.2s;
 
   &:hover {
-    border-color: #E97C9E;
+    border-color: #E57A84;
     box-shadow: 0 2px 8px rgba(233, 124, 158, 0.1);
   }
 
@@ -679,7 +679,7 @@
 
     i {
       font-size: 1.5rem;
-      color: #E97C9E;
+      color: #E57A84;
     }
   }
 
@@ -743,7 +743,7 @@
         font-size: 0.9rem;
 
         i {
-          color: #E97C9E;
+          color: #E57A84;
           font-size: 0.95rem;
           width: 16px;
         }

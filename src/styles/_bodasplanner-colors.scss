@@ -1,0 +1,21 @@
+// Bodas Planner - Paleta de Colores Personalizada
+
+// Colores principales
+$bp-primary: #E57A84 !default;           // Rosa Coral Suave RGB(229,122,132)
+$bp-secondary: #F4E6E1 !default;         // Beige rosado/Nude RGB(244,230,225)
+$bp-background: #FBF7F6 !default;        // Blanco rosado muy claro RGB(251,247,246)
+$bp-text-primary: #3A3A3A !default;      // Gris oscuro elegante RGB(58,58,58)
+$bp-text-secondary: #8C8C8C !default;    // Gris medio RGB(140,140,140)
+$bp-success: #6FAF8E !default;           // Verde suave elegante RGB(111,175,142)
+$bp-premium: #E8C39E !default;           // Dorado rosado suave RGB(232,195,158)
+$bp-border: #EFE6E3 !default;            // Gris rosado muy claro RGB(239,230,227)
+
+// Con opacidad
+$bp-primary-85: rgba(229, 122, 132, 0.85) !default;
+$bp-primary-12: rgba(229, 122, 132, 0.12) !default;
+$bp-secondary-60: rgba(244, 230, 225, 0.60) !default;
+
+// Gradientes
+$bp-gradient-primary: linear-gradient(135deg, #E57A84 0%, #D5698C 100%) !default;
+$bp-gradient-light: linear-gradient(135deg, #FBF7F6 0%, #F4E6E1 50%, #fff 100%) !default;
+$bp-gradient-soft: linear-gradient(135deg, rgba(229, 122, 132, 0.95) 0%, rgba(213, 105, 140, 0.95) 100%) !default;

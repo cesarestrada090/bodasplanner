@@ -116,7 +116,7 @@ export const MENU: MenuItem[] = [
     link: '/soporte/manual',
   },
   {
-    label: 'Formulario de contacto',
+    label: 'Contáctanos',
     icon: 'mail',
     link: '/soporte/contacto',
   }

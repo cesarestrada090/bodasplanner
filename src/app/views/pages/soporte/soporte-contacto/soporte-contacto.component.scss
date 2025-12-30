@@ -11,7 +11,7 @@
     font-weight: 600;
 
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.75rem;
     }
   }
@@ -22,9 +22,9 @@
   display: flex;
   gap: 1.5rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
+  background: linear-gradient(135deg, #FBF7F6 0%, #F4E6E1 100%);  // Fondo y secundario
   border-radius: 0.75rem;
-  border: 2px solid #fdd;
+  border: 2px solid #EFE6E3;  // Border de la paleta
   margin-bottom: 2rem;
 
   .info-icon {
@@ -32,19 +32,19 @@
 
     i {
       font-size: 2.5rem;
-      color: #E97C9E;
+      color: #E57A84;
     }
   }
 
   .info-content {
     h5 {
-      color: #333;
+      color: #3A3A3A;  // Texto primario
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
 
     p {
-      color: #666;
+      color: #8C8C8C;  // Texto secundario
       margin: 0;
       line-height: 1.6;
     }
@@ -61,7 +61,7 @@
   .contacto-form {
     background: #fff;
     border-radius: 0.75rem;
-    border: 2px solid #f0f0f0;
+    border: 2px solid #EFE6E3;  // Border de la paleta
     padding: 2rem;
 
     .form-row {
@@ -76,7 +76,7 @@
       label {
         display: block;
         font-weight: 500;
-        color: #333;
+        color: #3A3A3A;  // Texto primario
         margin-bottom: 0.5rem;
 
         .required {
@@ -87,15 +87,15 @@
       .form-control {
         width: 100%;
         padding: 0.75rem;
-        border: 2px solid #e0e0e0;
+        border: 2px solid #EFE6E3;  // Border de la paleta
         border-radius: 0.5rem;
         font-size: 0.95rem;
         transition: all 0.3s ease;
 
         &:focus {
           outline: none;
-          border-color: #E97C9E;
-          box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
+          border-color: #E57A84;  // Primario
+          box-shadow: 0 0 0 3px rgba(229, 122, 132, 0.1);  // Primario con opacidad
         }
       }
 
@@ -129,12 +129,12 @@
       }
 
       .btn-primary {
-        background: linear-gradient(135deg, #E97C9E 0%, #d65d84 100%);
+        background: linear-gradient(135deg, #E57A84 0%, #D5698C 100%);  // Gradiente de la paleta
         color: #fff;
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(233, 124, 158, 0.3);
+          box-shadow: 0 4px 12px rgba(229, 122, 132, 0.3);  // Primario con opacidad
         }
       }
 
@@ -163,12 +163,12 @@
     }
 
     .alert-success {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
+      background: rgba(111, 175, 142, 0.15);  // Verde success de la paleta
+      color: #3A3A3A;  // Texto primario
+      border: 1px solid #6FAF8E;  // Verde success
 
       i {
-        color: #28a745;
+        color: #6FAF8E;  // Verde success
       }
     }
   }
@@ -176,11 +176,11 @@
   .contacto-info {
     background: #fff;
     border-radius: 0.75rem;
-    border: 2px solid #f0f0f0;
+    border: 2px solid #EFE6E3;  // Border de la paleta
     padding: 2rem;
 
     h5 {
-      color: #333;
+      color: #3A3A3A;  // Texto primario
       font-weight: 600;
       margin-bottom: 1.5rem;
     }
@@ -189,7 +189,7 @@
       display: flex;
       gap: 1rem;
       padding: 1rem;
-      background: #f8f9fa;
+      background: #FBF7F6;  // Fondo de la paleta
       border-radius: 0.5rem;
       margin-bottom: 1rem;
 
@@ -198,7 +198,7 @@
       }
 
       i {
-        color: #E97C9E;
+        color: #E57A84;  // Primario
         font-size: 1.5rem;
         flex-shrink: 0;
       }
@@ -209,13 +209,13 @@
         gap: 0.25rem;
 
         strong {
-          color: #333;
+          color: #3A3A3A;  // Texto primario
           font-weight: 600;
           font-size: 0.9rem;
         }
 
         span {
-          color: #666;
+          color: #8C8C8C;  // Texto secundario
           font-size: 0.9rem;
         }
       }

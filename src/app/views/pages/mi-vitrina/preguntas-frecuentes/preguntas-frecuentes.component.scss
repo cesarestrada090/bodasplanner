@@ -24,14 +24,14 @@
   gap: 0.75rem;
   padding: 0.875rem 1rem;
   background-color: #FFF8FA;
-  border-left: 3px solid #E97C9E;
+  border-left: 3px solid #E57A84;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   color: #6B6B6B;
   line-height: 1.5;
   
   i {
-    color: #E97C9E;
+    color: #E57A84;
     font-size: 1.125rem;
     flex-shrink: 0;
     margin-top: 2px;
@@ -42,7 +42,7 @@
 ::ng-deep {
   .accordion {
     .accordion-item {
-      border: 1px solid #FFE5EC;
+      border: 1px solid #F4E6E1;
       border-radius: 0.75rem;
       overflow: hidden;
       background: white;
@@ -63,7 +63,7 @@
       
       &:not(.collapsed) {
         background-color: #FFF8FA;
-        color: #E97C9E;
+        color: #E57A84;
         box-shadow: none;
         
         &::after {
@@ -79,7 +79,7 @@
       
       &:focus {
         box-shadow: 0 0 0 3px rgba(233, 124, 158, .1);
-        border-color: #FFE5EC;
+        border-color: #F4E6E1;
       }
     }
     
@@ -108,7 +108,7 @@
     flex-shrink: 0;
     
     i {
-      color: #E97C9E;
+      color: #E57A84;
       font-size: 1.125rem;
     }
   }
@@ -118,7 +118,7 @@
   }
   
   .badge-count {
-    background: linear-gradient(135deg, #E97C9E 0%, #F294B3 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #E8C39E 100%);
     color: white;
     font-size: 0.75rem;
     font-weight: 600;
@@ -180,7 +180,7 @@
   transition: all 0.2s ease;
   
   &:focus {
-    border-color: #E97C9E;
+    border-color: #E57A84;
     box-shadow: 0 0 0 3px rgba(233, 124, 158, .1);
     outline: none;
   }
@@ -228,12 +228,12 @@ textarea.form-control {
     border-radius: 0.25rem;
     
     &:checked {
-      background-color: #E97C9E;
-      border-color: #E97C9E;
+      background-color: #E57A84;
+      border-color: #E57A84;
     }
     
     &:focus {
-      border-color: #E97C9E;
+      border-color: #E57A84;
       box-shadow: 0 0 0 3px rgba(233, 124, 158, .1);
     }
   }
@@ -250,13 +250,13 @@ textarea.form-control {
   .form-check-input {
     width: 2.5rem;
     height: 1.25rem;
-    background-color: #E9ECEF;
+    background-color: #EFE6E3;
     border: none;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e");
     
     &:checked {
-      background-color: #E97C9E;
-      border-color: #E97C9E;
+      background-color: #E57A84;
+      border-color: #E57A84;
     }
     
     &:focus {
@@ -269,8 +269,8 @@ textarea.form-control {
 // Button Group Radio
 .btn-group {
   .btn-check:checked + .btn-outline-secondary {
-    background-color: #E97C9E;
-    border-color: #E97C9E;
+    background-color: #E57A84;
+    border-color: #E57A84;
     color: white;
   }
   
@@ -281,8 +281,8 @@ textarea.form-control {
     
     &:hover {
       background-color: #FFF8FA;
-      border-color: #E97C9E;
-      color: #E97C9E;
+      border-color: #E57A84;
+      color: #E57A84;
     }
   }
 }
@@ -310,13 +310,13 @@ textarea.form-control {
   }
   
   &.btn-primary {
-    background: linear-gradient(135deg, #E97C9E 0%, #F294B3 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #E8C39E 100%);
     border: none;
     color: white;
     box-shadow: 0 2px 8px rgba(233, 124, 158, .25);
     
     &:hover {
-      background: linear-gradient(135deg, #D56B8D 0%, #E17FA0 100%);
+      background: linear-gradient(135deg, #D5698C 0%, #D5698C 100%);
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(233, 124, 158, .35);
     }
@@ -328,11 +328,11 @@ textarea.form-control {
   
   &.btn-light {
     background-color: #F8F9FA;
-    border: 1px solid #E9ECEF;
+    border: 1px solid #EFE6E3;
     color: #6B6B6B;
     
     &:hover {
-      background-color: #E9ECEF;
+      background-color: #EFE6E3;
     }
   }
 }

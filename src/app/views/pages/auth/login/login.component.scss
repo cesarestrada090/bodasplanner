@@ -24,7 +24,7 @@
 
 .login-left {
   flex: 1;
-  background: linear-gradient(135deg, #E97C9E 0%, #D5698C 100%);
+  background: linear-gradient(135deg, #E57A84 0%, #D5698C 100%);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -178,7 +178,7 @@
 
         &:focus {
           outline: none;
-          border-color: #E97C9E;
+          border-color: #E57A84;
           box-shadow: 0 0 0 3px rgba(233, 124, 158, 0.1);
         }
 
@@ -201,8 +201,8 @@
       display: none;
 
       &:checked + .checkbox-label .checkbox-box {
-        background: linear-gradient(135deg, #E97C9E 0%, #D5698C 100%);
-        border-color: #E97C9E;
+        background: linear-gradient(135deg, #E57A84 0%, #D5698C 100%);
+        border-color: #E57A84;
 
         &::after {
           opacity: 1;
@@ -249,7 +249,7 @@
   }
 
   .forgot-link {
-    color: #E97C9E;
+    color: #E57A84;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
@@ -263,7 +263,7 @@
   .btn-login {
     width: 100%;
     padding: 0.875rem;
-    background: linear-gradient(135deg, #E97C9E 0%, #D5698C 100%);
+    background: linear-gradient(135deg, #E57A84 0%, #D5698C 100%);
     color: #fff;
     border: none;
     border-radius: 0.625rem;
@@ -309,7 +309,7 @@
   }
 
   a {
-    color: #E97C9E;
+    color: #E57A84;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;

@@ -186,7 +186,7 @@ export class RedesSocialesComponent {
       url: '',
       activa: true,
       seguidores: undefined,
-      color: '#E97C9E'
+      color: '#E57A84'
     };
   }
 }

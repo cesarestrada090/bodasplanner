@@ -52,3 +52,5 @@ Thumbs.db
 *.wmv
 
 uploads/
+# Angular cache
+.angular/

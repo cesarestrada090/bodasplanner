@@ -3,12 +3,8 @@
 
     <!--- Logo -->
     <a routerLink="/" class="sidebar-brand">
-      Bodas<span>Planner</span>
+      <img src="images/logo.png" alt="Bodas Planner" style="height: 100px;">
     </a>
-
-    <!-- <a routerLink="/" class="sidebar-brand">
-      <img src="images/logo.png" alt="logo">
-    </a> -->
 
     <!--- Toggler -->
     <div class="sidebar-toggler" #sidebarToggler (click)="toggleSidebar($event)">
@@ -91,6 +87,14 @@
     </ng-scrollbar>
 
     <!--- Sidemenu end -->
+
+    <!--- Logout button -->
+    <div class="sidebar-footer">
+      <a href="" (click)="onLogout($event)" class="logout-link">
+        <i class="link-icon" data-feather="log-out" appFeatherIcon></i>
+        <span class="link-title">Cerrar Sesión</span>
+      </a>
+    </div>
 
   </div>
 </nav>

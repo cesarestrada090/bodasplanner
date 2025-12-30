@@ -124,6 +124,17 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     return item.subItems !== undefined ? item.subItems.length > 0 : false;
   }
 
+  /**
+   * Handle logout action
+   */
+  onLogout(e: Event) {
+    e.preventDefault();
+    // TODO: Implement logout logic (clear session, redirect to login, etc.)
+    console.log('Logout clicked');
+    // Example: this.authService.logout();
+    // Example: this.router.navigate(['/auth/login']);
+  }
+
 
   /**
    * Reset the menus, then highlight the currently active menu item

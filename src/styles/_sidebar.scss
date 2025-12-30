@@ -53,7 +53,7 @@
         width: 100%;
         border-radius: 3px;
         height: 2px;
-        background: $secondary;
+        background: #E57A84;
         // -webkit-transition: all .3s;
         // transition: all .3s;
         position: relative;
@@ -91,7 +91,8 @@
     height: 100%;
     -webkit-box-shadow: 0 8px 10px 0 var(--#{$prefix}sidebar-box-shadow-color);
             box-shadow: 0 8px 10px 0 var(--#{$prefix}sidebar-box-shadow-color); 
-    background: #FFF5F7;   
+    background: #FFF5F7;
+    padding-bottom: 84px; // Espacio para el footer de logout   
     .sidebar-nav {
       list-style: none;
       padding: 25px 25px 50px 25px;
@@ -266,6 +267,52 @@
     }
   }
 
+  .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 25px;
+    background: #FFF5F7;
+    border-top: 1px solid #FFD6E0;
+    border-right: 1px solid #FFD6E0;
+
+    .logout-link {
+      display: flex;
+      align-items: center;
+      padding: 0 0.5rem;
+      height: 44px;
+      color: #6B6B6B;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+
+      .link-icon {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        color: inherit;
+      }
+
+      .link-title {
+        margin-left: 32px;
+        font-size: 16px;
+        transition: all .2s ease-in-out;
+      }
+
+      &:hover {
+        color: #E57A84;
+        background-color: #FFE8ED;
+        .link-title {
+          margin-left: 33px;
+        }
+        .link-icon {
+          color: #E57A84;
+        }
+      }
+    }
+  }
+
   @media(max-width: 991px) {
     right: 0;
     left: unset;
@@ -350,6 +397,23 @@
                 border-color: $sidebar-dark-color;
               }
             }
+          }
+        }
+      }
+    }
+
+    .sidebar-footer {
+      background: $sidebar-dark-bg;
+      border-top: 1px solid $border-color-dark;
+      border-right: 1px solid $border-color-dark;
+      
+      .logout-link {
+        color: $secondary;
+        
+        &:hover {
+          color: $sidebar-nav-link-active-color;
+          .link-icon {
+            color: $sidebar-nav-link-active-color;
           }
         }
       }
